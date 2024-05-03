@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RaiderPlan", "RaiderPlan.csproj", "{4EDE7BE1-E811-47EC-A104-30F6605A55CF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4EDE7BE1-E811-47EC-A104-30F6605A55CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EDE7BE1-E811-47EC-A104-30F6605A55CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EDE7BE1-E811-47EC-A104-30F6605A55CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EDE7BE1-E811-47EC-A104-30F6605A55CF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7863F0FF-C5D4-482E-AB37-4B42B114EE75}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,28 @@
+{
+    "iisSettings": {
+        "windowsAuthentication": false,
+        "anonymousAuthentication": true,
+        "iisExpress": {
+            "applicationUrl": "http://localhost:54429",
+            "sslPort": 0
+        }
+    },
+    "profiles": {
+        "RaiderPlan": {
+            "commandName": "Project",
+            "launchBrowser": true,
+            "applicationUrl": "https://localhost:44391;http://localhost:5000",
+                "environmentVariables": {
+                "WEBSITE_PATH": "$(MSBuildProjectDirectory)"
+            }
+        },
+        "Docker": {
+            "commandName": "Docker",
+            "launchBrowser": true,
+            "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+            "publishAllPorts": false,
+            "useSSL": false
+        }
+
+    }
+}
