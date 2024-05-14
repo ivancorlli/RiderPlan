@@ -11,15 +11,6 @@ namespace RaiderPlan.Sitio.Inicio
             InitializeComponent();
         }
 
-        private void btnlogin_Click(object sender, EventArgs e)
-        {
-            winLogin winLogin = new winLogin();
-            winLogin.EvAceptar += ElijeAceptar;
-            winLogin.evValidar += ManejaValidaCodigo;
-            winLogin.StartPosition = FormStartPosition.CenterScreen;
-            winLogin.ShowDialog();
-        }
-
         private void ElijeAceptar()
         {
             EvAutenticado?.Invoke(this, EventArgs.Empty);
@@ -46,6 +37,26 @@ namespace RaiderPlan.Sitio.Inicio
         {
             //disparo el evento para terminar el inicio y cargar el espacio personal del usuario
             EvAutenticado?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            winLogin winLogin = new winLogin();
+            winLogin.EvAceptar += ElijeAceptar;
+            winLogin.evValidar += ManejaValidaCodigo;
+            winLogin.evCrearCuenta += ManejaCrearCuenta;
+            winLogin.StartPosition = FormStartPosition.CenterScreen;
+            winLogin.ShowDialog();
+        }
+
+        private void ManejaCrearCuenta()
+        {
+            btnRegistro_Click(this, EventArgs.Empty);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            label1_Click(sender, e);
         }
     }
 }

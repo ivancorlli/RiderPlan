@@ -14,10 +14,12 @@ namespace RaiderPlan.Sitio.Inicio
         public delegate void DelegadoValidar(string pEmailUsuario);
         public event DelegadoValidar evValidar;
 
+        public delegate void CrearCuenta();
+        public event CrearCuenta evCrearCuenta;
         public winLogin()
         {
             InitializeComponent();
-        
+            lblError.Visible = false;
         }
 
         private void Cancelar_Click(object sender, EventArgs e)
@@ -25,7 +27,7 @@ namespace RaiderPlan.Sitio.Inicio
             this.Close();
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click_1(object sender, EventArgs e)
         {
             //Creo data provaider
             dpUsuarioXEmailXusuarioIDCollectionCollection usuarioXEmail = new dpUsuarioXEmailXusuarioIDCollectionCollection();
@@ -76,8 +78,6 @@ namespace RaiderPlan.Sitio.Inicio
             
         }
 
-        
-
         private void txtEmailUsuario_Leave(object sender, EventArgs e)
         {
             bool resp = false;
@@ -89,7 +89,7 @@ namespace RaiderPlan.Sitio.Inicio
             else
             {
                 errorProvider1.Clear();
-                pnlMensaje.Visible = false;
+                lblError.Visible = false;
             }
       
         
@@ -107,7 +107,7 @@ namespace RaiderPlan.Sitio.Inicio
                 if (!resp)
                 {
                     lblError.Text = "El email no es valido";
-                    pnlMensaje.Visible = true;
+                    lblError.Visible = true;
                 }
             }
             else
@@ -120,14 +120,14 @@ namespace RaiderPlan.Sitio.Inicio
                     if (!resp) 
                     {
                         lblError.Text = "El nombre de usuario no es válido solo acpeta letras y números";
-                        pnlMensaje.Visible = true;
+                        lblError.Visible = true;
                     }
                 }
                 else
                 {
                     resp = false;
                     lblError.Text = "El nombre de usuario debe tener mas de 3 caracteres";
-                    pnlMensaje.Visible = true;
+                    lblError.Visible = true;
                 }
             }
 
@@ -150,7 +150,7 @@ namespace RaiderPlan.Sitio.Inicio
             else
             {
                 errorProvider1.Clear();
-                pnlMensaje.Visible= false;
+                lblError.Visible= false;
             }
         }
 
@@ -163,7 +163,7 @@ namespace RaiderPlan.Sitio.Inicio
             if (ptextbox.Text.Length<  4) 
             {
                 lblError.Text = "El password debe tener mas de 3 caracteres";
-                pnlMensaje.Visible = true;
+                lblError.Visible = true;
                 resp = false;
                 return resp;
             }
@@ -173,14 +173,21 @@ namespace RaiderPlan.Sitio.Inicio
             if (!resp)
             {
                 lblError.Text = "El password solo admite caracteres alfabeticos y números ";
-                pnlMensaje.Visible = true;
+                lblError.Visible = true;
             }
                        
             return resp;
         }
-            
-        
-        
-        
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            evCrearCuenta.Invoke();
+        }
+
+        private void lklcontraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+
+        }
     }
 }
