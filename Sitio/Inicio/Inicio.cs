@@ -45,6 +45,38 @@ namespace RaiderPlan.Sitio.Inicio
             winLogin.EvAceptar += ElijeAceptar;
             winLogin.evValidar += ManejaValidaCodigo;
             winLogin.evCrearCuenta += ManejaCrearCuenta;
+            winLogin.evRecuperaCuenta += ManejarRecpuerarCuenta;
+            winLogin.evValidaCodigoRecuperacion += ValidaCodigo;
+            winLogin.StartPosition = FormStartPosition.CenterScreen;
+            winLogin.ShowDialog();
+        }
+
+        private void ManejarRecpuerarCuenta()
+        {
+            winRecuperaCuenta form = new winRecuperaCuenta();
+            form.EvRecupera += ValidaCodigo;
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.ShowDialog();
+        }
+
+        private void ValidaCodigo(int id)
+        {
+            winCodigoRecuperacion form = new winCodigoRecuperacion(id)
+            {
+                StartPosition = FormStartPosition.CenterScreen
+            };
+            form.EvClose += AbreLogin;
+            form.ShowDialog();
+        }
+
+        private void AbreLogin(string pEmailUsuario)
+        {
+            winLogin winLogin = new winLogin(pEmailUsuario);
+            winLogin.EvAceptar += ElijeAceptar;
+            winLogin.evValidar += ManejaValidaCodigo;
+            winLogin.evCrearCuenta += ManejaCrearCuenta;
+            winLogin.evRecuperaCuenta += ManejarRecpuerarCuenta;
+            winLogin.evValidaCodigoRecuperacion += ValidaCodigo;
             winLogin.StartPosition = FormStartPosition.CenterScreen;
             winLogin.ShowDialog();
         }

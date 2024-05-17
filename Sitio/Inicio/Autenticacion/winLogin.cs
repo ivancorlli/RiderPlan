@@ -16,10 +16,20 @@ namespace RaiderPlan.Sitio.Inicio
 
         public delegate void CrearCuenta();
         public event CrearCuenta evCrearCuenta;
-        public winLogin()
+
+        public delegate void RecuperarCuenta();
+        public event RecuperarCuenta evRecuperaCuenta;
+
+        public delegate void ValidaCodigoRecuperacion(int id);
+        public event ValidaCodigoRecuperacion evValidaCodigoRecuperacion;
+        public winLogin(string email = "")
         {
             InitializeComponent();
             lblError.Visible = false;
+            if (email != String.Empty)
+            {
+                txtEmailUsuario.Text = email;
+            }
         }
 
         private void Cancelar_Click(object sender, EventArgs e)
@@ -31,36 +41,43 @@ namespace RaiderPlan.Sitio.Inicio
         {
             //Creo data provaider
             dpUsuarioXEmailXusuarioIDCollectionCollection usuarioXEmail = new dpUsuarioXEmailXusuarioIDCollectionCollection();
-            
+
             // si la password y el email son correcton inteto recuperar primero por email o usuario
             if (ControlaPassword(txtPassword) && ControlaEmialUsuario(txtEmailUsuario))
             {
-                if (txtEmailUsuario.Text.Contains("@")) 
-                { 
+                if (txtEmailUsuario.Text.Contains("@"))
+                {
                     //Busco por email
-                    usuarioXEmail.Fill(txtEmailUsuario.Text.Trim(),"");
+                    usuarioXEmail.Fill(txtEmailUsuario.Text.Trim(), "");
                 }
                 else
                 {
                     //Recupero por usuario
-                    usuarioXEmail.Fill("",txtEmailUsuario.Text.Trim());
+                    usuarioXEmail.Fill("", txtEmailUsuario.Text.Trim());
                 }
-                            
+
             }
             //si se recupera un solo objeto 
             if (usuarioXEmail.Count == 1)
             {
-                if (usuarioXEmail[0].UsuarioRow.IsCodigoValidationNull() || usuarioXEmail[0].CodigoValidation=="" ) { 
-                    string _password;
-                    _password= Utiles.Tools.Encripta(txtPassword.Text);
-
-                    if (_password == usuarioXEmail[0].UsuarioPasword)
+                if (usuarioXEmail[0].UsuarioRow.IsCodigoValidationNull() || usuarioXEmail[0].CodigoValidation == "")
+                {
+                    if (usuarioXEmail[0].UsuarioRow.IsCodigoRecuperacionNull())
+                    {
+                        string _password = Utiles.Tools.Encripta(txtPassword.Text);
+                        if (_password == usuarioXEmail[0].UsuarioPasword)
+                        {
+                            this.Close();
+                            Application.Session.UsuarioID = usuarioXEmail[0].UsuarioID;
+                            EvAceptar?.Invoke();
+                        }
+                        else MessageBox.Show("El correo o la passaword son incorrectos");
+                    }
+                    else
                     {
                         this.Close();
-                        Application.Session.UsuarioID = usuarioXEmail[0].UsuarioID;
-                       EvAceptar?.Invoke();
+                        evValidaCodigoRecuperacion.Invoke(usuarioXEmail[0].UsuarioID);
                     }
-                    else MessageBox.Show("El correo o la passaword son incorrectos");
                 }
                 else
                 {
@@ -69,20 +86,20 @@ namespace RaiderPlan.Sitio.Inicio
                 }
 
             }
-            else 
+            else
             {
                 if (usuarioXEmail.Count == 0) MessageBox.Show("El usuario no existe");
                 else MessageBox.Show("Hay porblemas con el usuario con el que intenta ingresar");
             }
 
-            
+
         }
 
         private void txtEmailUsuario_Leave(object sender, EventArgs e)
         {
             bool resp = false;
-            resp= ControlaEmialUsuario((TextBox)sender);
-            if (!resp) 
+            resp = ControlaEmialUsuario((TextBox)sender);
+            if (!resp)
             {
                 errorProvider1.SetError(txtEmailUsuario, "hay errores en el email o usuario");
             }
@@ -91,19 +108,19 @@ namespace RaiderPlan.Sitio.Inicio
                 errorProvider1.Clear();
                 lblError.Visible = false;
             }
-      
-        
-        
+
+
+
         }
 
         private bool ControlaEmialUsuario(TextBox sender)
         {
             bool resp = false;
-            
+
             if (sender.Text.Contains("@"))
             {
                 string patron = @"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$";
-                resp= Regex.IsMatch(sender.Text, patron);
+                resp = Regex.IsMatch(sender.Text, patron);
                 if (!resp)
                 {
                     lblError.Text = "El email no es valido";
@@ -113,11 +130,11 @@ namespace RaiderPlan.Sitio.Inicio
             else
             {
                 //controlamos el nombre de usuario
-                if (sender.Text.Trim().Length > 4) 
-                { 
+                if (sender.Text.Trim().Length > 4)
+                {
                     string patron = "^[a-zA-Z0-9]+$";
                     resp = Regex.IsMatch(sender.Text, patron);
-                    if (!resp) 
+                    if (!resp)
                     {
                         lblError.Text = "El nombre de usuario no es válido solo acpeta letras y números";
                         lblError.Visible = true;
@@ -150,7 +167,7 @@ namespace RaiderPlan.Sitio.Inicio
             else
             {
                 errorProvider1.Clear();
-                lblError.Visible= false;
+                lblError.Visible = false;
             }
         }
 
@@ -158,9 +175,9 @@ namespace RaiderPlan.Sitio.Inicio
         {
             bool resp = false;
             string patron = "^[a-zA-Z0-9]+$";
-           
-            
-            if (ptextbox.Text.Length<  4) 
+
+
+            if (ptextbox.Text.Length < 4)
             {
                 lblError.Text = "El password debe tener mas de 3 caracteres";
                 lblError.Visible = true;
@@ -175,7 +192,7 @@ namespace RaiderPlan.Sitio.Inicio
                 lblError.Text = "El password solo admite caracteres alfabeticos y números ";
                 lblError.Visible = true;
             }
-                       
+
             return resp;
         }
 
@@ -187,7 +204,8 @@ namespace RaiderPlan.Sitio.Inicio
 
         private void lklcontraseña_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
+            this.Close();
+            evRecuperaCuenta.Invoke();
         }
     }
 }

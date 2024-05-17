@@ -67,10 +67,10 @@
 
   <ItemGroup>
     <Reference Include="RaiderPlan1BO">
-      <HintPath>..\..\OneDrive\Escritorio\RiderPlanDb\Raiderplan1\Working Version\RaiderPlan1BO\bin\Release\RaiderPlan1BO.dll</HintPath>
+      <HintPath>..\RiderPlanDb\Raiderplan1\Working Version\RaiderPlan1BO\bin\Release\RaiderPlan1BO.dll</HintPath>
     </Reference>
     <Reference Include="Raiderplan1BusinessFramework">
-      <HintPath>..\..\OneDrive\Escritorio\RiderPlanDb\Raiderplan1\Working Version\Raiderplan1BusinessFramework\bin\Release\Raiderplan1BusinessFramework.dll</HintPath>
+      <HintPath>..\RiderPlanDb\Raiderplan1\Working Version\Raiderplan1BusinessFramework\bin\Release\Raiderplan1BusinessFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
 
@@ -80,6 +80,9 @@
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Sitio\Inicio\Autenticacion\winCodigoRecuperacion.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
 

@@ -34,12 +34,12 @@
             this.txtPassword = new Wisej.Web.TextBox();
             this.lblError = new Wisej.Web.Label();
             this.pnlContent = new Wisej.Web.Panel();
+            this.label1 = new Wisej.Web.Label();
+            this.line1 = new Wisej.Web.Line();
+            this.btnAceptar = new Wisej.Web.Button();
             this.label2 = new Wisej.Web.Label();
             this.lklcontraseña = new Wisej.Web.LinkLabel();
             this.Cancelar = new Wisej.Web.Button();
-            this.btnAceptar = new Wisej.Web.Button();
-            this.line1 = new Wisej.Web.Line();
-            this.label1 = new Wisej.Web.Label();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
@@ -57,7 +57,7 @@
             this.txtEmailUsuario.AutoSize = false;
             this.txtEmailUsuario.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
             this.txtEmailUsuario.BorderStyle = Wisej.Web.BorderStyle.None;
-            this.txtEmailUsuario.CssStyle = "border-radius: 10px;\r\nplaceholder:\"Email o Username\";";
+            this.txtEmailUsuario.CssStyle = "border-radius: 10px;\r\n";
             this.txtEmailUsuario.Font = new System.Drawing.Font("default, Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtEmailUsuario.ForeColor = System.Drawing.Color.White;
             this.txtEmailUsuario.Location = new System.Drawing.Point(30, 124);
@@ -75,6 +75,7 @@
             this.txtPassword.AutoSize = false;
             this.txtPassword.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
             this.txtPassword.BorderStyle = Wisej.Web.BorderStyle.None;
+            this.txtPassword.CssStyle = "border-radius: 10px";
             this.txtPassword.Font = new System.Drawing.Font("default, Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.txtPassword.ForeColor = System.Drawing.Color.White;
             this.txtPassword.InputType.Type = Wisej.Web.TextBoxType.Password;
@@ -118,6 +119,38 @@
             this.pnlContent.Size = new System.Drawing.Size(407, 457);
             this.pnlContent.TabIndex = 0;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Cursor = Wisej.Web.Cursors.Hand;
+            this.label1.Font = new System.Drawing.Font("defaultBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.label1.Location = new System.Drawing.Point(151, 395);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(114, 24);
+            this.label1.TabIndex = 16;
+            this.label1.Text = "Crear Cuenta";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // line1
+            // 
+            this.line1.Location = new System.Drawing.Point(45, 369);
+            this.line1.Name = "line1";
+            this.line1.Size = new System.Drawing.Size(316, 10);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
+            this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.btnAceptar.Location = new System.Drawing.Point(65, 299);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(277, 49);
+            this.btnAceptar.TabIndex = 14;
+            this.btnAceptar.Text = "Iniciar Sesion";
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -154,38 +187,6 @@
             this.Cancelar.TabIndex = 11;
             this.Cancelar.Text = "X";
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
-            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
-            this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnAceptar.Location = new System.Drawing.Point(65, 299);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(277, 49);
-            this.btnAceptar.TabIndex = 14;
-            this.btnAceptar.Text = "Iniciar Sesion";
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
-            // 
-            // line1
-            // 
-            this.line1.Location = new System.Drawing.Point(45, 369);
-            this.line1.Name = "line1";
-            this.line1.Size = new System.Drawing.Size(316, 10);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Cursor = Wisej.Web.Cursors.Hand;
-            this.label1.Font = new System.Drawing.Font("defaultBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.label1.Location = new System.Drawing.Point(151, 395);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(114, 24);
-            this.label1.TabIndex = 16;
-            this.label1.Text = "Crear Cuenta";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // winLogin
             // 
