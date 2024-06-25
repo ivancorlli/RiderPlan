@@ -65,13 +65,12 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
   </ItemGroup>
 
-
   <ItemGroup>
     <Reference Include="RaiderPlan1BO">
-      <HintPath>..\..\..\Documents\Visual Studio 2008\Projects\Raiderplan1\Raiderplan1\Working Version\RaiderPlan1BO\bin\Release\RaiderPlan1BO.dll</HintPath>
+      <HintPath>..\..\..\Documents\Visual Studio 2008\Projects\Raiderplan1\RiderPlanDb\Raiderplan1\Working Version\RaiderPlan1BO\bin\Release\RaiderPlan1BO.dll</HintPath>
     </Reference>
     <Reference Include="Raiderplan1BusinessFramework">
-      <HintPath>..\..\..\Documents\Visual Studio 2008\Projects\Raiderplan1\Raiderplan1\Working Version\Raiderplan1BusinessFramework\bin\Release\Raiderplan1BusinessFramework.dll</HintPath>
+      <HintPath>..\..\..\Documents\Visual Studio 2008\Projects\Raiderplan1\RiderPlanDb\Raiderplan1\Working Version\Raiderplan1BusinessFramework\bin\Release\Raiderplan1BusinessFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
 

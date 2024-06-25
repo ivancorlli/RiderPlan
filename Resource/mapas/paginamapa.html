@@ -2,34 +2,154 @@
        
     <html>
     <head>
-        <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>-->
-        <title>Mapa OpenStreetMap</title>
         <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                overflow-x: hidden;
+            }
+
             #map {
-                height: 600px;
+                height: 70vh; /* Altura del mapa ajustada para dejar espacio para el botón de abrir */
+                width: 100%;
+               
+            }
+
+            #sidebar {
+                position: absolute; 
+                top: 0;
+                left: 0;
+                height: calc(100vh - 5px);   
+                width: 300px;
+                background-color: #111;
+                padding-top: 20px;
+                transform: translateX(-300px);
+                transition: transform 0.3s ease-in-out;
+                z-index: 1000;
+                overflow-y: auto;
+            }
+
+                #sidebar.active {
+                    transform: translateX(0);
+                }
+
+                #sidebar .closebtn {
+                    position: absolute;
+                    top: 10px;
+                    right: 25px;
+                    font-size: 36px;
+                    margin-left: 50px;
+                    color: white;
+                }
+
+                #sidebar input,
+                #sidebar button {
+                    width: calc(100% - 5px); /* Ajusta el ancho del input y botón */
+                    padding: 10px;
+                    margin: 10px auto;
+                    display: block;
+                    border: none;
+                    border-radius: 5px;
+                }
+
+                #sidebar input {
+                    background-color: #333;
+                    color: white;
+                }
+
+                #sidebar button {
+                    background-color: #444;
+                    color: white;
+                    cursor: pointer;
+                }
+
+                    #sidebar button:hover {
+                        background-color: #555;
+                    }
+
+                #sidebar ul {
+                    list-style: none;
+                    padding: 0;
+                    color: white;
+                }
+
+                    #sidebar ul li {
+                        padding: 10px;
+                        text-align: left;
+                    }
+
+                        #sidebar ul li:hover {
+                            background-color: #575757;
+                            cursor: pointer;
+                        }
+
+            #openSidebarBtn {
+                font-size: 20px;
+                cursor: pointer;
+                position: absolute;
+                top: 90px;
+                left: 10px;
+                z-index: 1001;
+                color: white;
+                background-color: #111;
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+                #openSidebarBtn.hidden {
+                    display: none;
+                }
+
+            #results {
+                list-style: none;
+                padding: 0;
+                margin-top: 10px;
+            }
+
+                #results li {
+                    margin: 5px 0;
+                    cursor: pointer;
+                    padding: 5px;
+                    border: 1px solid #ccc;
+                    background-color: #333;
+                    color: white;
+                }
+
+                    #results li:hover {
+                        background-color: #444;
+                    }
+
+            .clearfix::after {
+                content: "";
+                clear: both;
+                display: table;
             }
         </style>
+
+        <!--<style>
+        #map {
+            height: 600px;
+        }
+    </style>-->
     </head>
     <body>
+
+        <div id="sidebar">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <p>Ingresar nuevo punto de enlace</p>
+            <input type="text" id="searchQuery" placeholder="Calle, Localidad, Provincia, País" />
+            <button onclick="searchLocation()">Buscar</button>
+            <ul id="results"></ul>
+        </div>
+
+        <div id="openSidebarBtn" onclick="openNav()">&#9776;</div>
+       
+        <!--muestra el mapa-->
         <div id="map"></div>
-        <!--<button id="miBoton" onclick="miFuncion()"> "Haz clic" </button>-->
-        <!--<p>Este es el lugar donde quiero mostrar los mapas</p>-->
-
+       
         <script>
-            miFuncion();
-
-           /* document.addEventListener("DOMContentLoaded", function () {
-                cargarMapa();
-            });
-
-            // Utilizar el objeto JavaScript de Wisej para ejecutar código en el cliente.
-            function cargarMapa() {
-                var map = L.map('map').setView([-25.4953, -64.9743], 12);
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '© OpenStreetMap contributors'
-                }).addTo(map);
-                */
+           
         </script>
     </body>
 </html>

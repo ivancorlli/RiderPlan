@@ -201,7 +201,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 //cargo el sexo
                 switch (_Persona.PersonaSexo)
                 {
-                    case  Sexo.Masculino :
+                    case Sexo.Masculino :
                         cbSexo.SelectedItem= "Hombre";
                         break;
                     case Sexo.Femenino:

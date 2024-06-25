@@ -29,16 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Viajes));
-            Wisej.Web.JavaScript.ClientEvent clientEvent1 = new Wisej.Web.JavaScript.ClientEvent();
             this.pnlContent = new Wisej.Web.Panel();
             this.htmlPanel1 = new Wisej.Web.HtmlPanel();
             this.pnlCoordenadas = new Wisej.Web.Panel();
-            this.mtbLongitud = new Wisej.Web.MaskedTextBox();
-            this.mtbLatitud = new Wisej.Web.MaskedTextBox();
             this.btnAgregar = new Wisej.Web.Button();
-            this.lblLongitud = new Wisej.Web.Label();
-            this.lblLatitud = new Wisej.Web.Label();
             this.javaScript1 = new Wisej.Web.JavaScript(this.components);
             this.pnlContent.SuspendLayout();
             this.pnlCoordenadas.SuspendLayout();
@@ -59,14 +53,9 @@
             this.htmlPanel1.Dock = Wisej.Web.DockStyle.Fill;
             this.htmlPanel1.Focusable = false;
             this.htmlPanel1.HtmlSource = "Resource\\mapas\\paginamapa.html";
-            this.htmlPanel1.InitScript = "   ";
-            this.javaScript1.SetJavaScript(this.htmlPanel1, resources.GetString("htmlPanel1.JavaScript"));
-            clientEvent1.Event = "eventoNuevo";
-            clientEvent1.JavaScript = "function(){alert(\"disparado desde propiedades\")}";
-            this.javaScript1.GetJavaScriptEvents(this.htmlPanel1).Add(clientEvent1);
             this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
             this.htmlPanel1.Name = "htmlPanel1";
-            this.htmlPanel1.Size = new System.Drawing.Size(891, 465);
+            this.htmlPanel1.Size = new System.Drawing.Size(891, 498);
             this.htmlPanel1.TabIndex = 0;
             this.htmlPanel1.TabStop = false;
             this.htmlPanel1.ElementClick += new Wisej.Web.HtmlPanelElementClickHandler(this.htmlPanel1_ElementClick);
@@ -74,59 +63,22 @@
             // 
             // pnlCoordenadas
             // 
-            this.pnlCoordenadas.Controls.Add(this.mtbLongitud);
-            this.pnlCoordenadas.Controls.Add(this.mtbLatitud);
+            this.pnlCoordenadas.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
             this.pnlCoordenadas.Controls.Add(this.btnAgregar);
-            this.pnlCoordenadas.Controls.Add(this.lblLongitud);
-            this.pnlCoordenadas.Controls.Add(this.lblLatitud);
             this.pnlCoordenadas.Dock = Wisej.Web.DockStyle.Bottom;
-            this.pnlCoordenadas.Location = new System.Drawing.Point(0, 465);
+            this.pnlCoordenadas.Location = new System.Drawing.Point(0, 498);
             this.pnlCoordenadas.Name = "pnlCoordenadas";
-            this.pnlCoordenadas.Size = new System.Drawing.Size(891, 94);
+            this.pnlCoordenadas.Size = new System.Drawing.Size(891, 61);
             this.pnlCoordenadas.TabIndex = 1;
-            // 
-            // mtbLongitud
-            // 
-            this.mtbLongitud.Location = new System.Drawing.Point(276, 36);
-            this.mtbLongitud.Mask = "999.99999999";
-            this.mtbLongitud.Name = "mtbLongitud";
-            this.mtbLongitud.Size = new System.Drawing.Size(100, 22);
-            this.mtbLongitud.TabIndex = 6;
-            // 
-            // mtbLatitud
-            // 
-            this.mtbLatitud.Location = new System.Drawing.Point(83, 36);
-            this.mtbLatitud.Mask = "999.99999999";
-            this.mtbLatitud.Name = "mtbLatitud";
-            this.mtbLatitud.Size = new System.Drawing.Size(100, 22);
-            this.mtbLatitud.TabIndex = 5;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(410, 33);
+            this.btnAgregar.Location = new System.Drawing.Point(16, 17);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(100, 27);
             this.btnAgregar.TabIndex = 4;
             this.btnAgregar.Text = "Agergar";
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
-            // 
-            // lblLongitud
-            // 
-            this.lblLongitud.AutoSize = true;
-            this.lblLongitud.Location = new System.Drawing.Point(220, 39);
-            this.lblLongitud.Name = "lblLongitud";
-            this.lblLongitud.Size = new System.Drawing.Size(50, 15);
-            this.lblLongitud.TabIndex = 1;
-            this.lblLongitud.Text = "longitud";
-            // 
-            // lblLatitud
-            // 
-            this.lblLatitud.AutoSize = true;
-            this.lblLatitud.Location = new System.Drawing.Point(33, 39);
-            this.lblLatitud.Name = "lblLatitud";
-            this.lblLatitud.Size = new System.Drawing.Size(44, 15);
-            this.lblLatitud.TabIndex = 0;
-            this.lblLatitud.Text = "Latitud";
             // 
             // Viajes
             // 
@@ -135,7 +87,6 @@
             this.Size = new System.Drawing.Size(891, 559);
             this.pnlContent.ResumeLayout(false);
             this.pnlCoordenadas.ResumeLayout(false);
-            this.pnlCoordenadas.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -146,10 +97,6 @@
         private Wisej.Web.JavaScript javaScript1;
         private Wisej.Web.HtmlPanel htmlPanel1;
         private Wisej.Web.Panel pnlCoordenadas;
-        private Wisej.Web.Label lblLatitud;
-        private Wisej.Web.Label lblLongitud;
-        private Wisej.Web.MaskedTextBox mtbLongitud;
-        private Wisej.Web.MaskedTextBox mtbLatitud;
         private Wisej.Web.Button btnAgregar;
     }
 }
