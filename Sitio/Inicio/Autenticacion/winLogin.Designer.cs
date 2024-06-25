@@ -116,7 +116,7 @@
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(407, 457);
+            this.pnlContent.Size = new System.Drawing.Size(400, 457);
             this.pnlContent.TabIndex = 0;
             // 
             // label1
@@ -125,7 +125,7 @@
             this.label1.Cursor = Wisej.Web.Cursors.Hand;
             this.label1.Font = new System.Drawing.Font("defaultBold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.label1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.label1.Location = new System.Drawing.Point(151, 395);
+            this.label1.Location = new System.Drawing.Point(143, 395);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 24);
             this.label1.TabIndex = 16;
@@ -144,7 +144,7 @@
             this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnAceptar.Location = new System.Drawing.Point(65, 299);
+            this.btnAceptar.Location = new System.Drawing.Point(57, 299);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(277, 49);
             this.btnAceptar.TabIndex = 14;
@@ -171,9 +171,9 @@
             this.lklcontraseña.Location = new System.Drawing.Point(30, 228);
             this.lklcontraseña.Margin = new Wisej.Web.Padding(0);
             this.lklcontraseña.Name = "lklcontraseña";
-            this.lklcontraseña.Size = new System.Drawing.Size(125, 15);
+            this.lklcontraseña.Size = new System.Drawing.Size(122, 15);
             this.lklcontraseña.TabIndex = 12;
-            this.lklcontraseña.Text = "¿ Olvide mi contrase;a ?";
+            this.lklcontraseña.Text = "¿Olvide mi contraseña?";
             this.lklcontraseña.LinkClicked += new Wisej.Web.LinkLabelLinkClickedEventHandler(this.lklcontraseña_LinkClicked);
             // 
             // Cancelar
@@ -181,7 +181,7 @@
             this.Cancelar.BackColor = System.Drawing.Color.FromName("@toolbarText");
             this.Cancelar.Font = new System.Drawing.Font("default, Arial", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Cancelar.ForeColor = System.Drawing.Color.White;
-            this.Cancelar.Location = new System.Drawing.Point(363, 13);
+            this.Cancelar.Location = new System.Drawing.Point(352, 13);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(32, 27);
             this.Cancelar.TabIndex = 11;
@@ -190,7 +190,7 @@
             // 
             // winLogin
             // 
-            this.ClientSize = new System.Drawing.Size(407, 457);
+            this.ClientSize = new System.Drawing.Size(400, 457);
             this.CloseBox = false;
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);

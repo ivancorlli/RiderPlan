@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
+            Wisej.Web.Label label3;
             this.pnlHeather = new Wisej.Web.Panel();
             this.label1 = new Wisej.Web.Label();
             this.label2 = new Wisej.Web.Label();
@@ -36,7 +38,7 @@
             this.panel1 = new Wisej.Web.Panel();
             this.panel2 = new Wisej.Web.Panel();
             this.button1 = new Wisej.Web.Button();
-            this.label3 = new Wisej.Web.Label();
+            label3 = new Wisej.Web.Label();
             this.pnlHeather.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -53,6 +55,7 @@
             this.pnlHeather.HeaderForeColor = System.Drawing.Color.Transparent;
             this.pnlHeather.Location = new System.Drawing.Point(0, 0);
             this.pnlHeather.Name = "pnlHeather";
+            this.pnlHeather.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlHeather.ResponsiveProfiles"))));
             this.pnlHeather.Size = new System.Drawing.Size(900, 49);
             this.pnlHeather.TabIndex = 1;
             // 
@@ -65,6 +68,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.label1.Location = new System.Drawing.Point(723, 15);
             this.label1.Name = "label1";
+            this.label1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label1.ResponsiveProfiles"))));
             this.label1.Size = new System.Drawing.Size(41, 19);
             this.label1.TabIndex = 1;
             this.label1.Text = "Inicio";
@@ -90,6 +94,7 @@
             this.btnRegistro.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.btnRegistro.Location = new System.Drawing.Point(773, 7);
             this.btnRegistro.Name = "btnRegistro";
+            this.btnRegistro.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRegistro.ResponsiveProfiles"))));
             this.btnRegistro.Size = new System.Drawing.Size(100, 33);
             this.btnRegistro.TabIndex = 2;
             this.btnRegistro.Text = "Registrarse";
@@ -97,14 +102,15 @@
             // 
             // pnlContent
             // 
-            this.pnlContent.BackColor = System.Drawing.Color.Transparent;
             this.pnlContent.BackgroundImage = global::RaiderPlan.Properties.Resources.saludo_motero_vss;
             this.pnlContent.BackgroundImageLayout = Wisej.Web.ImageLayout.Zoom;
             this.pnlContent.Controls.Add(this.panel1);
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
+            this.pnlContent.ForeColor = System.Drawing.Color.Transparent;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Margin = new Wisej.Web.Padding(0);
             this.pnlContent.Name = "pnlContent";
+            this.pnlContent.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlContent.ResponsiveProfiles"))));
             this.pnlContent.Size = new System.Drawing.Size(900, 630);
             this.pnlContent.TabIndex = 2;
             // 
@@ -120,6 +126,7 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Margin = new Wisej.Web.Padding(0);
             this.panel1.Name = "panel1";
+            this.panel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel1.ResponsiveProfiles"))));
             this.panel1.Size = new System.Drawing.Size(900, 630);
             this.panel1.TabIndex = 1;
             // 
@@ -127,24 +134,29 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(label3);
             this.panel2.Dock = Wisej.Web.DockStyle.Left;
             this.panel2.HeaderBackColor = System.Drawing.Color.Transparent;
             this.panel2.HeaderForeColor = System.Drawing.Color.Transparent;
             this.panel2.Location = new System.Drawing.Point(0, 49);
             this.panel2.Margin = new Wisej.Web.Padding(0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(587, 581);
+            this.panel2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel2.ResponsiveProfiles"))));
+            this.panel2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel2.ResponsiveProfiles1"))));
+            this.panel2.Size = new System.Drawing.Size(689, 581);
             this.panel2.TabIndex = 0;
             // 
             // button1
             // 
-            this.button1.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
+            this.button1.Anchor = Wisej.Web.AnchorStyles.Top;
             this.button1.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.button1.Font = new System.Drawing.Font("defaultBold", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.button1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.button1.Location = new System.Drawing.Point(43, 295);
+            this.button1.Location = new System.Drawing.Point(39, 334);
             this.button1.Name = "button1";
+            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles"))));
+            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles1"))));
+            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles2"))));
             this.button1.Size = new System.Drawing.Size(155, 41);
             this.button1.TabIndex = 0;
             this.button1.Text = "Comenzar";
@@ -152,21 +164,25 @@
             // 
             // label3
             // 
-            this.label3.Anchor = Wisej.Web.AnchorStyles.None;
-            this.label3.Cursor = Wisej.Web.Cursors.Hand;
-            this.label3.Font = new System.Drawing.Font("defaultBold", 75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.label3.Location = new System.Drawing.Point(43, 64);
-            this.label3.Margin = new Wisej.Web.Padding(0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(544, 253);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Tu viaje comienza aqui.";
+            label3.Cursor = Wisej.Web.Cursors.Hand;
+            label3.Font = new System.Drawing.Font("defaultBold", 75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            label3.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            label3.Location = new System.Drawing.Point(39, 64);
+            label3.Margin = new Wisej.Web.Padding(0);
+            label3.Name = "label3";
+            label3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label3.ResponsiveProfiles"))));
+            label3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label3.ResponsiveProfiles1"))));
+            label3.Size = new System.Drawing.Size(561, 253);
+            label3.TabIndex = 2;
+            label3.Text = "Tu viaje comienza aqui.";
             // 
             // Inicio
             // 
+            this.BackColor = System.Drawing.Color.Transparent;
             this.Controls.Add(this.pnlContent);
+            this.ForeColor = System.Drawing.Color.Transparent;
             this.Name = "Inicio";
+            this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles"))));
             this.Size = new System.Drawing.Size(900, 630);
             this.pnlHeather.ResumeLayout(false);
             this.pnlHeather.PerformLayout();
@@ -186,7 +202,6 @@
         private Wisej.Web.Label label1;
         private Wisej.Web.Label label2;
         private Wisej.Web.Panel panel2;
-        private Wisej.Web.Label label3;
         private Wisej.Web.Button button1;
     }
 }

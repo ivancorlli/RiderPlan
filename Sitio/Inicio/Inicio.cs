@@ -21,13 +21,19 @@ namespace RaiderPlan.Sitio.Inicio
             winRegistro winRegistro = new winRegistro();
             winRegistro.StartPosition = FormStartPosition.CenterScreen;
             winRegistro.evRegistrado += ManejaValidaCodigo;
+            winRegistro.evCancel += ManejaAbreLogin;
             winRegistro.ShowDialog();
         }
 
-        private void ManejaValidaCodigo(string pEmailUsuario)
+        private void ManejaAbreLogin()
+        {
+            label1_Click(this, EventArgs.Empty);
+        }
+
+        private void ManejaValidaCodigo(int userId)
         {
             // creo la ventana para el ingreso del codigo de validacion
-            winValidacionCodigo ventana = new winValidacionCodigo(pEmailUsuario);
+            winValidacionCodigo ventana = new winValidacionCodigo(userId);
             ventana.evCodigoCorrecto += manejaCodigoCorrecto;
             ventana.StartPosition = FormStartPosition.CenterScreen;
             ventana.ShowDialog();

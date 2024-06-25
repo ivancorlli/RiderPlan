@@ -117,15 +117,39 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="errorProvider1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
+  <data name="button1.ResponsiveProfiles" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFJXaXNlai5GcmFtZXdvcmssIFZlcnNpb249My4wLjAuMCwgQ3Vs
+        dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xN2JlZjM1ZTExYjg0MTcxDAMAAABRU3lzdGVtLkRy
+        YXdpbmcsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNm
+        NWY3ZjExZDUwYTNhBQEAAAAcV2lzZWouQmFzZS5SZXNwb25zaXZlUHJvZmlsZQUAAAAETmFtZQRUZXh0
+        BFNpemUITG9jYXRpb24DJEFkAQEEBAQTU3lzdGVtLkRyYXdpbmcuU2l6ZQMAAAAUU3lzdGVtLkRyYXdp
+        bmcuUG9pbnQDAAAAGFN5c3RlbS5EcmF3aW5nLlJlY3RhbmdsZQMAAAACAAAABgQAAAAFUGhvbmUGBQAA
+        AAVTYWxpcgX6////E1N5c3RlbS5EcmF3aW5nLlNpemUCAAAABXdpZHRoBmhlaWdodAAACAgDAAAANwAA
+        ACEAAAAF+f///xRTeXN0ZW0uRHJhd2luZy5Qb2ludAIAAAABeAF5AAAICAMAAACAAQAACQAAAAX4////
+        GFN5c3RlbS5EcmF3aW5nLlJlY3RhbmdsZQQAAAABeAF5BXdpZHRoBmhlaWdodAAAAAAICAgIAwAAAEQA
+        AAAqAAAADQAAAAkAAAAL
+</value>
+  </data>
+  <data name="btnEliminar.ResponsiveProfiles" mimetype="application/x-microsoft.net.object.binary.base64">
+    <value>
+        AAEAAAD/////AQAAAAAAAAAMAgAAAFJXaXNlai5GcmFtZXdvcmssIFZlcnNpb249My4wLjAuMCwgQ3Vs
+        dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xN2JlZjM1ZTExYjg0MTcxDAMAAABRU3lzdGVtLkRy
+        YXdpbmcsIFZlcnNpb249NC4wLjAuMCwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1iMDNm
+        NWY3ZjExZDUwYTNhBQEAAAAcV2lzZWouQmFzZS5SZXNwb25zaXZlUHJvZmlsZQUAAAAETmFtZQRUZXh0
+        BFNpemUITG9jYXRpb24DJEFkAQEEBAQTU3lzdGVtLkRyYXdpbmcuU2l6ZQMAAAAUU3lzdGVtLkRyYXdp
+        bmcuUG9pbnQDAAAAGFN5c3RlbS5EcmF3aW5nLlJlY3RhbmdsZQMAAAACAAAABgQAAAAFUGhvbmUGBQAA
+        AAVTYWxpcgX6////E1N5c3RlbS5EcmF3aW5nLlNpemUCAAAABXdpZHRoBmhlaWdodAAACAgDAAAANwAA
+        ACEAAAAF+f///xRTeXN0ZW0uRHJhd2luZy5Qb2ludAIAAAABeAF5AAAICAMAAACAAQAACQAAAAX4////
+        GFN5c3RlbS5EcmF3aW5nLlJlY3RhbmdsZQQAAAABeAF5BXdpZHRoBmhlaWdodAAAAAAICAgIAwAAAEQA
+        AAAqAAAADQAAAAkAAAAL
+</value>
+  </data>
   <metadata name="$this.RulerSnapLines" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0
-        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EHAQAAAAABAAAAAQAAAAQU
-        U3lzdGVtLkRyYXdpbmcuUG9pbnQCAAAABf3///8UU3lzdGVtLkRyYXdpbmcuUG9pbnQCAAAAAXgBeQAA
-        CAgCAAAAxwEAAAAAAAAL
+        dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWIwM2Y1ZjdmMTFkNTBhM2EHAQAAAAABAAAAAAAAAAQU
+        U3lzdGVtLkRyYXdpbmcuUG9pbnQCAAAACw==
 </value>
   </metadata>
 </root>

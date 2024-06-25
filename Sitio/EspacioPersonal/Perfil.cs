@@ -273,7 +273,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 _ImagenPerfil.Tag= nombreImagen;
             }
         }
-
         private Image RecuperaImagenStream(Stream stream)
         {
             MemoryStream mem = new MemoryStream();

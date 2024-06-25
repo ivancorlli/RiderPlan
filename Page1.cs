@@ -1,8 +1,6 @@
-﻿using Microsoft.Ajax.Utilities;
-using RaiderPlan.Sitio.EspacioPersonal;
+﻿using RaiderPlan.Sitio.EspacioPersonal;
 using RaiderPlan.Sitio.Inicio;
 using System;
-using Wisej.Core;
 using Wisej.Web;
 
 namespace RaiderPlan
@@ -29,7 +27,7 @@ namespace RaiderPlan
             
             //cargo el user control de espacio personal
             EspacioPersonal _EspPer=new EspacioPersonal();
-            _EspPer.evSalir += elijeSalirEspecioPersonal;
+            _EspPer.EvSalir += elijeSalirEspecioPersonal;
             _EspPer.Dock = DockStyle.Fill;
             this.pnlMain.Controls.Add(_EspPer); 
         }

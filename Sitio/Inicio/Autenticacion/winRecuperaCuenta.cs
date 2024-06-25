@@ -36,10 +36,9 @@ namespace RaiderPlan.Sitio.Inicio
                 {
                     Usuario user = new Usuario();
                     user.Fill(usuarioXEmail[0].UsuarioID);
-                    string rutaArchivo = @"C;:\Users\Carlos\Desktop\RaiderPlan\RaiderPlan\Resource\lib\html\Codigovalidacion.html";
                     user.CodigoRecuperacion = Utiles.Tools.GeneraCodigo(4);
-                    Utiles.Tools.EnviaMail(rutaArchivo, user.CodigoRecuperacion);
                     user.Update();
+                    Utiles.Tools.EnviaEmailRecuperacion(user.CodigoRecuperacion,user.UsuarioEmail);
                     EvRecupera.Invoke(user.UsuarioID);
 
                 }

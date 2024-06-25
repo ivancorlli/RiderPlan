@@ -72,7 +72,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(226, 30);
             this.label2.TabIndex = 15;
-            this.label2.Text = "Modificar Contrase;a";
+            this.label2.Text = "Modificar Contraseña";
             // 
             // txtCodigo
             // 

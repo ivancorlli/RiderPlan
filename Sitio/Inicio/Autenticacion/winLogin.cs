@@ -11,7 +11,7 @@ namespace RaiderPlan.Sitio.Inicio
         public delegate void DelegadoLogin();
         public event DelegadoLogin EvAceptar;
 
-        public delegate void DelegadoValidar(string pEmailUsuario);
+        public delegate void DelegadoValidar(int userId);
         public event DelegadoValidar evValidar;
 
         public delegate void CrearCuenta();
@@ -82,7 +82,7 @@ namespace RaiderPlan.Sitio.Inicio
                 else
                 {
                     //validacion de código para ingreso
-                    evValidar?.Invoke(txtEmailUsuario.Text);
+                    evValidar?.Invoke(usuarioXEmail[0].UsuarioID);
                 }
 
             }
