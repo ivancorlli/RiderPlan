@@ -219,5 +219,40 @@ namespace RaiderPlan.Sitio.Inicio
 
             this.Close();
         }
+
+        private void upload1_Uploaded(object sender, UploadedEventArgs e)
+        {
+            CargaArchivo(e.Files);
+        }
+        private void CargaArchivo(Wisej.Core.HttpFileCollection files)
+        {
+            if (files == null)
+                return;
+
+            if (files.Count == 0)
+            {
+                this.pbImagenPerfil.Image = null;
+            }
+            else
+            {
+                _ImagenPerfil = RecuperaImagenStream(files[0].InputStream);
+                this.pbImagenPerfil.Image = _ImagenPerfil;
+                // Obtener el formato de imagen
+                ImageFormat formato = _ImagenPerfil.RawFormat;
+                ImageCodecInfo codecInfo = ImageCodecInfo.GetImageDecoders().FirstOrDefault(codec => codec.FormatID == formato.Guid);
+
+                // Obtener la extensión del formato
+                string extension = codecInfo?.FilenameExtension?.Split(';')?.FirstOrDefault();
+                string nombreImagen = (DateTime.Now.ToString("dd:MM:yyyy") + _Usuario.PersonaID).Replace(":", "").Replace(" ", "") + extension.Replace("*", "");
+                _ImagenPerfil.Tag = nombreImagen;
+            }
+        }
+        private Image RecuperaImagenStream(Stream stream)
+        {
+            MemoryStream mem = new MemoryStream();
+            stream.CopyTo(mem, 1024);
+            mem.Position = 0;
+            return Image.FromStream(mem);
+        }
     }
 }

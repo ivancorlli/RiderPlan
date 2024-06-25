@@ -243,6 +243,7 @@
             this.upload1.Size = new System.Drawing.Size(152, 22);
             this.upload1.TabIndex = 3005;
             this.upload1.Text = "Seleccionar imagen";
+            this.upload1.Uploaded += new Wisej.Web.UploadedEventHandler(this.upload1_Uploaded);
             // 
             // pbImagenPerfil
             // 
