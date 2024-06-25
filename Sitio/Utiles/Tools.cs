@@ -4,12 +4,13 @@ using System;
 using System.Security.Cryptography;
 using System.Text;
 using Wisej.Web;
+using System.IO;
 
 namespace RaiderPlan.Sitio.Utiles
 {
     public static class Tools
     {
-        public static string Encripta(string Texto) 
+        public static string Encripta(string Texto)
         {
 
             using (SHA256 sha256 = SHA256.Create())
@@ -29,101 +30,85 @@ namespace RaiderPlan.Sitio.Utiles
 
                 return sb.ToString();
             }
-           
+
         }
 
-        public static int EnviaMail(string codigoHtml, string codigoAEnviar) 
+        private static int EnviaMail(string codigoHtml, string subject, string to)
         {
-                try
-                {
-                    // Configurar los detalles del remitente
-                    string remitente = "appuntes2@gmail.com";
-                    string password = "ubarxpqictktkosy";
-                    string destinatario = "carloshurzagasti@gmail.com";
-
-                    // Configurar el cliente SMTP
-                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-                    smtpClient.EnableSsl = true;
-                    smtpClient.Credentials = new NetworkCredential(remitente, password);
-
-                    // Crear el mensaje
-                    MailMessage mensaje = new MailMessage(remitente, destinatario);
-                    mensaje.Subject = "ProbandoCorreo";
-
-                    mensaje.IsBodyHtml = true;
-
-                    // Asignar los parámetros a las variables correspondientes en el código HTML
-                    codigoHtml = codigoHtml.Replace("XXXX", codigoAEnviar);
-                //    mensaje.Body = codigoHtml;
-                mensaje.Body = $"Este es el codigo {codigoAEnviar},que deberás usar para ingresar ";
-                    // Enviar el mensaje
-                    smtpClient.Send(mensaje);
-
-                    return 1;
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error al enviar el correo: " + ex.Message);
-                }
-
-                return 0;
-            }
-
-
-
-            //try
-            //{
-            //    // Configurar los detalles del remitente
-            //    string remitente = "appuntes2@gmail.com";
-            //    string password = "ubarxpqictktkosy";
-            //    string destinatario = "carloshurzagasti@gmail.com";
-
-            //    // Configurar el cliente SMTP
-            //    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587);
-            //    smtpClient.EnableSsl = true;
-            //    smtpClient.Credentials = new NetworkCredential(remitente, password);
-
-            //    // Crear el mensaje
-            //    MailMessage mensaje = new MailMessage(remitente, destinatario);
-            //    mensaje.Subject = "ProbandoCorreo";
-            //    mensaje.Body = "Este es el codigo de verificacion debes ingresarlo en la ventana que lo reuiqera XZe9";
-
-            //    // Enviar el mensaje
-            //    smtpClient.Send(mensaje);
-
-            //    return 1;
-
-            //}
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show("Error al enviar el correo: " + ex.Message);
-            //}
-
-            //return 0;
-        
-            public static string GeneraCodigo(int longitud)
+            try
             {
-              Random random = new Random();
-              string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-                StringBuilder sb = new StringBuilder();
+                // Configurar los detalles del remitente
+                string remitente = "appuntes2@gmail.com";
+                string password = "ubarxpqictktkosy";
+                string destinatario = to;
 
-                for (int i = 0; i < longitud; i++)
+                // Configurar el cliente SMTP
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587)
                 {
-                    int indiceCaracter = random.Next(caracteresPermitidos.Length);
-                    char caracterAleatorio = caracteresPermitidos[indiceCaracter];
-                    sb.Append(caracterAleatorio);
-                }
+                    EnableSsl = true,
+                    Credentials = new NetworkCredential(remitente, password)
+                };
 
-                return sb.ToString();
+                // Crear el mensaje
+                MailMessage mensaje = new MailMessage(remitente, destinatario);
+                mensaje.Subject = subject;
+                mensaje.IsBodyHtml = true;
+                mensaje.Body = codigoHtml;
+                // Enviar el mensaje
+                smtpClient.Send(mensaje);
+
+                return 1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al enviar el correo: " + ex.Message);
             }
 
+            return 0;
         }
 
-   
+        public static int EnviaEmailBienvenida(string code, string email)
+        {
+            string htmlFilePath = Path.Combine(Application.StartupPath, "Resource", "lib","html", "CodigoValidacion.html");
+            // Read the HTML content from the file
+            string htmlContent = File.ReadAllText(htmlFilePath);
+            htmlContent = htmlContent.Replace("XXXX", code);
+            int response = EnviaMail(htmlContent, "Bienvenido a Rider Plan", email);
+            return response;
+        }
+        public static int EnviaEmailRecuperacion(string code, string email)
+        {
+            string htmlFilePath = Path.Combine(Application.StartupPath, "Resource", "lib","html", "CodigoRecuperacion.html");
+            // Read the HTML content from the file
+            string htmlContent = File.ReadAllText(htmlFilePath);
+            htmlContent = htmlContent.Replace("XXXX", code);
+            int response = EnviaMail(htmlContent, "Recuperar cuenta", email);
+            return response;
+        }
+
+        public static string GeneraCodigo(int longitud)
+        {
+            Random random = new Random();
+            string caracteresPermitidos = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            StringBuilder sb = new StringBuilder();
+
+            for (int i = 0; i < longitud; i++)
+            {
+                int indiceCaracter = random.Next(caracteresPermitidos.Length);
+                char caracterAleatorio = caracteresPermitidos[indiceCaracter];
+                sb.Append(caracterAleatorio);
+            }
+
+            return sb.ToString();
+        }
+
+    }
+
+
 
 }
 
-    
-    
-    
+
+
+
 

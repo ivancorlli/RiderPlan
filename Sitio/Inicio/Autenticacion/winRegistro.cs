@@ -2,27 +2,23 @@
 using System.Text.RegularExpressions;
 using Wisej.Web;
 using Raiderplan1;
+using System.IO;
 
 namespace RaiderPlan.Sitio.Inicio
 {
     public partial class winRegistro : Wisej.Web.Form
     {
 
-        public delegate void delRegistrado(string pEmailUsuario);
+        public delegate void delRegistrado(int userId);
         public event delRegistrado evRegistrado;
+        public delegate void Cancel();
+        public event Cancel evCancel;
 
-
-        
         //Cosntructor
         public winRegistro()
         {
             InitializeComponent();
 
-        }
-
-        private void Cancel_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
        public bool ValidaCadena(string pCadena)
@@ -120,7 +116,6 @@ namespace RaiderPlan.Sitio.Inicio
             return resp;
         }
 
-        
 
         private void txtNombreUsuario_Leave(object sender, EventArgs e)
         {
@@ -261,10 +256,7 @@ namespace RaiderPlan.Sitio.Inicio
 
         }
             
-        
-        
-        
-        private void Registrarme_Click(object sender, EventArgs e)
+        private void Registrarme()
         {
             bool resp = true;
             resp = ControlIntegral();
@@ -282,11 +274,10 @@ namespace RaiderPlan.Sitio.Inicio
                     //Recupero el usuario creado para tomar inyectar el codigo generado
                     Usuario oUsuario = new Usuario();
                     oUsuario.Fill(oUsuarioID);
-                    string rutaArchivo = @"C;:\Users\Carlos\Desktop\RaiderPlan\RaiderPlan\Resource\lib\html\Codigovalidacion.html";
                     //string contenidoHTML = File.ReadAllText(rutaArchivo);
 
-                    Utiles.Tools.EnviaMail(rutaArchivo, oUsuario.CodigoValidation);
-                    evRegistrado?.Invoke(txtEmail.Text.Trim());
+                    Utiles.Tools.EnviaEmailBienvenida(oUsuario.CodigoValidation,oUsuario.UsuarioEmail);
+                    evRegistrado?.Invoke(oUsuarioID);
                     MessageBox.Show("Tu registro ha sido existoso");
                          
                     
@@ -375,6 +366,20 @@ namespace RaiderPlan.Sitio.Inicio
             return oUsuarioID;
         }
 
-        
+        private void Cancelar_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            evCancel.Invoke();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            Registrarme();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Cancelar_Click(sender, e);
+        }
     }
 }

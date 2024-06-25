@@ -28,115 +28,107 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlBotones = new Wisej.Web.Panel();
-            this.btnCancelar = new Wisej.Web.Button();
-            this.btnAceptar = new Wisej.Web.Button();
-            this.lblEmailUsuario = new Wisej.Web.Label();
             this.pnlContent = new Wisej.Web.Panel();
-            this.lblValidacion = new Wisej.Web.Label();
+            this.lblError = new Wisej.Web.Label();
+            this.btnAceptar = new Wisej.Web.Button();
+            this.Cancelar = new Wisej.Web.Button();
+            this.label2 = new Wisej.Web.Label();
             this.txtCodigoValidacion = new Wisej.Web.TextBox();
-            this.lblTitulo = new Wisej.Web.Label();
-            this.pnlBotones.SuspendLayout();
             this.pnlContent.SuspendLayout();
             this.SuspendLayout();
             // 
-            // pnlBotones
-            // 
-            this.pnlBotones.BorderStyle = Wisej.Web.BorderStyle.Solid;
-            this.pnlBotones.Controls.Add(this.btnCancelar);
-            this.pnlBotones.Controls.Add(this.btnAceptar);
-            this.pnlBotones.Dock = Wisej.Web.DockStyle.Bottom;
-            this.pnlBotones.Location = new System.Drawing.Point(0, 121);
-            this.pnlBotones.Name = "pnlBotones";
-            this.pnlBotones.Size = new System.Drawing.Size(409, 50);
-            this.pnlBotones.TabIndex = 0;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Location = new System.Drawing.Point(149, 14);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(100, 27);
-            this.btnCancelar.TabIndex = 1;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnAceptar
-            // 
-            this.btnAceptar.Location = new System.Drawing.Point(13, 14);
-            this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(130, 27);
-            this.btnAceptar.TabIndex = 0;
-            this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
-            // 
-            // lblEmailUsuario
-            // 
-            this.lblEmailUsuario.Font = new System.Drawing.Font("default, Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblEmailUsuario.Location = new System.Drawing.Point(13, 32);
-            this.lblEmailUsuario.Name = "lblEmailUsuario";
-            this.lblEmailUsuario.Size = new System.Drawing.Size(529, 21);
-            this.lblEmailUsuario.TabIndex = 1;
-            this.lblEmailUsuario.Text = "Emial/Usuario";
-            // 
             // pnlContent
             // 
+            this.pnlContent.BackColor = System.Drawing.Color.FromName("@toolbarText");
             this.pnlContent.BorderStyle = Wisej.Web.BorderStyle.Solid;
-            this.pnlContent.Controls.Add(this.lblValidacion);
+            this.pnlContent.Controls.Add(this.lblError);
+            this.pnlContent.Controls.Add(this.btnAceptar);
+            this.pnlContent.Controls.Add(this.Cancelar);
+            this.pnlContent.Controls.Add(this.label2);
             this.pnlContent.Controls.Add(this.txtCodigoValidacion);
-            this.pnlContent.Controls.Add(this.lblTitulo);
-            this.pnlContent.Controls.Add(this.lblEmailUsuario);
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(409, 121);
+            this.pnlContent.Size = new System.Drawing.Size(401, 261);
             this.pnlContent.TabIndex = 2;
             // 
-            // lblValidacion
+            // lblError
             // 
-            this.lblValidacion.AutoSize = true;
-            this.lblValidacion.Font = new System.Drawing.Font("default, Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.lblValidacion.Location = new System.Drawing.Point(122, 49);
-            this.lblValidacion.Name = "lblValidacion";
-            this.lblValidacion.Size = new System.Drawing.Size(165, 20);
-            this.lblValidacion.TabIndex = 4;
-            this.lblValidacion.Text = "Codigo de validacion";
+            this.lblError.BackColor = System.Drawing.Color.Transparent;
+            this.lblError.ForeColor = System.Drawing.Color.White;
+            this.lblError.Location = new System.Drawing.Point(29, 70);
+            this.lblError.Name = "lblError";
+            this.lblError.Padding = new Wisej.Web.Padding(5, 0, 0, 0);
+            this.lblError.Size = new System.Drawing.Size(345, 40);
+            this.lblError.TabIndex = 3005;
+            this.lblError.Text = "Ingresa el codigo que enviamos a tu correo electronico.";
+            this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
+            this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.btnAceptar.Location = new System.Drawing.Point(77, 192);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(228, 44);
+            this.btnAceptar.TabIndex = 3004;
+            this.btnAceptar.Text = "Verificar";
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
+            // 
+            // Cancelar
+            // 
+            this.Cancelar.BackColor = System.Drawing.Color.FromName("@toolbarText");
+            this.Cancelar.Font = new System.Drawing.Font("default, Arial", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.Cancelar.ForeColor = System.Drawing.Color.White;
+            this.Cancelar.Location = new System.Drawing.Point(352, 13);
+            this.Cancelar.Name = "Cancelar";
+            this.Cancelar.Size = new System.Drawing.Size(32, 27);
+            this.Cancelar.TabIndex = 17;
+            this.Cancelar.Text = "X";
+            this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Cursor = Wisej.Web.Cursors.Hand;
+            this.label2.Font = new System.Drawing.Font("defaultBold", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.label2.Location = new System.Drawing.Point(16, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(92, 30);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Verificar";
             // 
             // txtCodigoValidacion
             // 
             this.txtCodigoValidacion.Anchor = Wisej.Web.AnchorStyles.None;
-            this.txtCodigoValidacion.Font = new System.Drawing.Font("default, Arial", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCodigoValidacion.AutoSize = false;
+            this.txtCodigoValidacion.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
+            this.txtCodigoValidacion.BorderStyle = Wisej.Web.BorderStyle.None;
+            this.txtCodigoValidacion.CssStyle = "border-radius: 10px;";
+            this.txtCodigoValidacion.Font = new System.Drawing.Font("default, Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.txtCodigoValidacion.ForeColor = System.Drawing.Color.White;
             this.txtCodigoValidacion.InputType.Type = Wisej.Web.TextBoxType.Password;
-            this.txtCodigoValidacion.Location = new System.Drawing.Point(122, 73);
+            this.txtCodigoValidacion.Location = new System.Drawing.Point(25, 125);
             this.txtCodigoValidacion.MaxLength = 4;
             this.txtCodigoValidacion.Name = "txtCodigoValidacion";
+            this.txtCodigoValidacion.Padding = new Wisej.Web.Padding(10, 5, 10, 5);
             this.txtCodigoValidacion.PasswordChar = '*';
-            this.txtCodigoValidacion.Size = new System.Drawing.Size(165, 25);
+            this.txtCodigoValidacion.Size = new System.Drawing.Size(340, 42);
             this.txtCodigoValidacion.TabIndex = 3;
-            // 
-            // lblTitulo
-            // 
-            this.lblTitulo.BackColor = System.Drawing.Color.FromName("@windowText");
-            this.lblTitulo.Dock = Wisej.Web.DockStyle.Top;
-            this.lblTitulo.Font = new System.Drawing.Font("default, Arial", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblTitulo.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.lblTitulo.Location = new System.Drawing.Point(0, 0);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(407, 26);
-            this.lblTitulo.TabIndex = 2;
-            this.lblTitulo.Text = "   Ingrese el codigo ";
-            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtCodigoValidacion.Watermark = "Codigo";
             // 
             // winValidacionCodigo
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(409, 171);
+            this.ClientSize = new System.Drawing.Size(401, 261);
             this.Controls.Add(this.pnlContent);
-            this.Controls.Add(this.pnlBotones);
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
             this.Name = "winValidacionCodigo";
             this.Text = "Window";
-            this.pnlBotones.ResumeLayout(false);
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
             this.ResumeLayout(false);
@@ -144,14 +136,11 @@
         }
 
         #endregion
-
-        private Wisej.Web.Panel pnlBotones;
-        private Wisej.Web.Button btnCancelar;
-        private Wisej.Web.Button btnAceptar;
-        private Wisej.Web.Label lblEmailUsuario;
         private Wisej.Web.Panel pnlContent;
-        private Wisej.Web.Label lblValidacion;
         private Wisej.Web.TextBox txtCodigoValidacion;
-        private Wisej.Web.Label lblTitulo;
+        private Wisej.Web.Label label2;
+        private Wisej.Web.Button Cancelar;
+        private Wisej.Web.Button btnAceptar;
+        private Wisej.Web.Label lblError;
     }
 }

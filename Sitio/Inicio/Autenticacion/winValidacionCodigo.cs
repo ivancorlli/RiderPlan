@@ -11,89 +11,61 @@ namespace RaiderPlan.Sitio.Inicio
 
         public delegate void delCodigo();
         public event delCodigo evCodigoCorrecto;
-        public winValidacionCodigo(string   pEmailUsuario )
+        private int _userId;
+        public winValidacionCodigo(int id)
         {
             InitializeComponent();
-        lblEmailUsuario.Text = pEmailUsuario;
+            _userId = id;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        private void Validar()
+        {
+            Usuario oUsuario = new Usuario();
+            bool resp = false;
+            oUsuario.Fill(_userId);
+            //se ecnontro el mail comparo el codigode validacion
+            if (txtCodigoValidacion.Text == oUsuario.CodigoValidation)
+            {
+                try
+                {
+                    resp = true;
+                    oUsuario.UsuarioRow.SetCodigoValidationNull();
+                    oUsuario.Update();
+                    //CARGO LA VARIBALE DE SESSION DE UsuarioID
+                    Application.Session.UsuarioID = oUsuario.UsuarioID;
+
+                    // lanzo evento de que esta correcto
+                    evCodigoCorrecto?.Invoke();
+                    this.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("No se pudo validar correctamente el código, porblemas en la actualización del campo " + ex.Message);
+                }
+            }
+            else
+            {
+                //el codigo noes correcto
+                resp = false;
+            }
+
+
+            if (!resp)
+            {
+                MessageBox.Show("El código ingresado no es correcto");
+            }
+
+        }
+
+        private void Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void btnAceptar_Click(object sender, EventArgs e)
+        private void btnAceptar_Click_1(object sender, EventArgs e)
         {
-            dpUsuarioXEmailXusuarioIDCollectionCollection oEmailoUsuario = new dpUsuarioXEmailXusuarioIDCollectionCollection();
-            bool resp=false;
-            int OIDUsuario = 0;
-            //controlo si la etiqueta usuario contiene email o usuario
-            if (lblEmailUsuario.Text.Contains("@"))
-            {
-                //controlo si el email ya existe
-                oEmailoUsuario.Fill(lblEmailUsuario.Text, "");
-                if (oEmailoUsuario.Count > 0)
-                {
-                    //se ecnontro el mail comparo el codigode validacion
-                    if (txtCodigoValidacion.Text == oEmailoUsuario[0].CodigoValidation) {
-                        OIDUsuario = oEmailoUsuario[0].UsuarioID;
-                        resp = true;
-                    } 
-                    else {
-                        //el codigo noes correcto
-                        resp = false;
-                         }
-
-                }
-            }
-            else
-                {
-                    //recupero por usuario
-                    //controlo si el email ya existe
-                    oEmailoUsuario.Fill("", lblEmailUsuario.Text.Trim());
-                    if (oEmailoUsuario.Count > 0)
-                    {
-                        //se ecnontro el mail comparo el codigode validacion
-                        if (txtCodigoValidacion.Text == oEmailoUsuario[0].CodigoValidation)
-                        {
-                            OIDUsuario = oEmailoUsuario[0].UsuarioID;
-                            resp = true;
-                        }
-                        else
-                        {
-                            //el codigo noes correcto
-                            resp = false;
-                        }
-
-                    }
-                }
-
-               if (resp) {
-                
-                    Usuario oUsuario = new Usuario();
-                    oUsuario.Fill(OIDUsuario);
-                    //el codigo es correcto paso el campode validacion a null esto significa que ya esta validado
-                    oUsuario.UsuarioRow.SetCodigoValidationNull();
-                    try
-                    {
-                        oUsuario.Update();
-                        //CARGO LA VARIBALE DE SESSION DE UsuarioID
-                        Application.Session.UsuarioID=oUsuario.UsuarioID;
-                                       
-                        // lanzo evento de que esta correcto
-                        evCodigoCorrecto?.Invoke(); 
-                        this.Close();
-                    }
-                    catch (Exception ex) 
-                    {
-                        MessageBox.Show("No se pudo validar correctamente el código, porblemas en la actualización del campo "+ex.Message);
-                    }
-
-                } 
-                else { MessageBox.Show("El código ingresado no es correcto"); }
-
+            Validar();
         }
-
     }
 }
 
