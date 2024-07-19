@@ -1,13 +1,13 @@
-﻿namespace RaiderPlan
+﻿namespace RaiderPlan.Sitio.EspacioPersonal
 {
-    partial class Page1
+    partial class NuevoViaje
     {
-        /// <summary>
+        /// <summary> 
         /// Required designer variable.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
+        /// <summary> 
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
@@ -20,39 +20,39 @@
             base.Dispose(disposing);
         }
 
-        #region Wisej Designer generated code
+        #region Wisej.NET Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
+        /// <summary> 
+        /// Required method for Designer support - do not modify 
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent()
         {
-            this.pnlMain = new Wisej.Web.Panel();
+            this.panel1 = new Wisej.Web.Panel();
             this.SuspendLayout();
             // 
-            // pnlMain
+            // panel1
             // 
-            this.pnlMain.Dock = Wisej.Web.DockStyle.Fill;
-            this.pnlMain.Location = new System.Drawing.Point(0, 0);
-            this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1443, 655);
-            this.pnlMain.TabIndex = 0;
+            this.panel1.BackColor = System.Drawing.Color.Transparent;
+            this.panel1.Dock = Wisej.Web.DockStyle.Fill;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Padding = new Wisej.Web.Padding(5);
+            this.panel1.Size = new System.Drawing.Size(400, 600);
+            this.panel1.TabIndex = 2;
             // 
-            // Page1
+            // NuevoViaje
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
-            this.Controls.Add(this.pnlMain);
-            this.Name = "Page1";
-            this.Size = new System.Drawing.Size(1443, 655);
+            this.Controls.Add(this.panel1);
+            this.Name = "NuevoViaje";
+            this.Size = new System.Drawing.Size(400, 600);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private Wisej.Web.Panel pnlMain;
+        private Wisej.Web.Panel panel1;
     }
 }
-

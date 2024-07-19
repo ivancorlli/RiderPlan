@@ -23,8 +23,6 @@ namespace RaiderPlan.Sitio.Viajes
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
             htmlPanel1.Dock = DockStyle.Fill;
-                        
-          
           
         }
         //[WebMethod]

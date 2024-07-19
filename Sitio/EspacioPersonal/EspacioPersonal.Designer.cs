@@ -35,10 +35,9 @@
             this.btnRegistro = new Wisej.Web.Button();
             this.pnlContent = new Wisej.Web.Panel();
             this.tabControl1 = new Wisej.Web.TabControl();
-            this.tabPage1 = new Wisej.Web.TabPage();
-            this.tabPage2 = new Wisej.Web.TabPage();
-            this.tabPage3 = new Wisej.Web.TabPage();
-            this.tabPage4 = new Wisej.Web.TabPage();
+            this.planificacion = new Wisej.Web.TabPage();
+            this.realizados = new Wisej.Web.TabPage();
+            this.nuevo = new Wisej.Web.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.pbUsuario)).BeginInit();
             this.pnlSuperiro.SuspendLayout();
             this.pnlContent.SuspendLayout();
@@ -47,8 +46,8 @@
             // 
             // pbUsuario
             // 
-            this.pbUsuario.BackColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.pbUsuario.CssStyle = "\r\n  border-radius: 50%";
+            this.pbUsuario.BackColor = System.Drawing.Color.FromName("@window");
+            this.pbUsuario.CssStyle = "\r\n  border-radius: 25%";
             this.pbUsuario.Cursor = Wisej.Web.Cursors.Hand;
             this.pbUsuario.ImageSource = "Resource\\lib\\Imagenes\\iconousuario.png";
             this.pbUsuario.Location = new System.Drawing.Point(16, 9);
@@ -74,8 +73,7 @@
             // 
             // pnlSuperiro
             // 
-            this.pnlSuperiro.AutoShow = Wisej.Web.PanelAutoShowMode.OnPointerOver;
-            this.pnlSuperiro.BackColor = System.Drawing.Color.FromArgb(41, 0, 0, 0);
+            this.pnlSuperiro.BackColor = System.Drawing.Color.FromName("@menu");
             this.pnlSuperiro.Controls.Add(this.btnRegistro);
             this.pnlSuperiro.Controls.Add(this.lblUsuarioNombre);
             this.pnlSuperiro.Controls.Add(this.pbUsuario);
@@ -121,11 +119,11 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Controls.Add(this.tabPage3);
-            this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.planificacion);
+            this.tabControl1.Controls.Add(this.realizados);
+            this.tabControl1.Controls.Add(this.nuevo);
             this.tabControl1.Dock = Wisej.Web.DockStyle.Fill;
+            this.tabControl1.Font = new System.Drawing.Font("defaultBold, Arial", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.tabControl1.Location = new System.Drawing.Point(15, 15);
             this.tabControl1.Margin = new Wisej.Web.Padding(10);
             this.tabControl1.Name = "tabControl1";
@@ -135,47 +133,37 @@
             this.tabControl1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabControl1.ResponsiveProfiles2"))));
             this.tabControl1.Size = new System.Drawing.Size(422, 565);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Selected += new Wisej.Web.TabControlEventHandler(this.tabControl1_Selected);
             // 
-            // tabPage1
+            // planificacion
             // 
-            this.tabPage1.Location = new System.Drawing.Point(1, 35);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage1.ResponsiveProfiles"))));
-            this.tabPage1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage1.ResponsiveProfiles1"))));
-            this.tabPage1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage1.ResponsiveProfiles2"))));
-            this.tabPage1.Size = new System.Drawing.Size(420, 529);
-            this.tabPage1.Text = "Todos los viajes";
+            this.planificacion.Location = new System.Drawing.Point(1, 35);
+            this.planificacion.Name = "planificacion";
+            this.planificacion.Padding = new Wisej.Web.Padding(10);
+            this.planificacion.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("planificacion.ResponsiveProfiles"))));
+            this.planificacion.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("planificacion.ResponsiveProfiles1"))));
+            this.planificacion.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("planificacion.ResponsiveProfiles2"))));
+            this.planificacion.Size = new System.Drawing.Size(420, 529);
+            this.planificacion.Text = "En planificacion";
             // 
-            // tabPage2
+            // realizados
             // 
-            this.tabPage2.Location = new System.Drawing.Point(1, 35);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage2.ResponsiveProfiles"))));
-            this.tabPage2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage2.ResponsiveProfiles1"))));
-            this.tabPage2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage2.ResponsiveProfiles2"))));
-            this.tabPage2.Size = new System.Drawing.Size(420, 529);
-            this.tabPage2.Text = "En planificacion";
+            this.realizados.Location = new System.Drawing.Point(1, 35);
+            this.realizados.Name = "realizados";
+            this.realizados.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("realizados.ResponsiveProfiles"))));
+            this.realizados.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("realizados.ResponsiveProfiles1"))));
+            this.realizados.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("realizados.ResponsiveProfiles2"))));
+            this.realizados.Size = new System.Drawing.Size(420, 529);
+            this.realizados.Text = "Realizados";
             // 
-            // tabPage3
+            // nuevo
             // 
-            this.tabPage3.Location = new System.Drawing.Point(1, 35);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage3.ResponsiveProfiles"))));
-            this.tabPage3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage3.ResponsiveProfiles1"))));
-            this.tabPage3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage3.ResponsiveProfiles2"))));
-            this.tabPage3.Size = new System.Drawing.Size(420, 529);
-            this.tabPage3.Text = "Realizados";
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.BackColor = System.Drawing.Color.White;
-            this.tabPage4.Location = new System.Drawing.Point(1, 35);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage4.ResponsiveProfiles"))));
-            this.tabPage4.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage4.ResponsiveProfiles1"))));
-            this.tabPage4.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabPage4.ResponsiveProfiles2"))));
-            this.tabPage4.Size = new System.Drawing.Size(420, 529);
-            this.tabPage4.Text = "Nuevo Viaje";
+            this.nuevo.Location = new System.Drawing.Point(1, 35);
+            this.nuevo.Name = "nuevo";
+            this.nuevo.Size = new System.Drawing.Size(420, 529);
+            this.nuevo.TabBackColor = System.Drawing.Color.FromName("@buttonHighlight");
+            this.nuevo.TabForeColor = System.Drawing.Color.FromName("@buttonText");
+            this.nuevo.Text = "Nuevo Viaje";
             // 
             // EspacioPersonal
             // 
@@ -201,9 +189,8 @@
         private Wisej.Web.Panel pnlContent;
         private Wisej.Web.Button btnRegistro;
         private Wisej.Web.TabControl tabControl1;
-        private Wisej.Web.TabPage tabPage1;
-        private Wisej.Web.TabPage tabPage2;
-        private Wisej.Web.TabPage tabPage3;
-        private Wisej.Web.TabPage tabPage4;
+        private Wisej.Web.TabPage planificacion;
+        private Wisej.Web.TabPage realizados;
+        private Wisej.Web.TabPage nuevo;
     }
 }

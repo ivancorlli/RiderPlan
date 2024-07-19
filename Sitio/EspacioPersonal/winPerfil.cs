@@ -12,6 +12,8 @@ namespace RaiderPlan.Sitio.Inicio
 {
     public partial class winPerfil : Wisej.Web.Form
     {
+        public delegate void Actualizado();
+        public event Actualizado EvACtualizar;
         private readonly Persona _Persona;
         private readonly Usuario _Usuario;
         private Image _ImagenPerfil = null;
@@ -90,13 +92,13 @@ namespace RaiderPlan.Sitio.Inicio
                 //recupero imagen de perfil
                 if (_Persona.PersonaRow.IsImagenPerfilNull() || _Persona.ImagenPerfil.Trim() == "")
                 {
-                    string rutaImagen = Path.Combine(Application.StartupPath,"Resource","lib","Imagenes","iconousuario.png");
-                    pbImagenPerfil.ImageSource = rutaImagen;
+                    pbImagenPerfil.ImageSource = Path.Combine("Resource", "lib", "Imagenes", "iconousuario.png");
 
                 }
                 else
                 {
-                    pbImagenPerfil.ImageSource = Path.Combine(Application.StartupPath, "Resource", "lib", "Imagenes", _Persona.ImagenPerfil);
+                    pbImagenPerfil.BackColor = System.Drawing.Color.Transparent;
+                    pbImagenPerfil.ImageSource = Path.Combine("Resource", "lib", "ImagenesUsuario", _Persona.ImagenPerfil);
 
                 }
 
@@ -125,19 +127,16 @@ namespace RaiderPlan.Sitio.Inicio
 
 
                 //controlo la localidad para determinar el pais la provincia y lalocalidad
-
-                if (!_Persona.PersonaRow.IsLoacaliadIDNull())
+                if (!_Persona.PersonaRow.IsPProvinciaIDNull())
                 {
-                    //tiene localidad cargada recupero la localidad paras obtner la provincia
-                    //y relizar la carga del combobox
-                    Localidad _LocalidadCargada = new Localidad();
-                    _LocalidadCargada.Fill(_Persona.LoacaliadID);
-
                     //selecciono la provincia
-                    cbProvincia.SelectedValue = _LocalidadCargada.ProvinciaID;
-                    //selecciono la localidad
-                    cbCiudad.SelectedValue = _LocalidadCargada.LoacaliadID;
+                    cbProvincia.SelectedValue = _Persona.PProvinciaID;
+                }
 
+                if (!_Persona.PersonaRow.IsPLocalidadIDNull())
+                {
+                    //selecciono la localidad
+                    cbCiudad.SelectedIndex = _Persona.PLocalidadID;
                 }
 
 
@@ -206,11 +205,27 @@ namespace RaiderPlan.Sitio.Inicio
             _Persona.PersonaSexo = sexo;
             if (cbCiudad.SelectedIndex != -1)
             {
-                _Persona.LoacaliadID = cbCiudad.SelectedIndex;
+                _Persona.PLocalidadID = cbCiudad.SelectedIndex;
             }
+            if (cbProvincia.SelectedIndex != -1)
+            {
+                _Persona.PProvinciaID = cbProvincia.SelectedIndex;
+            }
+            if (_ImagenPerfil != null)
+            {
+                if (!_Persona.PersonaRow.IsImagenPerfilNull())
+                {
+                    string filePathToDelete = Path.Combine("Resource", "lib", "ImagenesUsuario", _Persona.ImagenPerfil);
+                    BorrarImagen(filePathToDelete);
+                }
+                _Persona.ImagenPerfil = _ImagenPerfil.Tag.ToString();
+                GuardarImagen(_ImagenPerfil);
+            }
+
             try
             {
                 _Persona.Update();
+                EvACtualizar.Invoke();
             }
             catch (Exception)
             {
@@ -243,8 +258,9 @@ namespace RaiderPlan.Sitio.Inicio
 
                 // Obtener la extensión del formato
                 string extension = codecInfo?.FilenameExtension?.Split(';')?.FirstOrDefault();
-                string nombreImagen = (DateTime.Now.ToString("dd:MM:yyyy") + _Usuario.PersonaID).Replace(":", "").Replace(" ", "") + extension.Replace("*", "");
+                string nombreImagen = (Guid.NewGuid().ToString() + "_" + _Usuario.PersonaID) + extension.Replace("*", "");
                 _ImagenPerfil.Tag = nombreImagen;
+                pbImagenPerfil.BackColor = System.Drawing.Color.Transparent;
             }
         }
         private Image RecuperaImagenStream(Stream stream)
@@ -253,6 +269,37 @@ namespace RaiderPlan.Sitio.Inicio
             stream.CopyTo(mem, 1024);
             mem.Position = 0;
             return Image.FromStream(mem);
+        }
+        private void GuardarImagen(Image pImagen)
+        {
+            //@"Resource\lib\ImagenesUsuario"
+            string rutaGuardar = @"Resource\lib\ImagenesUsuario\" + pImagen.Tag.ToString(); //donde se va a guardar la imagen 
+
+            // Convierte el objeto Image en un arreglo de bytes
+            byte[] arregloBytes;
+            using (MemoryStream ms = new MemoryStream())
+            {
+                pImagen.Save(ms, ImageFormat.Jpeg); // Puedes ajustar el formato de la imagen según tus necesidades
+                arregloBytes = ms.ToArray();
+            }
+            // Guarda el arreglo de bytes en un archivo en tu proyecto Wisej
+            File.WriteAllBytes(rutaGuardar, arregloBytes);
+
+        }
+        private void BorrarImagen(string path)
+        {
+            try
+            {
+                if (File.Exists(path))
+                {
+                    // Delete the file
+                    File.Delete(path);
+                };
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Se produjo un error al eliminar imagen anterior");
+            }
         }
     }
 }
