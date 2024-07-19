@@ -58,5 +58,21 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             perfil.CenterToParent();
             perfil.ShowDialog();
         }
+
+        private void tabControl1_Selected(object sender, TabControlEventArgs e)
+        {
+            if (tabControl1.SelectedIndex == 3) 
+            {
+                //remuevo el  tabcontrol del panel
+                Control control = (Control)sender ;
+                pnlContent.Controls.Remove( control);
+                Viajes.Viajes viaje = new Viajes.Viajes();
+                viaje.Dock = DockStyle.Fill;
+                pnlContent.Controls.Add(viaje);
+            
+            
+            }
+
+        }
     }
 }

@@ -135,6 +135,7 @@
             this.tabControl1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabControl1.ResponsiveProfiles2"))));
             this.tabControl1.Size = new System.Drawing.Size(422, 565);
             this.tabControl1.TabIndex = 0;
+            this.tabControl1.Selected += new Wisej.Web.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // tabPage1
             // 

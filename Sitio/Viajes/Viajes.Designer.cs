@@ -55,7 +55,7 @@
             this.htmlPanel1.HtmlSource = "Resource\\mapas\\paginamapa.html";
             this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
             this.htmlPanel1.Name = "htmlPanel1";
-            this.htmlPanel1.Size = new System.Drawing.Size(891, 498);
+            this.htmlPanel1.Size = new System.Drawing.Size(891, 516);
             this.htmlPanel1.TabIndex = 0;
             this.htmlPanel1.TabStop = false;
             this.htmlPanel1.ElementClick += new Wisej.Web.HtmlPanelElementClickHandler(this.htmlPanel1_ElementClick);
@@ -66,14 +66,15 @@
             this.pnlCoordenadas.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
             this.pnlCoordenadas.Controls.Add(this.btnAgregar);
             this.pnlCoordenadas.Dock = Wisej.Web.DockStyle.Bottom;
-            this.pnlCoordenadas.Location = new System.Drawing.Point(0, 498);
+            this.pnlCoordenadas.Location = new System.Drawing.Point(0, 516);
             this.pnlCoordenadas.Name = "pnlCoordenadas";
-            this.pnlCoordenadas.Size = new System.Drawing.Size(891, 61);
+            this.pnlCoordenadas.Size = new System.Drawing.Size(891, 43);
             this.pnlCoordenadas.TabIndex = 1;
             // 
             // btnAgregar
             // 
-            this.btnAgregar.Location = new System.Drawing.Point(16, 17);
+            this.btnAgregar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
+            this.btnAgregar.Location = new System.Drawing.Point(16, 10);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(100, 27);
             this.btnAgregar.TabIndex = 4;
