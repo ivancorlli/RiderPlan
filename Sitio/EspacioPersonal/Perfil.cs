@@ -215,12 +215,12 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
                 //controlo la localidad para determinar el pais la provincia y lalocalidad
 
-                if (!_Persona.PersonaRow.IsLoacaliadIDNull()) 
+                if (!_Persona.PersonaRow.IsPLocalidadIDNull()) 
                 {
                     //tiene localidad cargada recupero la localidad paras obtner la provincia
                     //y relizar la carga del combobox
                     Localidad _LocalidadCargada = new Localidad();
-                    _LocalidadCargada.Fill(_Persona.LoacaliadID);
+                    _LocalidadCargada.Fill(_Persona.PLocalidadID);
                    
                     //seleccion Argentina
                     cbPais.SelectedValue = 1;

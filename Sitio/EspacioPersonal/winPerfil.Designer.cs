@@ -247,8 +247,8 @@
             // 
             // pbImagenPerfil
             // 
+            this.pbImagenPerfil.BackColor = System.Drawing.Color.FromName("@window");
             this.pbImagenPerfil.BorderStyle = Wisej.Web.BorderStyle.Solid;
-            this.pbImagenPerfil.ImageSource = "\\Resource\\lib\\Imagenes\\iconousuario.png";
             this.pbImagenPerfil.Location = new System.Drawing.Point(22, 73);
             this.pbImagenPerfil.Name = "pbImagenPerfil";
             this.pbImagenPerfil.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pbImagenPerfil.ResponsiveProfiles"))));

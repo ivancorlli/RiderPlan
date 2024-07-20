@@ -3,9 +3,9 @@ using Wisej.Web;
 
 namespace RaiderPlan.Sitio.EspacioPersonal
 {
-    public partial class Viaje : Wisej.Web.UserPopup
+    public partial class Planificacion : Wisej.Web.UserControl
     {
-        public Viaje()
+        public Planificacion()
         {
             InitializeComponent();
         }
