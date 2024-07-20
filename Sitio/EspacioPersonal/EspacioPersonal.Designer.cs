@@ -2,6 +2,7 @@
 {
     partial class EspacioPersonal
     {
+
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -65,7 +66,6 @@
             this.lblUsuarioNombre.ForeColor = System.Drawing.Color.FromName("@toolbarText");
             this.lblUsuarioNombre.Location = new System.Drawing.Point(63, 18);
             this.lblUsuarioNombre.Name = "lblUsuarioNombre";
-            this.lblUsuarioNombre.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("lblUsuarioNombre.ResponsiveProfiles"))));
             this.lblUsuarioNombre.Size = new System.Drawing.Size(104, 15);
             this.lblUsuarioNombre.TabIndex = 2;
             this.lblUsuarioNombre.Text = "Nombre usuario";
@@ -81,7 +81,6 @@
             this.pnlSuperiro.HeaderBackColor = System.Drawing.Color.FromName("@table-row-selected");
             this.pnlSuperiro.Location = new System.Drawing.Point(0, 0);
             this.pnlSuperiro.Name = "pnlSuperiro";
-            this.pnlSuperiro.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlSuperiro.ResponsiveProfiles"))));
             this.pnlSuperiro.ShowCloseButton = false;
             this.pnlSuperiro.Size = new System.Drawing.Size(452, 51);
             this.pnlSuperiro.TabIndex = 0;
@@ -95,7 +94,6 @@
             this.btnRegistro.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.btnRegistro.Location = new System.Drawing.Point(384, 9);
             this.btnRegistro.Name = "btnRegistro";
-            this.btnRegistro.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRegistro.ResponsiveProfiles"))));
             this.btnRegistro.Size = new System.Drawing.Size(55, 33);
             this.btnRegistro.TabIndex = 4;
             this.btnRegistro.Text = "Salir";
@@ -111,9 +109,6 @@
             this.pnlContent.Location = new System.Drawing.Point(0, 51);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Padding = new Wisej.Web.Padding(15);
-            this.pnlContent.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlContent.ResponsiveProfiles"))));
-            this.pnlContent.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlContent.ResponsiveProfiles1"))));
-            this.pnlContent.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlContent.ResponsiveProfiles2"))));
             this.pnlContent.Size = new System.Drawing.Size(452, 595);
             this.pnlContent.TabIndex = 1;
             // 
@@ -128,9 +123,6 @@
             this.tabControl1.Margin = new Wisej.Web.Padding(10);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.PageInsets = new Wisej.Web.Padding(1, 35, 1, 1);
-            this.tabControl1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabControl1.ResponsiveProfiles"))));
-            this.tabControl1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabControl1.ResponsiveProfiles1"))));
-            this.tabControl1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("tabControl1.ResponsiveProfiles2"))));
             this.tabControl1.Size = new System.Drawing.Size(422, 565);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new Wisej.Web.TabControlEventHandler(this.tabControl1_Selected);
@@ -140,9 +132,6 @@
             this.planificacion.Location = new System.Drawing.Point(1, 35);
             this.planificacion.Name = "planificacion";
             this.planificacion.Padding = new Wisej.Web.Padding(10);
-            this.planificacion.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("planificacion.ResponsiveProfiles"))));
-            this.planificacion.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("planificacion.ResponsiveProfiles1"))));
-            this.planificacion.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("planificacion.ResponsiveProfiles2"))));
             this.planificacion.Size = new System.Drawing.Size(420, 529);
             this.planificacion.Text = "En planificacion";
             // 
@@ -150,9 +139,6 @@
             // 
             this.realizados.Location = new System.Drawing.Point(1, 35);
             this.realizados.Name = "realizados";
-            this.realizados.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("realizados.ResponsiveProfiles"))));
-            this.realizados.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("realizados.ResponsiveProfiles1"))));
-            this.realizados.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("realizados.ResponsiveProfiles2"))));
             this.realizados.Size = new System.Drawing.Size(420, 529);
             this.realizados.Text = "Realizados";
             // 
