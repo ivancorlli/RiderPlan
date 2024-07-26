@@ -11,23 +11,24 @@ namespace RaiderPlan.Sitio.Viajes
 {
     public partial class Viajes : Wisej.Web.UserControl
     {
-
-
+        public delegate void Salir();
+        public event Salir EvSalir;
+        private Viaje _viaje = null;
 
         MyLeafletMap myMap = new MyLeafletMap();
 
-        public Viajes()
+        public Viajes(long viajeId)
         {
             InitializeComponent();
 
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
             htmlPanel1.Dock = DockStyle.Fill;
-
-
-
+            _viaje = new Viaje();
+            _viaje.Fill(viajeId);
+            lblTitulo.Text = _viaje.ViajeNombre;
         }
-      
+
 
         private void htmlPanel1_Appear(object sender, EventArgs e)
         {
@@ -483,6 +484,14 @@ namespace RaiderPlan.Sitio.Viajes
                               //Actualizo los marcadores en el servidor
                              var json = JSON.stringify(datosRuta);
                              App.GeneraViaje(json);");
+            Application.Session.ViajeID = 0;
+            EvSalir?.Invoke();
+        }
+
+        private void bntCancelar_Click(object sender, EventArgs e)
+        {
+            Application.Session.ViajeID = 0;
+            EvSalir?.Invoke();
         }
     }
 

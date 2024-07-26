@@ -86,7 +86,7 @@
             // 
             this.btnIniciar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.btnIniciar.AutoSizeMode = Wisej.Web.AutoSizeMode.GrowAndShrink;
-            this.btnIniciar.BackColor = System.Drawing.Color.Orange;
+            this.btnIniciar.BackColor = System.Drawing.Color.SandyBrown;
             this.btnIniciar.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.btnIniciar.ImageSource = "Resource\\lib\\iconos\\play.png";
@@ -120,7 +120,7 @@
             // 
             this.btnEditar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
             this.btnEditar.AutoSizeMode = Wisej.Web.AutoSizeMode.GrowAndShrink;
-            this.btnEditar.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnEditar.BackColor = System.Drawing.Color.LightBlue;
             this.btnEditar.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnEditar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.btnEditar.ImageSource = "Resource\\lib\\iconos\\edit2.png";
@@ -138,7 +138,7 @@
             this.btnEliminar.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
             | Wisej.Web.AnchorStyles.Right)));
             this.btnEliminar.AutoSizeMode = Wisej.Web.AutoSizeMode.GrowAndShrink;
-            this.btnEliminar.BackColor = System.Drawing.Color.FromName("@danger");
+            this.btnEliminar.BackColor = System.Drawing.Color.LightCoral;
             this.btnEliminar.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnEliminar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.btnEliminar.ImageSource = "Resource\\lib\\iconos\\delete.png";

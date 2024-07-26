@@ -35,7 +35,7 @@ namespace RaiderPlan
             // var parametro= Newtonsoft.Json.JsonConvert.DeserializeObject<List<Marcador>>(jsonParametro);
             Ruta parametro = Newtonsoft.Json.JsonConvert.DeserializeObject<Ruta>(jsonParametro);
 
-            UtilidadesViaje.GuardaViaje(parametro, 1);
+            UtilidadesViaje.GuardaViaje(parametro, Application.Session.ViajeID);
 
         }
 

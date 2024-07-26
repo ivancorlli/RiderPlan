@@ -12,7 +12,7 @@ namespace RaiderPlan.Sitio.Inicio
     {
         public delegate void EvCancelar();
         public event EvCancelar evCancelar;
-        public delegate void Aceptar(Viaje viaje);
+        public delegate void Aceptar(long viajeId);
         public event Aceptar EvAceptar;
         private Image _Image = null;
 
@@ -30,10 +30,11 @@ namespace RaiderPlan.Sitio.Inicio
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNombre.Text) || txtNombre.Text == "")
+            if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
             {
                 errorProvider1.SetError(txtNombre, "Debe ingresar el nombre del viaje");
                 lblMansaje.Text = "Debe ingresar el nombre del viaje";
+                return;
             }
             Viaje NuevoViaje = new Viaje()
             {
@@ -74,7 +75,7 @@ namespace RaiderPlan.Sitio.Inicio
 
                 this.Close();
                 NuevoViaje.Update();
-                EvAceptar.Invoke(NuevoViaje);
+                EvAceptar.Invoke(NuevoViaje.ViajeID);
             }
             catch (Exception)
             {

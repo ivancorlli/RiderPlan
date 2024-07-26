@@ -31,6 +31,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 if (!_viaje.ViajeRow.IsViajeImagenNull())
                 {
                     pbImagenViaje.ImageSource = Path.Combine("Resource", "lib", "Viajes", _viaje.ViajeImagen);
+                    pbImagenViaje.SizeMode = PictureBoxSizeMode.Cover;
                 }
                 if (!_viaje.ViajeRow.IsFechaSalidaProgramadaNull())
                 {

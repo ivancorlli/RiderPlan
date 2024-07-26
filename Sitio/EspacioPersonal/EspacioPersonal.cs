@@ -2,6 +2,7 @@
 
 
 using RaiderPlan.Sitio.Inicio;
+using RaiderPlan.Sitio.Viajes;
 using Raiderplan1;
 using System;
 using System.Collections.Generic;
@@ -104,29 +105,19 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             }
         }
 
-        private void CargarTabNuevo()
-        {
-            NuevoViaje nuevoViaje = new NuevoViaje();
-            nuevoViaje.Dock = DockStyle.Fill;
-            nuevoViaje.Name = "nuevoViajeControl";
-            nuevoViaje.CancelaNuevoViaje += () =>
-            {
-                tabControl1.SelectedIndex = 0;
-                nuevo.Controls.Clear();
-            };
-            nuevoViaje.NuevoViajeCreado += CargarViaje;
-            nuevo.Controls.Add(nuevoViaje);
-        }
-
         private void CargarViaje(long id)
         {
-            ViajeMapa pnl = new ViajeMapa(id);
+            // Cargo variable de sesion para manejar en el mapa
+            Application.Session.ViajeID = id;
+            Viajes.Viajes pnl = new Viajes.Viajes(id);
             pnl.EvSalir += () =>
             {
-                for (int i = 0; i<= pnlContent.Controls.Count-1; i++)
+                // Blanqueo variable de sesion del mapa
+                Application.Session.ViajeID = 0;
+                for (int i = 0; i <= pnlContent.Controls.Count - 1; i++)
                 {
                     Control control = pnlContent.Controls[i];
-                    if (pnlContent.Controls[i] is ViajeMapa)
+                    if (pnlContent.Controls[i] is Viajes.Viajes)
                     {
                         pnlContent.Controls.Remove(control);
                     }
@@ -135,6 +126,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                         control.Visible = true;
                     }
                 }
+
             };
             pnl.Dock = DockStyle.Fill;
             tabControl1.Visible = false;
@@ -148,14 +140,17 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             page.Controls.Clear();
             switch (page.Name)
             {
-                case "nuevo":
-                    CargarTabNuevo();
-                    break;
                 case "planificacion":
                     CargarTabPlanificacion();
                     break;
             }
         }
 
+        private void btnCrearViaje_Click(object sender, EventArgs e)
+        {
+            winNuevoViaje popup = new winNuevoViaje();
+            popup.EvAceptar += CargarViaje;
+            popup.Show();
+        }
     }
 }
