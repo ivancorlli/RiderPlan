@@ -117,6 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+
   <data name="lblUsuarioNombre.ResponsiveProfiles" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFJXaXNlai5GcmFtZXdvcmssIFZlcnNpb249My4wLjAuMCwgQ3Vs
@@ -151,11 +152,11 @@
         Zy5TaXplAgAAAAV3aWR0aAZoZWlnaHQAAAgIAwAAAMQBAAAzAAAACw==
 </value>
   </data>
-<<<<<<< HEAD
+<!--<<<<<<< HEAD
   <data name="tabPage1.ResponsiveProfiles" mimetype="application/x-microsoft.net.object.binary.base64">
-=======
+=======-->
   <data name="planificacion.ResponsiveProfiles" mimetype="application/x-microsoft.net.object.binary.base64">
->>>>>>> main
+<!-->>>>>>> main-->
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFJXaXNlai5GcmFtZXdvcmssIFZlcnNpb249My4wLjAuMCwgQ3Vs
         dHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj0xN2JlZjM1ZTExYjg0MTcxDAMAAABRU3lzdGVtLkRy
@@ -300,6 +301,8 @@
         dG9tBV9sZWZ0Bl9yaWdodARfdG9wAAAAAAABCAgICAIAAAABCgAAAAoAAAAKAAAACgAAAAs=
 </value>
   </data>
+=======
+>>>>>>> main:Sitio/EspacioPersonal/EspacioPersonal.resx
   <metadata name="$this.RulerSnapLines" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFFTeXN0ZW0uRHJhd2luZywgVmVyc2lvbj00LjAuMC4wLCBDdWx0

@@ -7,6 +7,11 @@ using Raiderplan1;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using Microsoft.Ajax.Utilities;
+using System.Drawing;
+using System.Text;
+using System.Security.Cryptography;
+using RaiderPlan.Sitio.Utiles;
 
 namespace RaiderPlan
 {
@@ -24,44 +29,13 @@ namespace RaiderPlan
         }
 
         [WebMethod]
-        public static void MiMetodoWeb2(string jsonParametro)
+        public static void GeneraViaje(string jsonParametro)
         {
 
             // var parametro= Newtonsoft.Json.JsonConvert.DeserializeObject<List<Marcador>>(jsonParametro);
             Ruta parametro = Newtonsoft.Json.JsonConvert.DeserializeObject<Ruta>(jsonParametro);
-            //Viajes.MiMetodoWeb(parametro);
-            //controlo que el parametro no llegue nulo
-            if (parametro.InputWaypoints.Count > 1)
-            {
-                //recorro los waypoints (los distintos marcadores para armar los trayectos del viaje en el detalle)
 
-                //recorro los puntos maracados en el mapa menos el ultimo ya que este marca el destino
-                for (int i = 0; i < parametro.InputWaypoints.Count-1; i++)
-                {
-                    TrayectoViaje oTrayectoViaje = new TrayectoViaje();
-
-                    oTrayectoViaje.ViajeID = 1; //relaciono con el viaje con el trayecto
-                    oTrayectoViaje.TayectoLatitudOrigen = (decimal)parametro.InputWaypoints[i].LatLng.Lat;
-                    oTrayectoViaje.TrayectoLongitudOrigen = (decimal)parametro.InputWaypoints[i].LatLng.Lng; ;
-
-                    oTrayectoViaje.TrayectoLatidudDestino = (decimal)parametro.InputWaypoints[i+1].LatLng.Lat;
-                    oTrayectoViaje.TrayectoLongitudDestino = (decimal)parametro.InputWaypoints[i+1].LatLng.Lng;
-
-
-
-                }
-
-
-
-
-
-            }
-            else
-            {
-                MessageBox.Show("Necesita un origen y un destino para poder guardar");
-            }
-
-
+            UtilidadesViaje.GuardaViaje(parametro, 1);
 
         }
 

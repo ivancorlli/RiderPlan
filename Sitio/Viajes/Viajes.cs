@@ -27,14 +27,7 @@ namespace RaiderPlan.Sitio.Viajes
 
 
         }
-        //[WebMethod]
-        public static void MiMetodoWeb(Ruta parametro) //(List<Marcador> parametro)
-        {
-
-            //MessageBox.Show("el mesaje se produce en viajes : ", parametro);
-
-        }
-
+      
 
         private void htmlPanel1_Appear(object sender, EventArgs e)
         {
@@ -489,7 +482,7 @@ namespace RaiderPlan.Sitio.Viajes
             htmlPanel1.Eval(@" console.log(""este son los datos de la ruta""); console.log(datosRuta);
                               //Actualizo los marcadores en el servidor
                              var json = JSON.stringify(datosRuta);
-                             App.MiMetodoWeb2(json);");
+                             App.GeneraViaje(json);");
         }
     }
 
