@@ -3,9 +3,15 @@ using System;
 using System.Runtime.InteropServices.ComTypes;
 using Wisej.Core;
 using Wisej.Web;
+using Raiderplan1;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
+using Microsoft.Ajax.Utilities;
+using System.Drawing;
+using System.Text;
+using System.Security.Cryptography;
+using RaiderPlan.Sitio.Utiles;
 
 namespace RaiderPlan
 {
@@ -23,11 +29,14 @@ namespace RaiderPlan
         }
 
         [WebMethod]
-        public static void MiMetodoWeb2(string jsonParametro)
+        public static void GeneraViaje(string jsonParametro)
         {
-            
-            var parametro= Newtonsoft.Json.JsonConvert.DeserializeObject<List<Marcador>>(jsonParametro);
-            Viajes.MiMetodoWeb(parametro);
+
+            // var parametro= Newtonsoft.Json.JsonConvert.DeserializeObject<List<Marcador>>(jsonParametro);
+            Ruta parametro = Newtonsoft.Json.JsonConvert.DeserializeObject<Ruta>(jsonParametro);
+
+            UtilidadesViaje.GuardaViaje(parametro, 1);
+
         }
 
         // You can use the entry method below
@@ -36,8 +45,8 @@ namespace RaiderPlan
         //static void Main(NameValueCollection args)
         //{
         //}
-    
+
     }
-    
- 
+
+
 }
