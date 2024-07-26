@@ -18,8 +18,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         public event Salir EvSalir;
         private Persona _Persona;
         private Usuario _Usuario;
-
-        private Dictionary<string, string> _currentPage = new Dictionary<string, string>();
         public EspacioPersonal()
         {
             InitializeComponent();
@@ -57,7 +55,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            EvSalir.Invoke();
+            EvSalir?.Invoke();
         }
 
         private void pbUsuario_Click(object sender, EventArgs e)
@@ -65,7 +63,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             winPerfil perfil = new winPerfil(_Usuario, _Persona);
             perfil.EvACtualizar += Perfil_EvACtualizar;
             perfil.CenterToParent();
-            perfil.ShowDialog();
+            perfil.Show();
         }
 
         private void Perfil_EvACtualizar()
@@ -78,7 +76,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             winPerfil perfil = new winPerfil(_Usuario, _Persona);
             perfil.EvACtualizar += Perfil_EvACtualizar;
             perfil.CenterToParent();
-            perfil.ShowDialog();
+            perfil.Show();
         }
 
         private void CargarTabPlanificacion()
@@ -99,7 +97,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                     ViajeCard control = new ViajeCard(viaje);
                     control.BringToFront();
                     control.Visible = true;
-                    control.EvModificar += CargarTabViajeCreado;
+                    control.EvModificar += CargarViaje;
                     control.EvEliminar += CargarTabPlanificacion;
                     pnl.Controls.Add(control);
                 }
@@ -111,47 +109,43 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             NuevoViaje nuevoViaje = new NuevoViaje();
             nuevoViaje.Dock = DockStyle.Fill;
             nuevoViaje.Name = "nuevoViajeControl";
-            nuevoViaje.CancelaNuevoViaje += (NuevoViaje) =>
+            nuevoViaje.CancelaNuevoViaje += () =>
             {
                 tabControl1.SelectedIndex = 0;
                 nuevo.Controls.Clear();
             };
-            nuevoViaje.NuevoViajeCreado += CargarTabViajeCreado;
+            nuevoViaje.NuevoViajeCreado += CargarViaje;
             nuevo.Controls.Add(nuevoViaje);
         }
 
-        private void CargarTabViajeCreado(long id,string nombre)
+        private void CargarViaje(long id)
         {
-            _currentPage["Id"] = id.ToString();
-            _currentPage["Nombre"] = nombre.Trim();
-
-            TabPage newPage = new TabPage();
-            newPage.Name = _currentPage["Id"];
-            newPage.Text = _currentPage["Nombre"];
-
-            var position = tabControl1.TabPages.Count - 1;
-            tabControl1.TabPages.Insert(position, newPage);
-            tabControl1.SelectedIndex = position;
-            nuevo.Controls.Clear();
+            ViajeMapa pnl = new ViajeMapa(id);
+            pnl.EvSalir += () =>
+            {
+                for (int i = 0; i<= pnlContent.Controls.Count-1; i++)
+                {
+                    Control control = pnlContent.Controls[i];
+                    if (pnlContent.Controls[i] is ViajeMapa)
+                    {
+                        pnlContent.Controls.Remove(control);
+                    }
+                    else
+                    {
+                        control.Visible = true;
+                    }
+                }
+            };
+            pnl.Dock = DockStyle.Fill;
+            tabControl1.Visible = false;
+            tabControl1.SelectedIndex = 0;
+            pnlContent.Controls.Add(pnl);
         }
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
         {
             TabPage page = e.TabPage;
             page.Controls.Clear();
-            if (_currentPage.TryGetValue("Id", out string value) && _currentPage.ContainsKey("Nombre"))
-            {
-                if (page.Name != value)
-                {
-                    tabControl1.TabPages.RemoveByKey(value);
-                }
-                else
-                {
-                    Viajes.Viajes mapa = new Viajes.Viajes();
-                    mapa.Dock = DockStyle.Fill;
-                    page.Controls.Add(mapa);
-                }
-            }
             switch (page.Name)
             {
                 case "nuevo":

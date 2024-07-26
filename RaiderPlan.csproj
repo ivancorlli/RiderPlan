@@ -85,6 +85,9 @@
     <Compile Update="Sitio\EspacioPersonal\NuevoViaje.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="Sitio\EspacioPersonal\winIniciaViaje.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="Sitio\EspacioPersonal\winNuevoViaje.cs">
       <SubType>Form</SubType>
     </Compile>

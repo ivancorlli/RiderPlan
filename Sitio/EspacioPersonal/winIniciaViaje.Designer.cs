@@ -1,6 +1,6 @@
 ﻿namespace RaiderPlan.Sitio.Inicio
 {
-    partial class winNuevoViaje
+    partial class winIniciaViaje
     {
         /// <summary>
         /// Required designer variable.
@@ -29,19 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(winNuevoViaje));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(winIniciaViaje));
             this.dtpFechaSalida = new Wisej.Web.DateTimePicker();
             this.pnlContent = new Wisej.Web.Panel();
-            this.txtMarca = new Wisej.Web.TextBox();
-            this.dtpFechaLlegada = new Wisej.Web.DateTimePicker();
+            this.lblFechaProgramada = new Wisej.Web.Label();
             this.btnRegistro = new Wisej.Web.Button();
             this.lblMansaje = new Wisej.Web.Label();
-            this.txtMotocicleta = new Wisej.Web.TextBox();
-            this.txtNombre = new Wisej.Web.TextBox();
-            this.upload1 = new Wisej.Web.Upload();
             this.pbImagenPerfil = new Wisej.Web.PictureBox();
             this.Cancelar = new Wisej.Web.Button();
-            this.label2 = new Wisej.Web.Label();
+            this.lblViajeNombre = new Wisej.Web.Label();
             this.errorProvider1 = new Wisej.Web.ErrorProvider(this.components);
             this.pnlContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenPerfil)).BeginInit();
@@ -56,7 +52,7 @@
             this.dtpFechaSalida.CssStyle = "border-radius: 10px;";
             this.dtpFechaSalida.ForeColor = System.Drawing.Color.White;
             this.dtpFechaSalida.Format = Wisej.Web.DateTimePickerFormat.Short;
-            this.dtpFechaSalida.Location = new System.Drawing.Point(22, 251);
+            this.dtpFechaSalida.Location = new System.Drawing.Point(30, 212);
             this.dtpFechaSalida.Margin = new Wisej.Web.Padding(0);
             this.dtpFechaSalida.Name = "dtpFechaSalida";
             this.dtpFechaSalida.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("dtpFechaSalida.ResponsiveProfiles"))));
@@ -69,64 +65,37 @@
             // pnlContent
             // 
             this.pnlContent.BackColor = System.Drawing.Color.FromName("@toolbarText");
-            this.pnlContent.Controls.Add(this.txtMarca);
-            this.pnlContent.Controls.Add(this.dtpFechaLlegada);
+            this.pnlContent.Controls.Add(this.lblFechaProgramada);
             this.pnlContent.Controls.Add(this.btnRegistro);
             this.pnlContent.Controls.Add(this.lblMansaje);
-            this.pnlContent.Controls.Add(this.txtMotocicleta);
-            this.pnlContent.Controls.Add(this.txtNombre);
-            this.pnlContent.Controls.Add(this.upload1);
             this.pnlContent.Controls.Add(this.pbImagenPerfil);
             this.pnlContent.Controls.Add(this.Cancelar);
-            this.pnlContent.Controls.Add(this.label2);
+            this.pnlContent.Controls.Add(this.lblViajeNombre);
             this.pnlContent.Controls.Add(this.dtpFechaSalida);
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlContent.ResponsiveProfiles"))));
-            this.pnlContent.Size = new System.Drawing.Size(389, 609);
+            this.pnlContent.Size = new System.Drawing.Size(407, 410);
             this.pnlContent.TabIndex = 1;
             // 
-            // txtMarca
+            // lblFechaProgramada
             // 
-            this.txtMarca.AutoSize = false;
-            this.txtMarca.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
-            this.txtMarca.BorderStyle = Wisej.Web.BorderStyle.None;
-            this.txtMarca.CssStyle = "border-radius: 10px;";
-            this.txtMarca.ForeColor = System.Drawing.Color.White;
-            this.txtMarca.Location = new System.Drawing.Point(22, 430);
-            this.txtMarca.MaxLength = 60;
-            this.txtMarca.Name = "txtMarca";
-            this.txtMarca.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtMarca.ResponsiveProfiles"))));
-            this.txtMarca.Size = new System.Drawing.Size(345, 47);
-            this.txtMarca.TabIndex = 4;
-            this.txtMarca.Watermark = "Marca";
-            this.txtMarca.WordWrap = false;
-            // 
-            // dtpFechaLlegada
-            // 
-            this.dtpFechaLlegada.AutoSize = false;
-            this.dtpFechaLlegada.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
-            this.dtpFechaLlegada.BorderStyle = Wisej.Web.BorderStyle.None;
-            this.dtpFechaLlegada.CssStyle = "border-radius: 10px;";
-            this.dtpFechaLlegada.ForeColor = System.Drawing.Color.White;
-            this.dtpFechaLlegada.Format = Wisej.Web.DateTimePickerFormat.Short;
-            this.dtpFechaLlegada.Location = new System.Drawing.Point(22, 308);
-            this.dtpFechaLlegada.Margin = new Wisej.Web.Padding(0);
-            this.dtpFechaLlegada.Name = "dtpFechaLlegada";
-            this.dtpFechaLlegada.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("dtpFechaLlegada.ResponsiveProfiles"))));
-            this.dtpFechaLlegada.Size = new System.Drawing.Size(345, 47);
-            this.dtpFechaLlegada.TabIndex = 2;
-            this.dtpFechaLlegada.TodayDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
-            this.dtpFechaLlegada.Value = new System.DateTime(((long)(0)));
-            this.dtpFechaLlegada.Watermark = "Fecha de llegada";
+            this.lblFechaProgramada.AutoSize = true;
+            this.lblFechaProgramada.BackColor = System.Drawing.Color.Transparent;
+            this.lblFechaProgramada.ForeColor = System.Drawing.Color.FromName("@control");
+            this.lblFechaProgramada.Location = new System.Drawing.Point(129, 127);
+            this.lblFechaProgramada.Name = "lblFechaProgramada";
+            this.lblFechaProgramada.Size = new System.Drawing.Size(38, 18);
+            this.lblFechaProgramada.TabIndex = 3007;
+            this.lblFechaProgramada.Text = "Fecha";
             // 
             // btnRegistro
             // 
             this.btnRegistro.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnRegistro.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnRegistro.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnRegistro.Location = new System.Drawing.Point(22, 541);
+            this.btnRegistro.Location = new System.Drawing.Point(30, 322);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRegistro.ResponsiveProfiles"))));
             this.btnRegistro.Size = new System.Drawing.Size(345, 35);
@@ -138,7 +107,7 @@
             // 
             this.lblMansaje.BackColor = System.Drawing.Color.Transparent;
             this.lblMansaje.ForeColor = System.Drawing.Color.FromArgb(255, 0, 0);
-            this.lblMansaje.Location = new System.Drawing.Point(22, 508);
+            this.lblMansaje.Location = new System.Drawing.Point(30, 289);
             this.lblMansaje.Name = "lblMansaje";
             this.lblMansaje.Padding = new Wisej.Web.Padding(5, 0, 0, 0);
             this.lblMansaje.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("lblMansaje.ResponsiveProfiles"))));
@@ -147,49 +116,6 @@
             this.lblMansaje.Text = "Mensaje";
             this.lblMansaje.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblMansaje.Visible = false;
-            // 
-            // txtMotocicleta
-            // 
-            this.txtMotocicleta.AutoSize = false;
-            this.txtMotocicleta.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
-            this.txtMotocicleta.BorderStyle = Wisej.Web.BorderStyle.None;
-            this.txtMotocicleta.CssStyle = "border-radius: 10px;";
-            this.txtMotocicleta.ForeColor = System.Drawing.Color.White;
-            this.txtMotocicleta.Location = new System.Drawing.Point(22, 368);
-            this.txtMotocicleta.MaxLength = 60;
-            this.txtMotocicleta.Name = "txtMotocicleta";
-            this.txtMotocicleta.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtMotocicleta.ResponsiveProfiles"))));
-            this.txtMotocicleta.Size = new System.Drawing.Size(345, 47);
-            this.txtMotocicleta.TabIndex = 3;
-            this.txtMotocicleta.Watermark = "Motocicleta";
-            this.txtMotocicleta.WordWrap = false;
-            // 
-            // txtNombre
-            // 
-            this.txtNombre.AutoSize = false;
-            this.txtNombre.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
-            this.txtNombre.BorderStyle = Wisej.Web.BorderStyle.None;
-            this.txtNombre.CssStyle = "border-radius: 10px;";
-            this.txtNombre.ForeColor = System.Drawing.Color.White;
-            this.txtNombre.Location = new System.Drawing.Point(22, 192);
-            this.txtNombre.MaxLength = 60;
-            this.txtNombre.Name = "txtNombre";
-            this.txtNombre.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtNombre.ResponsiveProfiles"))));
-            this.txtNombre.Size = new System.Drawing.Size(345, 47);
-            this.txtNombre.TabIndex = 0;
-            this.txtNombre.Watermark = "Nombre";
-            // 
-            // upload1
-            // 
-            this.upload1.AllowedFileTypes = "image/*";
-            this.upload1.HideValue = true;
-            this.upload1.Location = new System.Drawing.Point(139, 113);
-            this.upload1.Name = "upload1";
-            this.upload1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("upload1.ResponsiveProfiles"))));
-            this.upload1.Size = new System.Drawing.Size(152, 22);
-            this.upload1.TabIndex = 3005;
-            this.upload1.Text = "Seleccionar imagen";
-            this.upload1.Uploaded += new Wisej.Web.UploadedEventHandler(this.upload1_Uploaded);
             // 
             // pbImagenPerfil
             // 
@@ -207,7 +133,7 @@
             this.Cancelar.BackColor = System.Drawing.Color.FromName("@toolbarText");
             this.Cancelar.Font = new System.Drawing.Font("default, Arial", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Cancelar.ForeColor = System.Drawing.Color.White;
-            this.Cancelar.Location = new System.Drawing.Point(335, 12);
+            this.Cancelar.Location = new System.Drawing.Point(356, 16);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("Cancelar.ResponsiveProfiles"))));
             this.Cancelar.Size = new System.Drawing.Size(32, 27);
@@ -215,33 +141,33 @@
             this.Cancelar.Text = "X";
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
-            // label2
+            // lblViajeNombre
             // 
-            this.label2.AutoSize = true;
-            this.label2.Cursor = Wisej.Web.Cursors.Hand;
-            this.label2.Font = new System.Drawing.Font("defaultBold", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.label2.Location = new System.Drawing.Point(22, 12);
-            this.label2.Name = "label2";
-            this.label2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label2.ResponsiveProfiles"))));
-            this.label2.Size = new System.Drawing.Size(129, 30);
-            this.label2.TabIndex = 3001;
-            this.label2.Text = "Nuevo Viaje";
+            this.lblViajeNombre.AutoSize = true;
+            this.lblViajeNombre.Cursor = Wisej.Web.Cursors.Hand;
+            this.lblViajeNombre.Font = new System.Drawing.Font("defaultBold", 22F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.lblViajeNombre.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.lblViajeNombre.Location = new System.Drawing.Point(129, 85);
+            this.lblViajeNombre.Name = "lblViajeNombre";
+            this.lblViajeNombre.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("lblViajeNombre.ResponsiveProfiles"))));
+            this.lblViajeNombre.Size = new System.Drawing.Size(129, 30);
+            this.lblViajeNombre.TabIndex = 3001;
+            this.lblViajeNombre.Text = "Nuevo Viaje";
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // winNuevoViaje
+            // winIniciaViaje
             // 
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(389, 609);
+            this.ClientSize = new System.Drawing.Size(407, 410);
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);
             this.CssStyle = "border-radius:20px;";
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
             this.Location = new System.Drawing.Point(25, -359);
-            this.Name = "winNuevoViaje";
+            this.Name = "winIniciaViaje";
             this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles"))));
             this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "Registro";
@@ -258,14 +184,10 @@
         private Wisej.Web.Panel pnlContent;
         private Wisej.Web.Label lblMansaje;
         private Wisej.Web.ErrorProvider errorProvider1;
-        private Wisej.Web.Label label2;
+        private Wisej.Web.Label lblViajeNombre;
         private Wisej.Web.Button Cancelar;
         private Wisej.Web.PictureBox pbImagenPerfil;
-        private Wisej.Web.Upload upload1;
-        private Wisej.Web.TextBox txtMotocicleta;
-        private Wisej.Web.TextBox txtNombre;
         private Wisej.Web.Button btnRegistro;
-        private Wisej.Web.DateTimePicker dtpFechaLlegada;
-        private Wisej.Web.TextBox txtMarca;
+        private Wisej.Web.Label lblFechaProgramada;
     }
 }

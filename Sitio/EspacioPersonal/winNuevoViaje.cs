@@ -30,17 +30,32 @@ namespace RaiderPlan.Sitio.Inicio
 
         private void btnRegistro_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtNombre.Text)|| txtNombre.Text =="")
+            if (string.IsNullOrEmpty(txtNombre.Text) || txtNombre.Text == "")
             {
                 errorProvider1.SetError(txtNombre, "Debe ingresar el nombre del viaje");
                 lblMansaje.Text = "Debe ingresar el nombre del viaje";
             }
-            Viaje NuevoViaje = new Viaje() { 
-            UsuarioID = (int)Application.Session.UsuarioID,
-            ViajeNombre= txtNombre.Text,
-            FechaSalidaProgramada = dtpFechaSalida.Value,
-            FechaLlegadaProgramada = dtpFechaLlegada.Value
+            Viaje NuevoViaje = new Viaje()
+            {
+                UsuarioID = (int)Application.Session.UsuarioID,
+                ViajeNombre = txtNombre.Text
             };
+            if (dtpFechaSalida.Value != new DateTime(0001, 1, 1))
+            {
+                NuevoViaje.FechaSalidaProgramada = dtpFechaSalida.Value;
+            }
+            else
+            {
+                NuevoViaje.ViajeRow.SetFechaSalidaEfectivaNull();
+            }
+            if (dtpFechaLlegada.Value != new DateTime(0001, 1, 1))
+            {
+                NuevoViaje.FechaLlegadaProgramada = dtpFechaLlegada.Value;
+            }
+            else
+            {
+                NuevoViaje.ViajeRow.SetFechaLlegadaProgramadaNull();
+            }
             if (!string.IsNullOrEmpty(txtMotocicleta.Text))
             {
                 NuevoViaje.MotociletaModelo = txtMotocicleta.Text;
@@ -49,7 +64,7 @@ namespace RaiderPlan.Sitio.Inicio
             {
                 NuevoViaje.MotocilcetaMarca = txtMarca.Text;
             }
-            if(_Image != null)
+            if (_Image != null)
             {
                 NuevoViaje.ViajeImagen = _Image.Tag.ToString();
                 GuardarImagen(_Image);

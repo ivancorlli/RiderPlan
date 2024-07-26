@@ -8,7 +8,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 {
     public partial class ViajeCard : Wisej.Web.UserControl
     {
-        public delegate void Modificar(long id, string nombre);
+        public delegate void Modificar(long id);
         public event Modificar EvModificar;
         public delegate void Ver(long id);
         public event Ver EvVer;
@@ -30,11 +30,15 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 viajeNombre.Text = _viaje.ViajeNombre;
                 if (!_viaje.ViajeRow.IsViajeImagenNull())
                 {
-                    pbImagenViaje.ImageSource = Path.Combine("Resource", "lib", "ImagenesUsuario", _viaje.ViajeImagen);
+                    pbImagenViaje.ImageSource = Path.Combine("Resource", "lib", "Viajes", _viaje.ViajeImagen);
                 }
                 if (!_viaje.ViajeRow.IsFechaSalidaProgramadaNull())
                 {
                     fechaViaje.Text = _viaje.FechaSalidaProgramada.ToLongDateString();
+                }
+                else
+                {
+                    fechaViaje.Visible = false;
                 }
             }
             else
@@ -44,25 +48,25 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         }
 
 
-        private void pbVer_Click(object sender, EventArgs e)
-        {
-            this.EvVer.Invoke(_viaje.ViajeID);
-        }
-
         private void button1_Click_1(object sender, EventArgs e)
         {
-            this.EvModificar.Invoke(_viaje.ViajeID, _viaje.ViajeNombre);
+            this.EvModificar?.Invoke(_viaje.ViajeID);
         }
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
-            this.EvEliminar.Invoke();
+            this.EvEliminar?.Invoke();
         }
 
-        private void panel3_PanelCollapsed(object sender, EventArgs e)
+        private void btnIniciar_Click(object sender, EventArgs e)
         {
-            winNuevoViaje popup = new winNuevoViaje();
-            popup.Show();
+            winIniciaViaje form = new winIniciaViaje(_viaje.ViajeID);
+            form.Show();
+        }
+
+        private void btnVer_Click(object sender, EventArgs e)
+        {
+            this.EvVer?.Invoke(_viaje.ViajeID);
         }
     }
 }
