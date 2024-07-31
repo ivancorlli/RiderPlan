@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace RaiderPlan.Sitio.Viajes
 {
 
-        public class Resumen
+    public class Resumen
     {
         [JsonProperty("totalDistance")]
         public double TotalDistance { get; set; }
@@ -23,7 +23,7 @@ namespace RaiderPlan.Sitio.Viajes
         public double Lng { get; set; }
     }
 
-   
+
     public class LatLng
     {
         [JsonProperty("lat")]
@@ -35,11 +35,11 @@ namespace RaiderPlan.Sitio.Viajes
 
     public class Waypoint
     {
-       
+
         [JsonProperty("latLng")]
         public LatLng LatLng { get; set; }
 
-        
+
     }
 
     public class Instruccion
@@ -74,14 +74,17 @@ namespace RaiderPlan.Sitio.Viajes
 
     public class InputWaypoint
     {
-        
+
         [JsonProperty("latLng")]
         public LatLng LatLng { get; set; }
-               
+
     }
 
     public class Ruta
     {
+        [JsonProperty("viajeID")]
+        public long ViajeID { get; set; }
+
         [JsonProperty("resumen")]
         public Resumen Resumen { get; set; }
 

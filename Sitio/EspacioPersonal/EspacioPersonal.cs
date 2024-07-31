@@ -109,7 +109,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         {
             // Cargo variable de sesion para manejar en el mapa
             Application.Session.ViajeID = id;
-            Viajes.Viajes pnl = new Viajes.Viajes(id);
+            Viajes.Viajes pnl = new Viajes.Viajes();
             pnl.EvSalir += () =>
             {
                 // Blanqueo variable de sesion del mapa
@@ -152,5 +152,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             popup.EvAceptar += CargarViaje;
             popup.Show();
         }
+
+       
     }
 }

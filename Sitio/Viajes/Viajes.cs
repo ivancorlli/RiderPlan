@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Raiderplan1;
 using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace RaiderPlan.Sitio.Viajes
 {
@@ -13,20 +15,62 @@ namespace RaiderPlan.Sitio.Viajes
     {
         public delegate void Salir();
         public event Salir EvSalir;
-        private Viaje _viaje = null;
-
+        private List<LatLng> listaWaitPoints;
         MyLeafletMap myMap = new MyLeafletMap();
 
-        public Viajes(long viajeId)
+        public Viajes()
         {
             InitializeComponent();
 
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
             htmlPanel1.Dock = DockStyle.Fill;
-            _viaje = new Viaje();
-            _viaje.Fill(viajeId);
-            lblTitulo.Text = _viaje.ViajeNombre;
+
+
+            //si hay viaje cargado en la variable de session
+            if (Application.Session.ViajeID > 0)
+            {
+                TrayectoViajeCollection _AuxiliarTrayecto = new TrayectoViajeCollection(); // Para recuperar lso trayectos de un viaje
+                _AuxiliarTrayecto.FillByViajeID(Application.Session.ViajeID);
+
+                //Determino si es que se que se recuperaron trayectos 
+                if (_AuxiliarTrayecto.Count > 0)
+                {
+                    //instancio la lista de latitudes y longitudes para recuperar los waitpoints
+                    listaWaitPoints = new List<LatLng>();
+
+                    bool primerTrayecto = true;
+                    //hay trayectos significa que estamos editando debo recuperar los waitPoints
+                    foreach (TrayectoViaje _Item in _AuxiliarTrayecto.Cast<TrayectoViaje>().ToList<TrayectoViaje>())
+                    {
+                        LatLng WaitPoint = new LatLng();
+                        if (primerTrayecto)
+                        {
+                            // si es el primer trayecto el origen del trayecto es el primer wait point
+                            //y el destino es el segundo wait point 
+                            LatLng WaitPoint2 = new LatLng();
+                            WaitPoint.Lat = (double)_Item.TayectoLatitudOrigen;
+                            WaitPoint.Lng = (double)_Item.TrayectoLongitudOrigen;
+                            WaitPoint2.Lat = (double)_Item.TrayectoLatidudDestino;
+                            WaitPoint2.Lng = (double)_Item.TrayectoLongitudDestino;
+                            //agrego los  waitpoint a la lista en orden
+                            listaWaitPoints.Add(WaitPoint);
+                            listaWaitPoints.Add(WaitPoint2);
+                            primerTrayecto = false;
+                        }
+                        else
+                        {
+                            // si hay mas de un trayecto solo tomamos la lat y long del destino para el proximo wait point
+
+                            WaitPoint.Lat = (double)_Item.TrayectoLatidudDestino;
+                            WaitPoint.Lng = (double)_Item.TrayectoLongitudDestino;
+                            listaWaitPoints.Add(WaitPoint);
+                        }
+                    }
+
+                }
+            }
+
         }
 
 
@@ -48,7 +92,23 @@ namespace RaiderPlan.Sitio.Viajes
                             ");
 
 
+            //****************************************************************************************************************************
+            //controlo el estado de la lista de wait point para determinar si debo cargar los wait point para editar
 
+            if (listaWaitPoints != null)
+            {
+                //Tengo valores los cargo
+                string jsonlist = JsonConvert.SerializeObject(listaWaitPoints);
+                //tengo valores creo  la lista y los trasfiero los valores
+                htmlPanel1.Eval($@" listaWaitPoint=JSON.parse('{jsonlist}');");
+
+            }
+            else
+            {
+                //no tengo valores creo la lista vacia
+                htmlPanel1.Eval(@" listaWaitPoint=[];");
+
+            }
 
 
             //**********************************************************************************************
@@ -120,7 +180,7 @@ namespace RaiderPlan.Sitio.Viajes
                               /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     //funcion para manejar el evento click  en el mapa y poder añadir marcadores (puntos de enlace)
 
-                                   const ManejaClickMapa= function(e) { if(control) { map.removeControl(control) }
+                                     ManejaClickMapa= function(e) { if(control) { map.removeControl(control) }
                                                              let lat = e.latlng.lat;
                                                              let lng = e.latlng.lng;
                                                              let nuevoPunto= L.latLng(lat, lng);
@@ -168,7 +228,7 @@ namespace RaiderPlan.Sitio.Viajes
                                                                                                                     }),
                                                                                                                    formatter: new L.Routing.Formatter(DetalleEspañol) 
 
-                                                                                      }).addTo(map);
+                                                                                          }).addTo(map);
 
 
                                                               control.on('waypointschanged', function(e) { if (marcadores.length>1){
@@ -176,10 +236,7 @@ namespace RaiderPlan.Sitio.Viajes
                                                                                                                                                                                         return waypoint.latLng; 
                                                                                                                                                                                        }
                                                                                                                                                                    );
-                                                                                                                                      
-                                                                                                                                      //Actualizo los marcadores en el servidor
-                                                                                                                                      //var json = JSON.stringify(marcadores);
-                                                                                                                                      //App.MiMetodoWeb2(json);  
+                                                                                                                                                                                                                                                                           
                                                                                                                                      }
                                                                                                           }
                                                                          ); 
@@ -243,10 +300,10 @@ namespace RaiderPlan.Sitio.Viajes
 
                                                              }
                                    /////////////////////////////////////////////////////////////////////////////////////////////////                         
+                                     
                                      //evento click en el mapa
                                       map.on('click', ManejaClickMapa);
-   
-                                //////////////////////////////////////////////////////////////////// agrego funcion debusqueda
+                                //////////////////////////////////////////////////////////////////// agrego funcion debusqueda//////////////////////////////////////////////////////////////////////
                                 
                                                           searchLocation=function () {
                                                             var searchString = document.getElementById('searchQuery').value;
@@ -323,13 +380,28 @@ namespace RaiderPlan.Sitio.Viajes
                                                                                                };
                                                                 results.appendChild(listItem);
                                                             });
-             }
+                               
+                                                                        
+                                                         }
 
 
                                ////////////////////////////////////////////////////////////////////////////////////////////////
+                               
 
              ");
 
+            htmlPanel1.Eval(@"if(listaWaitPoint.length>0)
+                               {
+                                 for(i=0;i<listaWaitPoint.length;i++)
+                                    {
+                                       let coordenadas = { latlng: L.latLng(listaWaitPoint[i].lat, listaWaitPoint[i].lng) };
+                                       ManejaClickMapa(coordenadas);
+                                       
+                                    }
+
+
+                               }
+                           ");
             //*******************************************************************************************************************************************************
             //para la apertura y cierre de el menu lateral
             htmlPanel1.Eval(@" openNav=function () {
@@ -344,144 +416,20 @@ namespace RaiderPlan.Sitio.Viajes
                                     document.getElementById(""map"").style.marginLeft = ""0"";
                                 }");
 
+
+
             //*******************************************************************************************************************************************************
-            //funciones  de busqueda por texto y para añadir en el mapa
-            /*  htmlPanel1.Eval(@"searchLocation=function () {
-                                                              var searchString = document.getElementById('searchQuery').value;
-                                                               alert(marcadores);
-                                                              // Intentar primero con Photon
-                                                              var photonUrl = 'https://photon.komoot.io/api/?q=' + encodeURIComponent(searchString);
-                                                              fetch(photonUrl)
-                                                                  .then(response => response.json())
-                                                                  .then(data => {
-                                                                      if (data.features.length > 0) {
-                                                                          displayResults(data.features);
-                                                                      } else {
-                                                                          // Si no hay resultados en Photon, intentar con Nominatim
-                                                                          var nominatimUrl = 'https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(searchString);
-                                                                          fetch(nominatimUrl)
-                                                                              .then(response => response.json())
-                                                                              .then(data => {
-                                                                                  if (data.length > 0) {
-                                                                                      var nominatimResults = data.map(result => {
-                                                                                          return {
-                                                                                              properties: {
-                                                                                                  name: result.display_name,
-                                                                                                  country: result.address.country,
-                                                                                                  state: result.address.state,
-                                                                                                  city: result.address.city || result.address.town || result.address.village,
-                                                                                                  street: result.address.road,
-                                                                                                  housenumber: result.address.house_number
-                                                                                              },
-                                                                                              geometry: {
-                                                                                                  coordinates: [result.lon, result.lat]
-                                                                                              }
-                                                                                          };
-                                                                                      });
-                                                                                      displayResults(nominatimResults);
-                                                                                  } else {
-                                                                                      alert('No se encontraron resultados.');
-                                                                                  }
-                                                                              });
-                                                                      }
-                                                                  })
-                                                                  .catch(error => {
-                                                                      console.error('Error en la geocodificación:', error);
-                                                                  });
-                                                          }
-
-                                                          displayResults=function displayResults(features) {
-                                                              var results = document.getElementById('results');
-                                                              results.innerHTML = ''; // Clear previous results
-
-                                                              features.forEach(function(feature, index) {
-                                                                  let properties = feature.properties;
-                                                                  let listItem = document.createElement('li');
-                                                                  let name = properties.name ? properties.name : 'Desconocido';
-                                                                  let country = properties.country ? properties.country : 'Desconocido';
-                                                                  let state = properties.state ? properties.state : 'Desconocido';
-                                                                  let city = properties.city ? properties.city : 'Desconocido';
-                                                                  let street = properties.street ? properties.street : 'Desconocido';
-                                                                  let housenumber = properties.housenumber ? properties.housenumber : '';
-
-                                                                  listItem.innerHTML = `<strong>${name}</strong><br>
-                                                                                        País: ${country}<br>
-                                                                                        Provincia/Estado: ${state}<br>
-                                                                                        Localidad: ${city}<br>
-                                                                                        Calle: ${street} ${housenumber}`;
-
-                                                                  listItem.setAttribute('data-lat', feature.geometry.coordinates[1]);
-                                                                  listItem.setAttribute('data-lng', feature.geometry.coordinates[0]);
-                                                                  listItem.onclick = function() { 
-                                                                                                  var lat = this.getAttribute('data-lat');
-                                                                                                  var lng = this.getAttribute('data-lng');
-                                                                                                  let nuevoPunto= L.latLng(lat, lng);
-                                                                                                  alert(nuevoPunto)
-                                                                                                  marcadores.push(nuevoPunto);
-                                                                                                  alert (marcadores);
-                                                                                                  closeNav(); // Cerrar la barra lateral después de seleccionar un resultado
-                                                                                                 };
-                                                                  results.appendChild(listItem);
-                                                              });
-               }");*/
-            //*******************************************************************************************************************************************************
-
-            //htmlPanel1.Eval(@" map.on('click', function(e) {
-            //                                                   var lat = e.latlng.lat;
-            //                                                   var lng = e.latlng.lng;
-            //                                                   var marker = L.marker([lat, lng]).addTo(map);
-            //                                                   marker.bindPopup('Coordenadas: ' + lat + ', ' + lng).openPopup();
-            //                                                   // Eliminar el marcador del mapa
-            //                                                   marker.on('click', function() {
-            //                                                                                   map.removeLayer(marker);
-            //                                                                                  }
-            //                                                   );
-            //                                                   App.MiMetodoWeb2('longitud: '+lng +' Latitud :'+lat);
-
-            //                                                   });");
-
-            /*htmlPanel1.Eval(@"miFuncion=function(){ alert(this);
-                            // Disparar un evento personalizado para cambiar la posición
-                            App._Viaje.MiMetodoWeb('palabra');
-                            }");//var marker = L.marker([-25.4953, -64.9743]).addTo(map); */
-            //this.Eval(@"var Marcadores=[
-            //                             L.latLng(-27.4953, -64.9743),  // Primer marcador
-            //                             L.latLng(-28.4953, -64.9743),  // Segundo marcador
-            //                             L.latLng(-29.4953, -64.9743)
-            //                           ];   
-            //            L.Routing.control({
-            //               waypoints:Marcadores,
-            //               createMarker: function(i, wp) {
-            //                   return L.marker(wp.latLng, {
-            //                       draggable: true,
-            //                   }).bindPopup('Arrastra este marcador para cambiar la ruta.');
-            //               },
-            //                routeWhileDragging: true,
-            //              }).addTo(map);");
-
 
         }
 
-        private void htmlPanel1_ElementClick(object sender, HtmlPanelElementClickArgs e)
-        {
-
-
-            //    htmlPanel1.Eval(@"
-            //                      App.MiMetodoWeb2('Esta esta del lado de programa')
-
-            //                   ");//var marker = L.marker([-25.4953, -64.9743]).addTo(map); */
-            //                      // App.MainPage._EspPer._Viaje.MiMetodoWeb('palabra');
-            //    /*// console.log('PANEL');
-            //                      //  console.log(App.MainPage.pnlMain.EspacioPersonal.pnlContent.Viajes);
-            //                     // Disparar un evento personalizado para cambiar la posición
-            //                    //App.MiMetodoWeb2('Esta esta del lado de program')*/
-
-        }
 
         private void btnAgregar_Click(object sender, EventArgs e)
         {
-            htmlPanel1.Eval(@" console.log(""este son los datos de la ruta""); console.log(datosRuta);
+            //agrego la variable de identificador del viaje viajeID
+
+            htmlPanel1.Eval($@" console.log(""este son los datos de la ruta""); console.log(datosRuta);
                               //Actualizo los marcadores en el servidor
+                             datosRuta.viajeID={Application.Session.ViajeID};
                              var json = JSON.stringify(datosRuta);
                              App.GeneraViaje(json);");
             Application.Session.ViajeID = 0;

@@ -33,13 +33,13 @@
             this.pbUsuario = new Wisej.Web.PictureBox();
             this.lblUsuarioNombre = new Wisej.Web.Label();
             this.pnlSuperiro = new Wisej.Web.Panel();
+            this.btnCrearViaje = new Wisej.Web.Button();
             this.btnRegistro = new Wisej.Web.Button();
             this.pnlContent = new Wisej.Web.Panel();
             this.tabControl1 = new Wisej.Web.TabControl();
             this.planificacion = new Wisej.Web.TabPage();
             this.realizados = new Wisej.Web.TabPage();
             this.nuevo = new Wisej.Web.TabPage();
-            this.btnCrearViaje = new Wisej.Web.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbUsuario)).BeginInit();
             this.pnlSuperiro.SuspendLayout();
             this.pnlContent.SuspendLayout();
@@ -88,6 +88,19 @@
             this.pnlSuperiro.TabIndex = 0;
             this.pnlSuperiro.Text = "menu";
             // 
+            // btnCrearViaje
+            // 
+            this.btnCrearViaje.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
+            this.btnCrearViaje.BackColor = System.Drawing.Color.FromName("@tabText");
+            this.btnCrearViaje.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.btnCrearViaje.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.btnCrearViaje.Location = new System.Drawing.Point(173, 9);
+            this.btnCrearViaje.Name = "btnCrearViaje";
+            this.btnCrearViaje.Size = new System.Drawing.Size(78, 33);
+            this.btnCrearViaje.TabIndex = 6;
+            this.btnCrearViaje.Text = "Crear Viaje";
+            this.btnCrearViaje.Click += new System.EventHandler(this.btnCrearViaje_Click);
+            // 
             // btnRegistro
             // 
             this.btnRegistro.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
@@ -124,47 +137,34 @@
             this.tabControl1.Location = new System.Drawing.Point(15, 15);
             this.tabControl1.Margin = new Wisej.Web.Padding(10);
             this.tabControl1.Name = "tabControl1";
-            this.tabControl1.PageInsets = new Wisej.Web.Padding(1, 40, 1, 1);
+            this.tabControl1.PageInsets = new Wisej.Web.Padding(1, 35, 1, 1);
             this.tabControl1.Size = new System.Drawing.Size(422, 565);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Selected += new Wisej.Web.TabControlEventHandler(this.tabControl1_Selected);
             // 
             // planificacion
             // 
-            this.planificacion.Location = new System.Drawing.Point(1, 40);
+            this.planificacion.Location = new System.Drawing.Point(1, 35);
             this.planificacion.Name = "planificacion";
             this.planificacion.Padding = new Wisej.Web.Padding(10);
-            this.planificacion.Size = new System.Drawing.Size(420, 524);
+            this.planificacion.Size = new System.Drawing.Size(420, 529);
             this.planificacion.Text = "En planificacion";
             // 
             // realizados
             // 
-            this.realizados.Location = new System.Drawing.Point(1, 40);
+            this.realizados.Location = new System.Drawing.Point(1, 35);
             this.realizados.Name = "realizados";
-            this.realizados.Size = new System.Drawing.Size(420, 524);
+            this.realizados.Size = new System.Drawing.Size(420, 529);
             this.realizados.Text = "Realizados";
             // 
             // nuevo
             // 
-            this.nuevo.Location = new System.Drawing.Point(1, 40);
+            this.nuevo.Location = new System.Drawing.Point(1, 35);
             this.nuevo.Name = "nuevo";
-            this.nuevo.Size = new System.Drawing.Size(420, 524);
+            this.nuevo.Size = new System.Drawing.Size(420, 529);
             this.nuevo.TabBackColor = System.Drawing.Color.FromName("@buttonHighlight");
             this.nuevo.TabForeColor = System.Drawing.Color.FromName("@buttonText");
             this.nuevo.Text = "Nuevo Viaje";
-            // 
-            // btnCrearViaje
-            // 
-            this.btnCrearViaje.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Right)));
-            this.btnCrearViaje.BackColor = System.Drawing.Color.FromName("@tabText");
-            this.btnCrearViaje.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.btnCrearViaje.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnCrearViaje.Location = new System.Drawing.Point(173, 9);
-            this.btnCrearViaje.Name = "btnCrearViaje";
-            this.btnCrearViaje.Size = new System.Drawing.Size(78, 33);
-            this.btnCrearViaje.TabIndex = 6;
-            this.btnCrearViaje.Text = "Crear Viaje";
-            this.btnCrearViaje.Click += new System.EventHandler(this.btnCrearViaje_Click);
             // 
             // EspacioPersonal
             // 

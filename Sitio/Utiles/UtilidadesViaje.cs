@@ -3,16 +3,17 @@ using Raiderplan1;
 using System.Text;
 using System;
 using Wisej.Web;
+using System.Linq;
 
 namespace RaiderPlan.Sitio.Utiles
 {
     public static class UtilidadesViaje
     {
-     /// <summary>
-     /// este metodo se encarga de guardar todos los trayecto para cada viaje
-     /// </summary>
-     /// <param name="parametro"></param>
-        public static void GuardaViaje(Ruta parametro, long pViajeID)
+        /// <summary>
+        /// este metodo se encarga de guardar todos los trayecto para cada viaje
+        /// </summary>
+        /// <param name="parametro"></param>
+        public static void GuardaViaje(Ruta parametro)
         {
             //controlo que el parametro no llegue nulo o con un solo punto
             if (parametro.InputWaypoints.Count > 1)
@@ -26,7 +27,7 @@ namespace RaiderPlan.Sitio.Utiles
                     TrayectoViaje oTrayectoViaje = new TrayectoViaje();
 
                     oTrayectoViaje.Orden = oOrden;
-                    oTrayectoViaje.ViajeID = pViajeID; //relaciono con el viaje con el trayecto
+                    oTrayectoViaje.ViajeID = parametro.ViajeID; //relaciono con el viaje con el trayecto
                     oTrayectoViaje.TayectoLatitudOrigen = (decimal)parametro.InputWaypoints[i].LatLng.Lat;
                     oTrayectoViaje.TrayectoLongitudOrigen = (decimal)parametro.InputWaypoints[i].LatLng.Lng; ;
 
@@ -62,12 +63,12 @@ namespace RaiderPlan.Sitio.Utiles
                         auxIndice = J;
                     }
 
-                    inicioInstrucion = auxIndice;
-                    oTrayectoViaje.TrayectoOrigen = parametro.Instrucciones[0].Road;
-                    oTrayectoViaje.TrayectoDestino = parametro.Instrucciones[auxIndice].Road;
+                    oTrayectoViaje.TrayectoOrigen = parametro.Instrucciones[inicioInstrucion].Road;
+                    oTrayectoViaje.TrayectoDestino = auxIndice>parametro.Instrucciones.Count-1 ? parametro.Instrucciones[auxIndice - 3].Road:parametro.Instrucciones[auxIndice-1].Road;
                     oTrayectoViaje.Instrucciones = concatenacionInstrucciones.ToString();
                     oTrayectoViaje.Trayectokm = Math.Round((decimal)distanciaTrayecto / 1000);//transformo a km
                     oTrayectoViaje.TiempoEstimado = Math.Round((decimal)tiempoTrayecto / 60);//transformo a minutos
+                    inicioInstrucion = auxIndice;
 
                     oOrden += 1; //para establecer el orden de los trayectos
                     //guardo el trayecto
@@ -87,6 +88,37 @@ namespace RaiderPlan.Sitio.Utiles
             {
                 MessageBox.Show("Necesita un origen y un destino para poder guardar");
             }
+        }
+
+        /// <summary>
+        /// elimina todos los trayecos relacionados con un viaje
+        /// </summary>
+        /// <param name="pViajeI"></param>
+        /// <returns></returns>
+        public static bool EliminaTrayectos(long pViajeI)
+        {
+            TrayectoViajeCollection lTrayectos = new TrayectoViajeCollection();
+            lTrayectos.FillByViajeID(pViajeI);
+
+            if (lTrayectos.Count > 0)
+            {
+                foreach (TrayectoViaje item in lTrayectos.Cast<TrayectoViaje>().ToList())
+                {
+                    try
+                    {
+                        item.Delete();
+                    }
+                    catch
+                    {
+                        return false;//nose pudo eliminar el viaje salgo del proceso
+                    }
+                }
+
+
+            }
+
+            return true; // se eliminaron todos los trayectos
+
         }
 
 

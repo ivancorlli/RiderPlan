@@ -32,10 +32,7 @@ namespace RaiderPlan.Sitio.Utiles
             }
 
         }
-        public static void Desencripta(string texto)
-        {
-            
-        }
+       
         private static int EnviaMail(string codigoHtml, string subject, string to)
         {
             try

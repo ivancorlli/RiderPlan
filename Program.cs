@@ -26,16 +26,19 @@ namespace RaiderPlan
         static void Main()
         {
             Application.MainPage = new Page1();
+
         }
 
         [WebMethod]
         public static void GeneraViaje(string jsonParametro)
         {
-
-            // var parametro= Newtonsoft.Json.JsonConvert.DeserializeObject<List<Marcador>>(jsonParametro);
             Ruta parametro = Newtonsoft.Json.JsonConvert.DeserializeObject<Ruta>(jsonParametro);
 
-            UtilidadesViaje.GuardaViaje(parametro, Application.Session.ViajeID);
+            bool oEliminaTrayectos = UtilidadesViaje.EliminaTrayectos(parametro.ViajeID);
+            if (oEliminaTrayectos)
+            {
+                UtilidadesViaje.GuardaViaje(parametro);
+            }
 
         }
 
