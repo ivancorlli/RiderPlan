@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(winNuevoViaje));
             this.dtpFechaSalida = new Wisej.Web.DateTimePicker();
             this.pnlContent = new Wisej.Web.Panel();
@@ -42,10 +41,8 @@
             this.pbImagenPerfil = new Wisej.Web.PictureBox();
             this.Cancelar = new Wisej.Web.Button();
             this.label2 = new Wisej.Web.Label();
-            this.errorProvider1 = new Wisej.Web.ErrorProvider(this.components);
             this.pnlContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenPerfil)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpFechaSalida
@@ -207,7 +204,7 @@
             this.Cancelar.BackColor = System.Drawing.Color.FromName("@toolbarText");
             this.Cancelar.Font = new System.Drawing.Font("default, Arial", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Cancelar.ForeColor = System.Drawing.Color.White;
-            this.Cancelar.Location = new System.Drawing.Point(335, 12);
+            this.Cancelar.Location = new System.Drawing.Point(337, 12);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("Cancelar.ResponsiveProfiles"))));
             this.Cancelar.Size = new System.Drawing.Size(32, 27);
@@ -228,10 +225,6 @@
             this.label2.TabIndex = 3001;
             this.label2.Text = "Nuevo Viaje";
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // winNuevoViaje
             // 
             this.AutoScroll = true;
@@ -248,7 +241,6 @@
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenPerfil)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -257,7 +249,6 @@
         private Wisej.Web.DateTimePicker dtpFechaSalida;
         private Wisej.Web.Panel pnlContent;
         private Wisej.Web.Label lblMansaje;
-        private Wisej.Web.ErrorProvider errorProvider1;
         private Wisej.Web.Label label2;
         private Wisej.Web.Button Cancelar;
         private Wisej.Web.PictureBox pbImagenPerfil;

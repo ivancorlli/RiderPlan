@@ -6,19 +6,15 @@ using Wisej.Web;
 
 namespace RaiderPlan.Sitio.EspacioPersonal
 {
-    public partial class ViajeCard : Wisej.Web.UserControl
+    public partial class ViajeCardEliminado : Wisej.Web.UserControl
     {
-        public delegate void Modificar(long id);
-        public event Modificar EvModificar;
-        public delegate void Ver(long id);
-        public event Ver EvVer;
+        public delegate void Recuperar();
+        public event Recuperar EvRecuperar;
         public delegate void Eliminar();
         public event Eliminar EvEliminar;
-        public delegate void Iniciar(long id);
-        public event Iniciar EvIniciar;
-        private ViajesEnPlanificacion _viaje = null;
+        private ViajesEliminados _viaje = null;
 
-        public ViajeCard(ViajesEnPlanificacion viaje)
+        public ViajeCardEliminado(ViajesEliminados viaje)
         {
             InitializeComponent();
             _viaje = viaje;
@@ -51,19 +47,22 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         }
 
 
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.EvModificar?.Invoke(_viaje.ViajeID);
-        }
-
         private void btnEliminar_Click_1(object sender, EventArgs e)
         {
             try
             {
-                Raiderplan1.Viaje viaje = new Raiderplan1.Viaje();
+                Viaje viaje = new Viaje();
                 viaje.Fill(_viaje.ViajeID);
-                viaje.ViajeEstado = "Z";
-                viaje.Update();
+                TrayectoViajeCollection trayectos = new TrayectoViajeCollection();
+                trayectos.FillByViajeID(viaje.ViajeID);
+                if (trayectos.Count > 0)
+                {
+                    foreach (TrayectoViaje trayecto in trayectos)
+                    {
+                        trayecto.Delete();
+                    }
+                }
+                viaje.Delete();
                 this.EvEliminar?.Invoke();
             }
             catch (Exception)
@@ -72,26 +71,20 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             }
         }
 
-        private void btnIniciar_Click(object sender, EventArgs e)
-        {
-            ViajesEnProgresoCollection viaje = new ViajesEnProgresoCollection();
-            viaje.Fill(Application.Session.UsuarioID);
-            if (viaje.Count > 0)
-            {
-                MessageBox.Show("No puedes tener mas de un viaje iniciado en simultaneo.");
-            }
-            else
-            {
-
-                winIniciaViaje form = new winIniciaViaje(_viaje.ViajeID);
-                form.EvIniciar += (id) => this.EvIniciar?.Invoke(id);
-                form.ShowDialog();
-            }
-        }
-
         private void btnVer_Click(object sender, EventArgs e)
         {
-            this.EvVer?.Invoke(_viaje.ViajeID);
+            try
+            {
+                Viaje viaje = new Viaje();
+                viaje.Fill(_viaje.ViajeID);
+                viaje.ViajeEstado = "A";
+                viaje.Update();
+                this.EvRecuperar?.Invoke();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Error al recuperar viaje");
+            }
         }
     }
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(winIniciaViaje));
             this.dtpFechaSalida = new Wisej.Web.DateTimePicker();
             this.pnlContent = new Wisej.Web.Panel();
@@ -38,10 +37,8 @@
             this.pbImagenPerfil = new Wisej.Web.PictureBox();
             this.Cancelar = new Wisej.Web.Button();
             this.lblViajeNombre = new Wisej.Web.Label();
-            this.errorProvider1 = new Wisej.Web.ErrorProvider(this.components);
             this.pnlContent.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenPerfil)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpFechaSalida
@@ -58,7 +55,7 @@
             this.dtpFechaSalida.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("dtpFechaSalida.ResponsiveProfiles"))));
             this.dtpFechaSalida.Size = new System.Drawing.Size(345, 47);
             this.dtpFechaSalida.TabIndex = 1;
-            this.dtpFechaSalida.TodayDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
+            this.dtpFechaSalida.TodayDate = new System.DateTime(2024, 8, 6, 0, 0, 0, 0);
             this.dtpFechaSalida.Value = new System.DateTime(((long)(0)));
             this.dtpFechaSalida.Watermark = "Fecha de salida";
             // 
@@ -154,10 +151,6 @@
             this.lblViajeNombre.TabIndex = 3001;
             this.lblViajeNombre.Text = "Nuevo Viaje";
             // 
-            // errorProvider1
-            // 
-            this.errorProvider1.ContainerControl = this;
-            // 
             // winIniciaViaje
             // 
             this.AutoScroll = true;
@@ -174,7 +167,6 @@
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenPerfil)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -183,7 +175,6 @@
         private Wisej.Web.DateTimePicker dtpFechaSalida;
         private Wisej.Web.Panel pnlContent;
         private Wisej.Web.Label lblMansaje;
-        private Wisej.Web.ErrorProvider errorProvider1;
         private Wisej.Web.Label lblViajeNombre;
         private Wisej.Web.Button Cancelar;
         private Wisej.Web.PictureBox pbImagenPerfil;

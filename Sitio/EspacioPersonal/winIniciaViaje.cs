@@ -12,8 +12,8 @@ namespace RaiderPlan.Sitio.Inicio
     {
         public delegate void EvCancelar();
         public event EvCancelar evCancelar;
-        public delegate void Aceptar(Viaje viaje);
-        public event Aceptar EvAceptar;
+        public delegate void Iniciar(long ViajeID);
+        public event Iniciar EvIniciar;
         private Image _Image = null;
         private Viaje _viaje = null;
 
@@ -28,7 +28,7 @@ namespace RaiderPlan.Sitio.Inicio
                 lblViajeNombre.Text = _viaje.ViajeNombre;
                 if (!_viaje.ViajeRow.IsFechaSalidaProgramadaNull())
                 {
-                    lblFechaProgramada.Text ="Fecha programada:" + _viaje.FechaSalidaProgramada.ToLongDateString();
+                    lblFechaProgramada.Text ="Fecha programada:" + _viaje.FechaSalidaProgramada.ToShortDateString();
                 }
                 else
                 {
@@ -66,8 +66,11 @@ namespace RaiderPlan.Sitio.Inicio
                 try
                 {
                     _viaje.FechaSalidaEfectiva = dtpFechaSalida.Value;
+
+                    _viaje.ViajeEstado = "P";
                     _viaje.Update();
                     this.Close();
+                    this.EvIniciar?.Invoke(_viaje.ViajeID);
                 }
                 catch (Exception)
                 {

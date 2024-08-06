@@ -22,13 +22,23 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         public EspacioPersonal()
         {
             InitializeComponent();
-            MuestraDatos();
             this.Load += EspacioPersonal_Load;
         }
 
         private void EspacioPersonal_Load(object sender, EventArgs e)
         {
-            CargarTabPlanificacion();
+            MuestraDatos();
+            ViajesEnProgresoCollection actual = new ViajesEnProgresoCollection();
+            actual.Fill(Application.Session.UsuarioID);
+            if (actual.Count > 0)
+            {
+                CargarViajeActual(actual[0].ViajeID);
+            }
+            else
+            {
+                CargarTabPlanificacion();
+                CreaTabEliminados();
+            }
         }
 
         private void MuestraDatos()
@@ -45,12 +55,10 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             if (_Persona.PersonaRow.IsImagenPerfilNull() || _Persona.ImagenPerfil.Trim() == "")
             {
                 pbUsuario.ImageSource = Path.Combine("Resource", "lib", "Imagenes", "iconousuario.png");
-
             }
             else
             {
                 pbUsuario.ImageSource = Path.Combine("Resource", "lib", "ImagenesUsuario", _Persona.ImagenPerfil);
-
             }
         }
 
@@ -64,7 +72,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             winPerfil perfil = new winPerfil(_Usuario, _Persona);
             perfil.EvACtualizar += Perfil_EvACtualizar;
             perfil.CenterToParent();
-            perfil.Show();
+            perfil.ShowDialog();
         }
 
         private void Perfil_EvACtualizar()
@@ -77,14 +85,25 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             winPerfil perfil = new winPerfil(_Usuario, _Persona);
             perfil.EvACtualizar += Perfil_EvACtualizar;
             perfil.CenterToParent();
-            perfil.Show();
+            perfil.ShowDialog();
         }
 
+        private void btnCrearViaje_Click(object sender, EventArgs e)
+        {
+            winNuevoViaje popup = new winNuevoViaje();
+            popup.EvAceptar += CargarPanelViaje;
+            popup.ShowDialog();
+        }
+        private void btnInicio_Click(object sender, EventArgs e)
+        {
+            CerrarPanelViaje();
+            CargarTabPlanificacion();
+        }
         private void CargarTabPlanificacion()
         {
             planificacion.Controls.Clear();
-            ViajeCollection viajes = new ViajeCollection();
-            viajes.FillByUsuarioID(Application.Session.UsuarioID);
+            ViajesEnPlanificacionCollection viajes = new ViajesEnPlanificacionCollection();
+            viajes.Fill(Application.Session.UsuarioID);
             if (viajes.Count > 0)
             {
                 FlowLayoutPanel pnl = new FlowLayoutPanel();
@@ -93,45 +112,116 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 pnl.FlowDirection = FlowDirection.LeftToRight;
                 pnl.Padding = new Padding(5);
                 planificacion.Controls.Add(pnl);
-                foreach (Viaje viaje in viajes)
+                foreach (ViajesEnPlanificacion viaje in viajes)
                 {
                     ViajeCard control = new ViajeCard(viaje);
                     control.BringToFront();
                     control.Visible = true;
-                    control.EvModificar += CargarViaje;
-                    control.EvEliminar += CargarTabPlanificacion;
+                    control.EvModificar += CargarPanelViaje;
+                    control.EvEliminar += () =>
+                    {
+                        CargarTabPlanificacion();
+                        CreaTabEliminados();
+                    };
+                    control.EvIniciar += CargarViajeActual;
                     pnl.Controls.Add(control);
                 }
             }
         }
 
-        private void CargarViaje(long id)
+        private void CreaTabEliminados()
+        {
+            ViajesEliminadosCollection viajes = new ViajesEliminadosCollection();
+            viajes.Fill(Application.Session.UsuarioID);
+            TabPage tabPage = null;
+            foreach (TabPage tab in tabControl1.TabPages)
+            {
+                if (tab.Name == "eliminados")
+                {
+                    tabPage = tab;
+                }
+            }
+            if (viajes.Count > 0)
+            {
+                if (tabPage == null)
+                {
+                    tabPage = new TabPage();
+                    tabPage.Name = "eliminados";
+                    tabControl1.TabPages.Insert(tabControl1.TabPages.Count, tabPage);
+                }
+                tabPage.Text = "Eliminados" + " (" + viajes.Count + ")";
+            }
+            else
+            {
+                if (tabPage != null)
+                {
+                    tabControl1.TabPages.RemoveByKey("eliminados");
+                    tabControl1.SelectedIndex = 0;
+                }
+            }
+        }
+
+        private void CargarTabRealizados()
+        {
+
+        }
+        private void CargarViajeActual(long id)
         {
             // Cargo variable de sesion para manejar en el mapa
             Application.Session.ViajeID = id;
-            Viajes.Viajes pnl = new Viajes.Viajes();
+            // Configuro Cabecera
+            btnCrearViaje.Visible = false;
+            btnInicio.Visible = true;
+            ViajeEnProgreso pnl = new ViajeEnProgreso();
             pnl.EvSalir += () =>
             {
-                // Blanqueo variable de sesion del mapa
-                Application.Session.ViajeID = 0;
-                for (int i = 0; i <= pnlContent.Controls.Count - 1; i++)
-                {
-                    Control control = pnlContent.Controls[i];
-                    if (pnlContent.Controls[i] is Viajes.Viajes)
-                    {
-                        pnlContent.Controls.Remove(control);
-                    }
-                    else
-                    {
-                        control.Visible = true;
-                    }
-                }
-
+                CerrarPanelViaje();
+                CargarTabPlanificacion();
             };
             pnl.Dock = DockStyle.Fill;
             tabControl1.Visible = false;
             tabControl1.SelectedIndex = 0;
             pnlContent.Controls.Add(pnl);
+        }
+
+        private void CargarPanelViaje(long id)
+        {
+            // Cargo variable de sesion para manejar en el mapa
+            Application.Session.ViajeID = id;
+            // Configuro Cabecera
+            btnCrearViaje.Visible = false;
+            btnInicio.Visible = true;
+            Viajes.Viajes pnl = new Viajes.Viajes();
+            pnl.EvSalir += () =>
+            {
+                CerrarPanelViaje();
+                CargarTabPlanificacion();
+            };
+            pnl.Dock = DockStyle.Fill;
+            tabControl1.Visible = false;
+            tabControl1.SelectedIndex = 0;
+            pnlContent.Controls.Add(pnl);
+        }
+
+        private void CerrarPanelViaje()
+        {
+            // Blanqueo variable de sesion del mapa
+            Application.Session.ViajeID = 0;
+            // Configuro Cabecera
+            btnCrearViaje.Visible = true;
+            btnInicio.Visible = false;
+            for (int i = 0; i <= pnlContent.Controls.Count - 1; i++)
+            {
+                Control control = pnlContent.Controls[i];
+                if (pnlContent.Controls[i] is Viajes.Viajes ||pnlContent.Controls[i] is ViajeEnProgreso)
+                {
+                    pnlContent.Controls.Remove(control);
+                }
+                else
+                {
+                    control.Visible = true;
+                }
+            }
         }
 
         private void tabControl1_Selected(object sender, TabControlEventArgs e)
@@ -143,16 +233,46 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 case "planificacion":
                     CargarTabPlanificacion();
                     break;
+
+                case "realizados":
+                    CargarTabRealizados();
+                    break;
+                case "eliminados":
+                    CargarEliminados(page);
+                    break;
             }
         }
 
-        private void btnCrearViaje_Click(object sender, EventArgs e)
+        private void CargarEliminados(TabPage page)
         {
-            winNuevoViaje popup = new winNuevoViaje();
-            popup.EvAceptar += CargarViaje;
-            popup.Show();
+            ViajesEliminadosCollection viajes = new ViajesEliminadosCollection();
+            viajes.Fill(Application.Session.UsuarioID);
+            FlowLayoutPanel pnl = new FlowLayoutPanel();
+            pnl.Visible = true;
+            pnl.Dock = DockStyle.Fill;
+            pnl.FlowDirection = FlowDirection.LeftToRight;
+            pnl.Padding = new Padding(10);
+            foreach (ViajesEliminados viaje in viajes)
+            {
+                ViajeCardEliminado control = new ViajeCardEliminado(viaje);
+                control.BringToFront();
+                control.Visible = true;
+                control.EvRecuperar += () =>
+                {
+                    page.Controls.Clear();
+                    CreaTabEliminados();
+                    CargarEliminados(page);
+                };
+                control.EvEliminar += () =>
+                {
+                    page.Controls.Clear();
+                    CreaTabEliminados();
+                    CargarEliminados(page);
+                };
+                pnl.Controls.Add(control);
+            }
+            page.Controls.Add(pnl);
         }
 
-       
     }
 }

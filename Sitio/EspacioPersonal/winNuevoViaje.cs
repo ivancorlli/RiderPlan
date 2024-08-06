@@ -32,8 +32,8 @@ namespace RaiderPlan.Sitio.Inicio
         {
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
             {
-                errorProvider1.SetError(txtNombre, "Debe ingresar el nombre del viaje");
                 lblMansaje.Text = "Debe ingresar el nombre del viaje";
+                lblMansaje.Visible = true;
                 return;
             }
             Viaje NuevoViaje = new Viaje()
@@ -70,6 +70,7 @@ namespace RaiderPlan.Sitio.Inicio
                 NuevoViaje.ViajeImagen = _Image.Tag.ToString();
                 GuardarImagen(_Image);
             }
+            NuevoViaje.ViajeEstado = "A";
             try
             {
 
