@@ -172,7 +172,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             // Configuro Cabecera
             btnCrearViaje.Visible = false;
             btnInicio.Visible = true;
-            ViajeEnProgreso pnl = new ViajeEnProgreso();
+            ViajeEnProgreso pnl = new ViajeEnProgreso(SituacionViaje.Progero);
             pnl.EvSalir += () =>
             {
                 CerrarPanelViaje();

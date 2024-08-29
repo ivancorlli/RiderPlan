@@ -34,8 +34,8 @@ namespace RaiderPlan
         {
             Ruta parametro = Newtonsoft.Json.JsonConvert.DeserializeObject<Ruta>(jsonParametro);
 
-            bool oEliminaTrayectos = UtilidadesViaje.EliminaTrayectos(parametro.ViajeID);
-            if (oEliminaTrayectos)
+            bool oEliminaTrayectos = UtilidadesViaje.EliminaTrayectos(parametro.ViajeID, parametro.EsOrigen);
+            if (oEliminaTrayectos && parametro.Coordenadas!=null)
             {
                 UtilidadesViaje.GuardaViaje(parametro);
             }

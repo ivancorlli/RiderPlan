@@ -64,10 +64,11 @@ namespace RaiderPlan.Sitio.Utiles
                     }
 
                     oTrayectoViaje.TrayectoOrigen = parametro.Instrucciones[inicioInstrucion].Road;
-                    oTrayectoViaje.TrayectoDestino = auxIndice>parametro.Instrucciones.Count-1 ? parametro.Instrucciones[auxIndice - 3].Road:parametro.Instrucciones[auxIndice-1].Road;
+                    oTrayectoViaje.TrayectoDestino = auxIndice > parametro.Instrucciones.Count - 1 ? parametro.Instrucciones[auxIndice - 3].Road : parametro.Instrucciones[auxIndice - 1].Road;
                     oTrayectoViaje.Instrucciones = concatenacionInstrucciones.ToString();
                     oTrayectoViaje.Trayectokm = Math.Round((decimal)distanciaTrayecto / 1000);//transformo a km
                     oTrayectoViaje.TiempoEstimado = Math.Round((decimal)tiempoTrayecto / 60);//transformo a minutos
+                    oTrayectoViaje.EsOrigen = parametro.EsOrigen.ToString();
                     inicioInstrucion = auxIndice;
 
                     oOrden += 1; //para establecer el orden de los trayectos
@@ -95,7 +96,7 @@ namespace RaiderPlan.Sitio.Utiles
         /// </summary>
         /// <param name="pViajeI"></param>
         /// <returns></returns>
-        public static bool EliminaTrayectos(long pViajeI)
+        public static bool EliminaTrayectos(long pViajeI, char pEsorigen)
         {
             TrayectoViajeCollection lTrayectos = new TrayectoViajeCollection();
             lTrayectos.FillByViajeID(pViajeI);
@@ -104,13 +105,17 @@ namespace RaiderPlan.Sitio.Utiles
             {
                 foreach (TrayectoViaje item in lTrayectos.Cast<TrayectoViaje>().ToList())
                 {
-                    try
+                    if (pEsorigen == item.EsOrigen[0])
                     {
-                        item.Delete();
-                    }
-                    catch
-                    {
-                        return false;//nose pudo eliminar el viaje salgo del proceso
+                        try
+                        {
+                            item.Delete();
+                        }
+                        catch
+                        {
+                            return false;//nose pudo eliminar el viaje salgo del proceso
+                        }
+
                     }
                 }
 

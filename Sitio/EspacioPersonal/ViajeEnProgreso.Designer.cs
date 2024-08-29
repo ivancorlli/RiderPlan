@@ -63,7 +63,7 @@
             // 
             // pnlCoordenadas
             // 
-            this.pnlCoordenadas.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
+            this.pnlCoordenadas.BackColor = System.Drawing.Color.Transparent;
             this.pnlCoordenadas.Controls.Add(this.bntCancelar);
             this.pnlCoordenadas.Controls.Add(this.btnAgregar);
             this.pnlCoordenadas.Dock = Wisej.Web.DockStyle.Bottom;
@@ -92,10 +92,10 @@
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click);
             // 
-            // Viajes
+            // ViajeEnProgreso
             // 
             this.Controls.Add(this.pnlContent);
-            this.Name = "Viajes";
+            this.Name = "ViajeEnProgreso";
             this.Size = new System.Drawing.Size(891, 559);
             this.pnlContent.ResumeLayout(false);
             this.pnlCoordenadas.ResumeLayout(false);

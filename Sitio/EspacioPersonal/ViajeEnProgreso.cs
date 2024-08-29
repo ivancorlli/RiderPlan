@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtonsoft.Json;
 using RaiderPlan.Sitio.Viajes;
+using System.Drawing.Text;
+using System.Security.Cryptography.X509Certificates;
 
 namespace RaiderPlan.Sitio.EspacioPersonal
 {
@@ -17,11 +19,15 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         public delegate void Salir();
         public event Salir EvSalir;
         private List<LatLng> listaWaitPoints;
+        private List<LatLng> listaWaitPointsSecundarios;
+        private SituacionViaje _SituacionViaje;
         MyLeafletMap myMap = new MyLeafletMap();
 
-        public ViajeEnProgreso()
+        public ViajeEnProgreso(SituacionViaje pSitacionViaje)
         {
             InitializeComponent();
+            //cargo la varible del tipoVijea
+            _SituacionViaje = pSitacionViaje;
 
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
@@ -37,43 +43,67 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 //Determino si es que se que se recuperaron trayectos 
                 if (_AuxiliarTrayecto.Count > 0)
                 {
-                    //instancio la lista de latitudes y longitudes para recuperar los waitpoints
+                    //recupero los trayectos que sean de origen(los que fueron trazados originalmente al planificar el viaje)
                     listaWaitPoints = new List<LatLng>();
-
-                    bool primerTrayecto = true;
-                    //hay trayectos significa que estamos editando debo recuperar los waitPoints
-                    foreach (TrayectoViaje _Item in _AuxiliarTrayecto.Cast<TrayectoViaje>().ToList<TrayectoViaje>())
-                    {
-                        LatLng WaitPoint = new LatLng();
-                        if (primerTrayecto)
-                        {
-                            // si es el primer trayecto el origen del trayecto es el primer wait point
-                            //y el destino es el segundo wait point 
-                            LatLng WaitPoint2 = new LatLng();
-                            WaitPoint.Lat = (double)_Item.TayectoLatitudOrigen;
-                            WaitPoint.Lng = (double)_Item.TrayectoLongitudOrigen;
-                            WaitPoint2.Lat = (double)_Item.TrayectoLatidudDestino;
-                            WaitPoint2.Lng = (double)_Item.TrayectoLongitudDestino;
-                            //agrego los  waitpoint a la lista en orden
-                            listaWaitPoints.Add(WaitPoint);
-                            listaWaitPoints.Add(WaitPoint2);
-                            primerTrayecto = false;
-                        }
-                        else
-                        {
-                            // si hay mas de un trayecto solo tomamos la lat y long del destino para el proximo wait point
-
-                            WaitPoint.Lat = (double)_Item.TrayectoLatidudDestino;
-                            WaitPoint.Lng = (double)_Item.TrayectoLongitudDestino;
-                            listaWaitPoints.Add(WaitPoint);
-                        }
-                    }
+                    listaWaitPoints.AddRange(RecuperaLista(_AuxiliarTrayecto, 'S'));
+                    
+                    //recupero los trayecos secundarios añadidos durante el viaje
+                    listaWaitPointsSecundarios = new List<LatLng>();
+                    listaWaitPointsSecundarios.AddRange(RecuperaLista(_AuxiliarTrayecto, 'N'));
 
                 }
             }
 
         }
+        private List<LatLng> RecuperaLista(TrayectoViajeCollection pTrayectoViaje, char pEsoreigen)
+        {
+            List<LatLng> ListaRespuesta = new List<LatLng>();
+            List<TrayectoViaje> _AuxTrayecto = new List<TrayectoViaje>();
+            if (pEsoreigen == 'S')
+            {
+                //se recuperan los trayectos que solo son de origen
+                _AuxTrayecto = pTrayectoViaje.Cast<TrayectoViaje>().Where<TrayectoViaje>((x) => x.EsOrigen[0] == 'S').ToList<TrayectoViaje>();
 
+            }
+            else
+            {
+                //se recuperan los trayectos que son secundarios
+                _AuxTrayecto = pTrayectoViaje.Cast<TrayectoViaje>().Where<TrayectoViaje>((x) => x.TrayectoViajeRow.IsEsOrigenNull() || x.EsOrigen[0] == 'N').ToList<TrayectoViaje>();
+
+            }
+
+
+            bool primerTrayecto = true;
+            //recorro los waitpoint y armo la lista de respuesta
+            foreach (TrayectoViaje _Item in _AuxTrayecto)
+            {
+                LatLng WaitPoint = new LatLng();
+                if (primerTrayecto)
+                {
+                    // si es el primer trayecto el origen del trayecto es el primer wait point
+                    //y el destino es el segundo wait point 
+                    LatLng WaitPoint2 = new LatLng();
+                    WaitPoint.Lat = (double)_Item.TayectoLatitudOrigen;
+                    WaitPoint.Lng = (double)_Item.TrayectoLongitudOrigen;
+                    WaitPoint2.Lat = (double)_Item.TrayectoLatidudDestino;
+                    WaitPoint2.Lng = (double)_Item.TrayectoLongitudDestino;
+                    //agrego los  waitpoint a la lista en orden
+                    ListaRespuesta.Add(WaitPoint);
+                    ListaRespuesta.Add(WaitPoint2);
+                    primerTrayecto = false;
+                }
+                else
+                {
+                    // si hay mas de un trayecto solo tomamos la lat y long del destino para el proximo wait point
+
+                    WaitPoint.Lat = (double)_Item.TrayectoLatidudDestino;
+                    WaitPoint.Lng = (double)_Item.TrayectoLongitudDestino;
+                    ListaRespuesta.Add(WaitPoint);
+                }
+            }
+
+            return ListaRespuesta;
+        }
 
         private void htmlPanel1_Appear(object sender, EventArgs e)
         {
@@ -94,7 +124,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
 
             //****************************************************************************************************************************
-            //controlo el estado de la lista de wait point para determinar si debo cargar los wait point para editar
+            //controlo el estado de la lista de wait point para determinar si debo cargar los waypoint para editar
 
             if (listaWaitPoints != null)
             {
@@ -111,10 +141,24 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
             }
 
+           
+                if (listaWaitPointsSecundarios != null)
+            {
+                //Tengo valores los cargo
+                string jsonlist = JsonConvert.SerializeObject(listaWaitPointsSecundarios);
+                //tengo valores creo  la lista y los trasfiero los valores
+                htmlPanel1.Eval($@" listaWaitPointsSecundarios=JSON.parse('{jsonlist}');");
 
+            }
+            else
+            {
+                //no tengo valores creo la lista vacia
+                htmlPanel1.Eval(@" listaWaitPointsSecundarios=[];");
+
+            }
             //**********************************************************************************************
             htmlPanel1.Eval(@"
-                              var control;
+                              var control;//declaro variable
                               var marcadores=[];   
                               // para a la ruta
                               var datosRuta = {
@@ -216,13 +260,21 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                                                                                                                                               
                                                                                                                                                                //actualiza el control de enrutamiento con los marcadores restantes
                                                                                                                                                                control.setWaypoints(marcadores);
+                                                                                                                                                               if (marcadores.length<=1){window.datosRuta={}}
                                                                                                                                                            });
 
-                                                                                                                         return _PuntoNuevo;
+                                                                                                                         
+                                                                                                                                return _PuntoNuevo;
                                                                                                                         },
 
                                                                                          routeWhileDragging: true,
                                                                                          showAlternatives: false,
+                                                                                         lineOptions: {
+                                                                                                           styles: [{ color:'blue', opacity: 0.7, weight: 4 }] // Cambia el color, opacidad y grosor de la línea
+                                                                                                       },
+                                                                                         collapsible: true,  // Activa la opción para contraer el panel de rutas
+                                                                                         collapsed: true,
+                                                                                         containerClassName: 'routing-container-1',
                                                                                          router: L.Routing.osrmv1({
                                                                                                                     language: DetalleEspañol.language,
                                                                                                                      profile: 'car'
@@ -237,8 +289,9 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                                                                                                                                                                         return waypoint.latLng; 
                                                                                                                                                                                        }
                                                                                                                                                                    );
-                                                                                                                                                                                                                                                                           
+                                                                                                                                                                                                                                                                      
                                                                                                                                      }
+                                                                                                                                                                                                                                                                                                                                            
                                                                                                           }
                                                                          ); 
                                                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -292,7 +345,21 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                                                             console.log('datos completos de la ruta')
                                                                             console.log(datosRuta); 
                                                                         })
-                                                            
+                                                            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                            control.on('routeselected', function() {
+                                                                                                    let container = document.querySelector('.routing-container-1');
+                                                                                                                                                                                                           
+                                                                                                        if (container && !container.querySelector('.custom-title')) {
+                                                                                                            var title = document.createElement('h2');
+                                                                                                            title.className = 'custom-title';
+                                                                                                            title.textContent = 'RUTA SECUNDARIA';
+                                                                                                            
+                                                                                                            // Insertar el título al inicio del contenedor
+                                                                                                            container.insertBefore(title, container.firstChild);}
+ 
+                                                                        })
+
+
                                                             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
                                                               //Actualizo los marcadores en el servidor
@@ -390,18 +457,165 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                
 
              ");
-
-            htmlPanel1.Eval(@"if(listaWaitPoint.length>0)
+         
+            //carga la lista de waitpoint secundarios(los posteriores a la planificacion del viaje)
+            htmlPanel1.Eval(@"if(listaWaitPointsSecundarios.length>0)
                                {
-                                 for(i=0;i<listaWaitPoint.length;i++)
+                                 for(i=0;i<listaWaitPointsSecundarios.length;i++)
                                     {
-                                       let coordenadas = { latlng: L.latLng(listaWaitPoint[i].lat, listaWaitPoint[i].lng) };
+                                       let coordenadas = { latlng: L.latLng(listaWaitPointsSecundarios[i].lat, listaWaitPointsSecundarios[i].lng) };
                                        ManejaClickMapa(coordenadas);
                                        
                                     }
 
 
                                }
+                           ");
+
+            htmlPanel1.Eval(@" var control1;
+                               marcadores1=[];   
+                              // para a la ruta
+                             /* var datosRuta = {
+                                                  resumen: {},
+                                                  coordenadas: [],
+                                                  waypoints: [],
+                                                  instrucciones: [],
+                                                  inputWaypoints: [],
+                                                  EsOrigen:""""
+                                              };*/
+
+                             // window.datosRuta=datosRuta //Expongo en una variable global --nivel del contexto windows
+
+                               //defino el icono primer marcador
+                              let iconoPrimerMarcador =  L.divIcon({
+                                                                   html: '<i class=""fa fa-motorcycle"" style=""color: black; font-size: 30px;""></i>',
+                                                                   iconSize: [00,00],
+                                                                   iconAnchor: [00,30]
+                                                               });
+                             //defino el defino el icono ultimo
+                             let iconoUltimoMarcador = L.divIcon({
+                                                                  html: '<i class=""fas fa-flag-checkered"" style=""color: black; font-size: 30px;""></i>',
+                                                                  iconSize: [00,00],
+                                                                  iconAnchor: [00,30]
+                                                               });
+                              //defino el  marcadores intermedios
+                             let iconoIntermedioMarcador = L.divIcon({//genero el objeto para luego agregar el orden de marcado
+                                                                      iconSize: [00,00],                                                                      
+                                                                      iconAnchor: [00,30]
+                                                                     });
+
+                               ///////////////////////////////defino lenguaje para la ruta//////////////////////////////////////////////////////////////////
+                               let DetalleEspañol = {
+                                                    language: 'es',
+                                                    distanceUnit: 'metric',
+                                                    units: {
+                                                        meters: 'metros',
+                                                        kilometers: 'kilómetros'
+                                                    },
+                                                    directions: {
+                                                        N: 'norte',
+                                                        NE: 'noreste',
+                                                        E: 'este',
+                                                        SE: 'sureste',
+                                                        S: 'sur',
+                                                        SW: 'suroeste',
+                                                        W: 'oeste',
+                                                        NW: 'noroeste'
+                                                    },
+                                                    instructions: {
+                                                        'Head': 'Dirígete hacia {dir}',
+                                                        'Continue': 'Continúa hacia {dir}',
+                                                        'SlightRight': 'Gira levemente a la derecha',
+                                                        'Right': 'Gira a la derecha',
+                                                        'SharpRight': 'Gira pronunciadamente a la derecha',
+                                                        'TurnAround': 'Da la vuelta',
+                                                        'SharpLeft': 'Gira pronunciadamente a la izquierda',
+                                                        'Left': 'Gira a la izquierda',
+                                                        'SlightLeft': 'Gira levemente a la izquierda',
+                                                        'WaypointReached': 'Has alcanzado un punto de referencia',
+                                                        'Roundabout': 'Toma la {exitStr} salida en la rotonda',
+                                                        'DestinationReached': 'Has llegado a tu destino'
+                                                    }
+                                                };
+        
+                              /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                 
+
+                               //funcion para cargar el viaje en progreso
+                             RutaProgramada= function(e) { if(control1) { map.removeControl(control1) }
+                                                                       
+                                                             let lat = e.latlng.lat;
+                                                             let lng = e.latlng.lng;
+                                                             let nuevoPunto= L.latLng(lat, lng);
+                                                             marcadores1.push(nuevoPunto);
+
+                                                             control1=L.Routing.control({
+                                                                                         waypoints:marcadores1,
+                                                                                         createMarker: function(i, wp) {
+                                                                                                                         let opcionesMarcador = {
+                                                                                                                                                 draggable: false
+                                                                                                                                                };
+                                                                                                                        
+                                                                                                                                    if (i === 0) {
+                                                                                                                                        opcionesMarcador.icon = iconoPrimerMarcador;
+                                                                                                                                    } else if (i === marcadores1.length - 1) {
+                                                                                                                                               opcionesMarcador.icon = iconoUltimoMarcador;
+                                                                                                                                    } else {
+
+                                                                                                                                             iconoIntermedioMarcador.options.html=`<div style=""display: flex; align-items: center;""><i class=""fas fa-map-marker-alt"" style=""color: blue; font-size: 30px;""></i><span style=""color: black; margin-left: 5px;"">${i + 1}</span></div>`
+                                                                                                                                             opcionesMarcador.icon = iconoIntermedioMarcador;
+                                                                                                                                    }
+                                                                                                                         let _PuntoNuevo= L.marker(wp.latLng, opcionesMarcador)//.bindPopup('Arrastra este marcador para cambiar la ruta.');
+                                                                                                                      
+                                                                                                                         return _PuntoNuevo;
+                                                                                                                        },
+
+                                                                                         routeWhileDragging: true,
+                                                                                         showAlternatives: false,
+                                                                                         lineOptions: {
+                                                                                                           styles: [{ color:'red', opacity: 0.7, weight: 4 }] // Cambia el color, opacidad y grosor de la línea
+                                                                                                       },
+                                                                                         collapsible: true,  // Activa la opción para contraer el panel de rutas
+                                                                                         collapsed: true,
+                                                                                         containerClassName: 'routing-container-2',
+                                                                                         router: L.Routing.osrmv1({
+                                                                                                                    language: DetalleEspañol.language,
+                                                                                                                     profile: 'car'
+                                                                                                                    }),
+                                                                                                                   formatter: new L.Routing.Formatter(DetalleEspañol) 
+
+                                                                                          }).addTo(map);
+
+
+                                                         }
+
+                               //traza los trayectos primarios
+                               if(listaWaitPoint.length>0)
+                               {
+                                 for(i=0;i<listaWaitPoint.length;i++)
+                                    {
+                                       let coordenadas = { latlng: L.latLng(listaWaitPoint[i].lat, listaWaitPoint[i].lng) };
+                                       RutaProgramada(coordenadas);
+                                       
+                                    }
+                                 
+                                   let container1 = document.querySelector('.routing-container-2');
+                                                                                                                                                                    
+                                                                 if (container1 && !container1.querySelector('.custom-title')) {
+                                                                     var title = document.createElement('h2');
+                                                                     title.className = 'custom-title';
+                                                                     title.textContent = 'RUTA PRIMARIA';
+                                                                     
+                                                                     // Insertar el título al inicio del contenedor
+                                                                     container1.insertBefore(title, container1.firstChild);}
+  
+
+                               }
+                 
+                     
+                                                              
+                                                              
+
                            ");
             //*******************************************************************************************************************************************************
             //para la apertura y cierre de el menu lateral
@@ -431,6 +645,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             htmlPanel1.Eval($@" console.log(""este son los datos de la ruta""); console.log(datosRuta);
                               //Actualizo los marcadores en el servidor
                              datosRuta.viajeID={Application.Session.ViajeID};
+                             datosRuta.EsOrigen='N'
                              var json = JSON.stringify(datosRuta);
                              App.GeneraViaje(json);");
             Application.Session.ViajeID = 0;

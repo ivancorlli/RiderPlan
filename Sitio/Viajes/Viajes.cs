@@ -41,7 +41,7 @@ namespace RaiderPlan.Sitio.Viajes
 
                     bool primerTrayecto = true;
                     //hay trayectos significa que estamos editando debo recuperar los waitPoints
-                    foreach (TrayectoViaje _Item in _AuxiliarTrayecto.Cast<TrayectoViaje>().ToList<TrayectoViaje>())
+                    foreach (TrayectoViaje _Item in _AuxiliarTrayecto.Cast<TrayectoViaje>().Where((x) => x.EsOrigen[0]=='S').ToList<TrayectoViaje>())
                     {
                         LatLng WaitPoint = new LatLng();
                         if (primerTrayecto)
@@ -121,7 +121,8 @@ namespace RaiderPlan.Sitio.Viajes
                                   coordenadas: [],
                                   waypoints: [],
                                   instrucciones: [],
-                                  inputWaypoints: []
+                                  inputWaypoints: [],
+                                   EsOrigen:""""
                               };
 
                               window.datosRuta=datosRuta //Expongo en una variable global --nivel del contexto windows
@@ -222,6 +223,8 @@ namespace RaiderPlan.Sitio.Viajes
 
                                                                                          routeWhileDragging: true,
                                                                                          showAlternatives: false,
+                                                                                         collapsible: true,  // Activa la opción para contraer el panel de rutas
+                                                                                         collapsed: true,
                                                                                          router: L.Routing.osrmv1({
                                                                                                                     language: DetalleEspañol.language,
                                                                                                                      profile: 'car'
