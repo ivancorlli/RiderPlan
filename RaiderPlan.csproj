@@ -33,6 +33,7 @@
   <ItemGroup>
     <Folder Include="Resource\lib\ImagenesUsuario\" />
     <Folder Include="Resource\lib\Viajes\" />
+    <Folder Include="Resource\temp\" />
     <Folder Include="Themes\" />
   </ItemGroup>
 
@@ -62,6 +63,7 @@
   <ItemGroup>
     <PackageReference Include="leaflet" Version="0.7.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SharpKml.Core" Version="6.1.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.4" />
     <PackageReference Include="Wisej-3" Version="3.2.2" />
     <PackageReference Include="System.Data.SqlClient" Version="4.*" />
@@ -69,10 +71,10 @@
 
   <ItemGroup>
     <Reference Include="RaiderPlan1BO">
-      <HintPath>..\..\..\Documents\Visual Studio 2008\Projects\RiderPlandb\Raiderplan1\Working Version\RaiderPlan1BO\bin\Release\RaiderPlan1BO.dll</HintPath>
+      <HintPath>..\RiderPlanDb\Raiderplan1\Working Version\RaiderPlan1BO\bin\Release\RaiderPlan1BO.dll</HintPath>
     </Reference>
     <Reference Include="Raiderplan1BusinessFramework">
-      <HintPath>..\..\..\Documents\Visual Studio 2008\Projects\RiderPlandb\Raiderplan1\Working Version\Raiderplan1BusinessFramework\bin\Release\Raiderplan1BusinessFramework.dll</HintPath>
+      <HintPath>..\RiderPlanDb\Raiderplan1\Working Version\Raiderplan1BusinessFramework\bin\Release\Raiderplan1BusinessFramework.dll</HintPath>
     </Reference>
   </ItemGroup>
 
@@ -83,11 +85,23 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="Sitio\EspacioPersonal\ViajeCardRealizado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="Sitio\EspacioPersonal\ViajeCardEliminado.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Sitio\EspacioPersonal\ViajeFinalizado.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Sitio\EspacioPersonal\ViajeEnProgreso.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="Sitio\EspacioPersonal\winComentario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="Sitio\EspacioPersonal\winTrayectos.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="Sitio\EspacioPersonal\winIniciaViaje.cs">
       <SubType>Form</SubType>

@@ -108,7 +108,7 @@ namespace RaiderPlan.Sitio.Inicio
 
                 // Obtener la extensión del formato
                 string extension = codecInfo?.FilenameExtension?.Split(';')?.FirstOrDefault();
-                string nombreImagen = DateTime.Now.ToString("dd:MM:yyyy").Replace(":", "").Replace(" ", "") + extension.Replace("*", "");
+                string nombreImagen = (Guid.NewGuid().ToString()) + extension.Replace("*", "");
                 _Image.Tag = nombreImagen;
             }
         }

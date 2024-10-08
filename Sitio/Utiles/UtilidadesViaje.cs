@@ -4,6 +4,10 @@ using System.Text;
 using System;
 using Wisej.Web;
 using System.Linq;
+using System.Collections.Generic;
+using System.IO;
+using System.Data;
+using System.Xml.Linq;
 
 namespace RaiderPlan.Sitio.Utiles
 {
@@ -126,6 +130,155 @@ namespace RaiderPlan.Sitio.Utiles
 
         }
 
+        public static void GenerarGpx(long ViajeId)
+        {
+            try
+            {
 
+                Viaje viaje = new Viaje();
+                viaje.Fill(ViajeId);
+                TrayectoViajeCollection trayectos = new TrayectoViajeCollection();
+                trayectos.FillByViajeID(ViajeId);
+                List<TrayectoViaje> trayEn = new List<TrayectoViaje>();
+
+                foreach (TrayectoViaje tra in trayectos)
+                {
+                    trayEn.Add(tra);
+                }
+
+                var routeGroups = trayEn.GroupBy(t => t.EsOrigen);
+                List<Track> tracks = new List<Track>();
+
+                foreach (var group in routeGroups)
+                {
+                    string isOriginRoute = group.Key;
+                    var orderedWaypoints = group.OrderBy(t => t.Orden).ToList();
+                    Track track = new Track() { Name =isOriginRoute == "S" ? "Ruta Original" : "Ruta alternativa"};
+
+                    if (orderedWaypoints.Any())
+                    {
+                        foreach (var trayecto in orderedWaypoints)
+                        {
+                            var originPoint = new Point() { 
+                                Latitude= (double)trayecto.TayectoLatitudOrigen,
+                                Longitude= (double)trayecto.TrayectoLongitudOrigen,
+                                Name = trayecto.TrayectoOrigen,
+                                Description= $"Punto: {trayecto.Orden}"
+                            };
+                            track.Segments.Add(originPoint);
+                            if (orderedWaypoints.IndexOf(trayecto) == orderedWaypoints.Count - 1)
+                            {
+                                var destPoint = new Point()
+                                {
+                                    Latitude = (double)trayecto.TrayectoLatidudDestino,
+                                    Longitude = (double)trayecto.TrayectoLongitudDestino,
+                                    Name = trayecto.TrayectoDestino,
+                                    Description = $"Punto: {trayecto.Orden}"
+                                };
+                                track.Segments.Add(destPoint);
+                            }
+                        }
+
+                    }
+                    tracks.Add(track);
+                }
+
+                string kmlContent = File.ReadAllText(Path.Combine("Resource","lib","kml","viaje_template.xml"));
+
+                // Reemplazar @VIAJENOMBRE
+                kmlContent = kmlContent.Replace("@VIAJENOMBRE", viaje.ViajeNombre);
+                string folderContent = string.Empty;
+                foreach(var track in tracks)
+                {
+                    folderContent += GenerateFolderContent(track);
+                }
+                // Reemplazar @FOLDER
+                kmlContent = kmlContent.Replace("@FOLDER", folderContent);
+                string name = $"{viaje.ViajeNombre}.kml";
+                string tempFile = Path.Combine("Resource", "temp", name);
+                File.WriteAllText(tempFile, kmlContent);
+                // Trigger the download
+                Application.Download(tempFile, name);
+
+                // Set a timer to delete the temporary file after 5 seconds
+                Application.StartTimer(5000, 5000, () =>
+                {
+                    try
+                    {
+                        if (File.Exists(tempFile))
+                            File.Delete(tempFile);
+                    }
+                    catch { /* Ignore cleanup errors */ }
+                });
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Se produjo un error al generar archivo gpx");
+            }
+        }
+        private static string GenerateFolderContent(Track track)
+        {
+            StringBuilder folderContent = new StringBuilder();
+            folderContent.AppendLine("<Folder>");
+            folderContent.AppendLine($"    <name>{track.Name}</name>");
+
+            foreach (var placemark in track.Segments)
+            {
+                folderContent.AppendLine("    <Placemark>");
+                folderContent.AppendLine($"        <name>{placemark.Name}</name>");
+                folderContent.AppendLine($"        <description>{placemark.Description}</description>");
+                folderContent.AppendLine("        <Point>");
+                folderContent.AppendLine($"            <coordinates>{placemark.Longitude.ToString().Replace(",",".")},{placemark.Latitude.ToString().Replace(",", ".")}</coordinates>");
+                folderContent.AppendLine("        </Point>");
+                folderContent.AppendLine("    </Placemark>");
+            }
+
+            // Aquí agregamos un ejemplo de una línea que conecta dos puntos.
+            if (track.Segments.Count > 1)
+            {
+       
+                    folderContent.AppendLine("    <Placemark>");
+                folderContent.AppendLine("        <name>Trayecto</name>");
+                folderContent.AppendLine("        <styleUrl>#line-1267FF-5000-nodesc</styleUrl>");
+                folderContent.AppendLine("        <LineString>");
+                folderContent.AppendLine("            <tessellate>1</tessellate>");
+                folderContent.AppendLine("            <coordinates>");
+
+                // Solo tomamos las coordenadas de los dos primeros puntos para la línea.
+                foreach (var placemark in track.Segments)
+                { 
+                folderContent.AppendLine($"                {placemark.Longitude.ToString().Replace(",", ".")},{placemark.Latitude.ToString().Replace(",", ".")}");
+                }
+
+                folderContent.AppendLine("            </coordinates>");
+                folderContent.AppendLine("        </LineString>");
+                folderContent.AppendLine("    </Placemark>");
+            }
+
+            folderContent.AppendLine("</Folder>");
+            return folderContent.ToString();
+        }
     }
 }
+
+
+
+
+
+
+public class Point
+{
+    public double Latitude { get; set; }
+    public double Longitude { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+}
+
+public
+class Track
+{
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public List<Point> Segments { get; set; } = new List<Point>();
+}
+

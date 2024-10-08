@@ -1,5 +1,4 @@
-﻿using RaiderPlan.Sitio.Inicio;
-using Raiderplan1;
+﻿using Raiderplan1;
 using System;
 using System.IO;
 using Wisej.Web;
@@ -48,6 +47,14 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
 
         private void btnEliminar_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("¿Estás seguro de que deseas eliminar?", "Eliminar",MessageBoxButtons.YesNo, MessageBoxIcon.Information, onclose: (task) =>
+            {
+                if (task == DialogResult.Yes) EliminarViaje();
+            });
+        }
+
+        private void EliminarViaje()
         {
             try
             {

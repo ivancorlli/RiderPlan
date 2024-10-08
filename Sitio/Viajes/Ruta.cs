@@ -99,13 +99,28 @@ namespace RaiderPlan.Sitio.Viajes
 
         [JsonProperty("inputWaypoints")]
         public List<InputWaypoint> InputWaypoints { get; set; }
-        
+
         [JsonProperty("EsOrigen")]
-        public char EsOrigen { get;set; }
+        public char EsOrigen { get; set; }
     }
 
 
+    public class Comentario
+    {
+        [JsonProperty("id")]
+        public long ID { get; set; }
+        [JsonProperty("viajeID")]
+        public long ViajeID { get; set; }
+        [JsonProperty("lat")]
+        public double Lat { get; set; }
 
+        [JsonProperty("lng")]
+        public double Lng { get; set; }
+        [JsonProperty("texto")]
+        public string Texto { get; set; }
+        [JsonProperty("imagen")]
+        public string Imagen { get; set; }
+    }
 
 
 

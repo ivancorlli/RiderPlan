@@ -197,8 +197,8 @@
         private Wisej.Web.Button btnRegistro;
         private Wisej.Web.TabControl tabControl1;
         private Wisej.Web.TabPage planificacion;
-        private Wisej.Web.TabPage realizados;
         private Wisej.Web.Button btnCrearViaje;
         private Wisej.Web.Button btnInicio;
+        private Wisej.Web.TabPage realizados;
     }
 }

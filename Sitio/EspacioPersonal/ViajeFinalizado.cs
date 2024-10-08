@@ -1,5 +1,6 @@
 ﻿using System;
 using Wisej.Web;
+
 using System.Drawing;
 using Raiderplan1;
 using System.Collections.Generic;
@@ -8,29 +9,21 @@ using Newtonsoft.Json;
 using RaiderPlan.Sitio.Viajes;
 using System.IO;
 using RaiderPlan.Sitio.Utiles;
-using RaiderPlan.Sitio.Inicio;
 
 namespace RaiderPlan.Sitio.EspacioPersonal
 {
-    public partial class ViajeEnProgreso : Wisej.Web.UserControl
+    public partial class ViajeFinalizado : Wisej.Web.UserControl
     {
         public delegate void Salir();
         public event Salir EvSalir;
-        public delegate void Finalizar();
-        public event Finalizar EvFinalizar;
-
         private List<LatLng> listaWaitPoints;
         private List<LatLng> listaWaitPointsSecundarios;
         private List<Comentario> listaComentarios;
-        private SituacionViaje _SituacionViaje;
-        private bool _Recorridos = true;
         MyLeafletMap myMap = new MyLeafletMap();
 
-        public ViajeEnProgreso(SituacionViaje pSitacionViaje)
+        public ViajeFinalizado()
         {
             InitializeComponent();
-            //cargo la varible del tipoVijea
-            _SituacionViaje = pSitacionViaje;
 
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
@@ -188,16 +181,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 htmlPanel1.Eval(@" listaWaitPointsSecundarios=[];");
 
             }
-
-            if (_Recorridos == true)
-            {
-                htmlPanel1.Eval(@"manejaRecorridos=true");
-            }
-            else
-            {
-                htmlPanel1.Eval(@"manejaRecorridos=false");
-            }
-
             if (listaComentarios != null && listaComentarios.Count > 0)
             {
                 //Tengo valores los cargo
@@ -280,11 +263,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
                                 // Funcion para manejar recuerdos o ruta
                                ManejaClickFotosOMapa = function(e){
-                                if(manejaRecorridos == false){
                                    ManejaRecuerdos(e);
-                                 }else{
-                                  ManejaClickMapa(e);
-                                 }
                                 }
                                         
                               /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -939,7 +918,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                         });
                     }
 
-                   marker.on('popupclose', function(e) {
+                 marker.on('popupclose', function(e) {
                    let fileInput = document.getElementById(`file-${comentario.id}`);
                    let commentInput = document.getElementById(`comment-${comentario.id}`);
                    if(fileInput && commentInput){
@@ -949,7 +928,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                             deleteMarker(marker._leaflet_id,comentario.id)
                         }
                     }
-                    });  
+                    });        
 
                 };");
 
@@ -977,75 +956,21 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             }");
         }
 
-
-        private void btnRecorridos_Click_1(object sender, EventArgs e)
-        {
-            _Recorridos = true;
-            htmlPanel1.Eval(@"manejaRecorridos=true");
-            btnRecuerdos.BackColor = Color.FromKnownColor(KnownColor.ButtonHighlight);
-            btnRecuerdos.ForeColor = Color.FromKnownColor(KnownColor.ControlDark);
-            btnRecorridos.BackColor = Color.FromKnownColor(KnownColor.ActiveCaption);
-            btnRecorridos.ForeColor = Color.FromKnownColor(KnownColor.ActiveCaptionText);
-        }
-
-        private void btnRecuerdos_Click_1(object sender, EventArgs e)
-        {
-            _Recorridos = false;
-            htmlPanel1.Eval(@"manejaRecorridos=false");
-            btnRecuerdos.BackColor = Color.FromKnownColor(KnownColor.ActiveCaption);
-            btnRecuerdos.ForeColor = Color.FromKnownColor(KnownColor.ActiveCaptionText);
-            btnRecorridos.BackColor = Color.FromKnownColor(KnownColor.ButtonHighlight);
-            btnRecorridos.ForeColor = Color.FromKnownColor(KnownColor.ControlDark);
-        }
-
-        private void btnFinalizar_Click_1(object sender, EventArgs e)
-        {
-            MessageBox.Show("¿Estás seguro de que deseas finalizar?", "Finalizar", MessageBoxButtons.YesNo, MessageBoxIcon.Information, onclose: (task) =>
-            {
-                if (task == DialogResult.Yes)
-                {
-                    if (Application.Session.ViajeID > 0)
-                    {
-                        Viaje viaje = new Viaje();
-                        viaje.Fill(Application.Session.ViajeID);
-                        viaje.ViajeEstado = "R";
-                        viaje.Update();
-                    }
-                    Application.Session.ViajeID = 0;
-                    EvFinalizar?.Invoke();
-                }
-            });
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            Application.Session.ViajeID = 0;
-            EvSalir?.Invoke();
-        }
-
-        private void btnAgregar_Click_1(object sender, EventArgs e)
-        {
-            //agrego la variable de identificador del viaje viajeID
-
-            htmlPanel1.Eval($@" console.log(""este son los datos de la ruta""); console.log(datosRuta);
-                              //Actualizo los marcadores en el servidor
-                             datosRuta.viajeID={Application.Session.ViajeID};
-                             datosRuta.EsOrigen='N'
-                             var json = JSON.stringify(datosRuta);
-                             App.GeneraViaje(json);");
-        }
-
-        private void btnDescargar_Click_1(object sender, EventArgs e)
-        {
-            UtilidadesViaje.GenerarGpx(Application.Session.ViajeID);
-
-        }
-
         private void btnTrayectos_Click(object sender, EventArgs e)
         {
             winTrayectos trayectos = new winTrayectos(Application.Session.ViajeID);
             trayectos.ShowDialog();
         }
 
+        private void btnDescargar_Click(object sender, EventArgs e)
+        {
+            UtilidadesViaje.GenerarGpx(Application.Session.ViajeID);
+        }
+
+        private void bntCancelar_Click(object sender, EventArgs e)
+        {
+            Application.Session.ViajeID = 0;
+            EvSalir?.Invoke();
+        }
     }
 }
