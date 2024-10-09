@@ -114,7 +114,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                           , { attribution: '© OpenStreetMap contributors'}).addTo(map);"
                         );
 
-
+            
             //muestra el itinerario de los trayectos del mapa
             htmlPanel1.Eval(@"  let style = document.createElement('style');
                                 style.type = 'text/css';
