@@ -122,7 +122,7 @@ namespace RaiderPlan.Sitio.Viajes
                                   waypoints: [],
                                   instrucciones: [],
                                   inputWaypoints: [],
-                                   EsOrigen:""""
+                                   EsOrigen:'S'
                               };
 
                               window.datosRuta=datosRuta //Expongo en una variable global --nivel del contexto windows

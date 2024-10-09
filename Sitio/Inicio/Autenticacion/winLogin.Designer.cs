@@ -97,7 +97,7 @@
             this.lblError.Name = "lblError";
             this.lblError.Padding = new Wisej.Web.Padding(5, 0, 0, 0);
             this.lblError.Size = new System.Drawing.Size(345, 25);
-            this.lblError.TabIndex = 4;
+            this.lblError.TabIndex = 0;
             this.lblError.Text = "Mesaje de error";
             this.lblError.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
@@ -128,7 +128,7 @@
             this.label1.Location = new System.Drawing.Point(143, 395);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(114, 24);
-            this.label1.TabIndex = 16;
+            this.label1.TabIndex = 5;
             this.label1.Text = "Crear Cuenta";
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
@@ -147,7 +147,7 @@
             this.btnAceptar.Location = new System.Drawing.Point(57, 299);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(277, 49);
-            this.btnAceptar.TabIndex = 14;
+            this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "Iniciar Sesion";
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click_1);
             // 
@@ -172,7 +172,7 @@
             this.lklcontraseña.Margin = new Wisej.Web.Padding(0);
             this.lklcontraseña.Name = "lklcontraseña";
             this.lklcontraseña.Size = new System.Drawing.Size(122, 15);
-            this.lklcontraseña.TabIndex = 12;
+            this.lklcontraseña.TabIndex = 3;
             this.lklcontraseña.Text = "¿Olvide mi contraseña?";
             this.lklcontraseña.LinkClicked += new Wisej.Web.LinkLabelLinkClickedEventHandler(this.lklcontraseña_LinkClicked);
             // 
@@ -184,7 +184,7 @@
             this.Cancelar.Location = new System.Drawing.Point(352, 13);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(32, 27);
-            this.Cancelar.TabIndex = 11;
+            this.Cancelar.TabIndex = 5;
             this.Cancelar.Text = "X";
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 

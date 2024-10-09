@@ -1,4 +1,5 @@
 ﻿using RaiderPlan.Sitio.Inicio;
+using RaiderPlan.Sitio.Utiles;
 using Raiderplan1;
 using System;
 using System.IO;
@@ -10,8 +11,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
     {
         public delegate void Modificar(long id);
         public event Modificar EvModificar;
-        public delegate void Ver(long id);
-        public event Ver EvVer;
         public delegate void Eliminar();
         public event Eliminar EvEliminar;
         public delegate void Iniciar(long id);
@@ -78,7 +77,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             viaje.Fill(Application.Session.UsuarioID);
             if (viaje.Count > 0)
             {
-                MessageBox.Show("No puedes tener mas de un viaje iniciado en simultaneo.");
+                MessageBox.Show("No puedes tener mas de un viaje iniciado en simultaneo.","", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
             else
             {
@@ -91,7 +90,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
         private void btnVer_Click(object sender, EventArgs e)
         {
-            this.EvVer?.Invoke(_viaje.ViajeID);
+            UtilidadesViaje.GenerarGpx(_viaje.ViajeID);
         }
     }
 }
