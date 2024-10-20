@@ -96,5 +96,7 @@ namespace RaiderPlan.Sitio.Inicio
         {
             label1_Click(sender, e);
         }
+
+      
     }
 }

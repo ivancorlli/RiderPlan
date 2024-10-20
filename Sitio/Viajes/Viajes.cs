@@ -78,7 +78,7 @@ namespace RaiderPlan.Sitio.Viajes
         {
 
             //carga el mapa dentro del html panel
-            htmlPanel1.Eval(@" map = L.map('map').setView([-27.4953, -64.9743], 12);
+            htmlPanel1.Eval(@" map = L.map('map').setView([-34.6037, -58.3816], 4);
                           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                           , { attribution: '© OpenStreetMap contributors'}).addTo(map);"
                         );

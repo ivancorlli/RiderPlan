@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planifica tu Viaje en Motocicleta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet"> <!-- Cargar la fuente Lobster -->
+    <style>
+        body {
+            background-color: #1a1a1a; /* Negro pastel */
+            color: #f2f2f2; /* Blanco suave */
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Lobster', cursive; /* Título principal con fuente Lobster */
+            font-size: 4em; /* Tamaño de fuente grande */
+            color: #ff6666; /* Rojo pastel */
+            margin-bottom: 0; /* Sin margen inferior */
+        }
+
+        h2 {
+            color: #ff6666; /* Rojo pastel */
+        }
+
+        .img-section {
+            width: 100%; /* Ocupar el ancho total */
+            height: auto;
+            border-radius: 10px;
+            position: relative; /* Para permitir el posicionamiento absoluto de los elementos secundarios */
+        }
+
+        .overlay-text {
+            position: absolute;
+            top: 20px; /* Margen superior */
+            left: 10px; /* Margen izquierdo */
+            font-size: 2.5em; /* Tamaño de fuente para el texto del overlay */
+            font-weight: normal; /* Peso normal para el texto */
+            font-family: 'Lobster', cursive; /* Usar la fuente Lobster */
+            color: #ff6666; /* Color del texto */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejorar la legibilidad */
+        }
+
+        .sub-overlay-text {
+            position: absolute;
+            top: 150px; /* Ajustar para que esté justo debajo del título */
+            left: 20px; /* Margen izquierdo */
+            font-size: 1.5em; /* Tamaño de fuente más pequeño */
+            font-weight: normal; /* Peso normal para la fuente */
+            font-family: 'Lobster', cursive; /* Usar la misma fuente */
+            color: #ff6666; /* Color del texto */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7); /* Sombra para mejorar la legibilidad */
+        }
+
+        .card-container {
+            position: absolute; /* Para posicionar el contenedor de tarjetas */
+            right: 20px; /* Alinear a la derecha */
+            top: 100px; /* Ajustar la posición vertical */
+            display: flex;
+            flex-direction: column; /* Disposición vertical */
+            gap: 15px; /* Espacio entre tarjetas */
+            max-height: 600px; /* Altura máxima del contenedor */
+            max-width:300px;
+            overflow: hidden; /* Ocultar cualquier contenido que sobresalga */
+        }
+
+        .card-overlay {
+            width: 300px; /* Ancho fijo para las tarjetas */
+            height: 700px; /* Altura fija para las tarjetas */
+            background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semi-transparente */
+            border-radius: 10px; /* Bordes redondeados */
+            overflow: hidden; /* Ocultar contenido que sobresalga */
+        }
+
+
+        .card-image {
+            width: 100%; /* Ancho completo de la tarjeta */
+            height: auto; /* Mantener la proporción de la imagen */
+            border-top-left-radius: 10px; /* Bordes redondeados en la parte superior izquierda */
+            border-top-right-radius: 10px; /* Bordes redondeados en la parte superior derecha */
+        }
+
+        .card-body {
+            padding: 10px; /* Espaciado interno para el texto */
+            color: black;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section>
+            <div class="section-content">
+                <img src="Resource/lib/Imagenes/paisaje.jpg" alt="Ruta en Motocicleta" class="img-section">
+                <div class="overlay-text"><h1>Rider Plan</h1></div> <!-- Texto sobre la imagen -->
+                <div class="sub-overlay-text"><h2>Explora diferentes destinos en Tu Motocicleta</h2></div> <!-- Texto secundario -->
+                <!-- Contenedor de tarjetas -->
+                <div class="card-container">
+                    <div class="card-overlay">
+                        <img src="Resource/lib/Imagenes/planifica-tu-viaje-recursos-viajeros.jpg" class="card-image" alt="Descripción de la Tarjeta 1">
+                        <div class="card-body">
+                            <h5 class="card-title">Elige tu destino, señala los puntos de enlace y comienza una nueva aventura.</h5>
+                          
+                        </div>
+                    </div>
+
+                    <div class="card-overlay">
+                        <img src="Resource/lib/Imagenes/MAPA CON RECORRIDO.PNG" class="card-image" alt="Descripción de la Tarjeta 2">
+                        
+                    </div>
+
+                   
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Rider Plan. by Carlos H. Urzagasti - Ivan Corlli- UNSTA Todos los derechos reservados.</p>
+        <p>Contáctanos: info@planificadormoto.com</p>
+    </footer>
+
+</body>
+</html>

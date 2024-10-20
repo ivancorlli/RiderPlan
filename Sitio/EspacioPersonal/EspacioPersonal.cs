@@ -88,8 +88,10 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         // Abre panel usuario
         private void lblUsuarioNombre_Click(object sender, EventArgs e)
         {
-            winPerfil perfil = new winPerfil(_Usuario, _Persona);
-            perfil.EvACtualizar += Perfil_EvACtualizar;
+
+
+           winPerfil perfil = new winPerfil(_Usuario, _Persona);
+           perfil.EvACtualizar += Perfil_EvACtualizar;
             perfil.CenterToParent();
             perfil.ShowDialog();
         }
