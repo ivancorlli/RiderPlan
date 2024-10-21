@@ -66,7 +66,7 @@
             this.txtNombreUsuario.Padding = new Wisej.Web.Padding(10, 5, 10, 5);
             this.txtNombreUsuario.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtNombreUsuario.ResponsiveProfiles"))));
             this.txtNombreUsuario.Size = new System.Drawing.Size(345, 47);
-            this.txtNombreUsuario.TabIndex = 0;
+            this.txtNombreUsuario.TabIndex = 5;
             this.txtNombreUsuario.Watermark = "Username";
             // 
             // dtpFechaNacimiento
@@ -120,7 +120,7 @@
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRegistro.ResponsiveProfiles"))));
             this.btnRegistro.Size = new System.Drawing.Size(345, 35);
-            this.btnRegistro.TabIndex = 3001;
+            this.btnRegistro.TabIndex = 9;
             this.btnRegistro.Text = "Guardar";
             this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
             // 
@@ -130,14 +130,13 @@
             this.cbCiudad.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
             this.cbCiudad.BorderStyle = Wisej.Web.BorderStyle.None;
             this.cbCiudad.CssStyle = "border-radius: 10px;";
+            this.cbCiudad.DropDownStyle = Wisej.Web.ComboBoxStyle.DropDownList;
             this.cbCiudad.ForeColor = System.Drawing.Color.White;
             this.cbCiudad.Location = new System.Drawing.Point(436, 371);
             this.cbCiudad.Name = "cbCiudad";
             this.cbCiudad.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("cbCiudad.ResponsiveProfiles"))));
             this.cbCiudad.Size = new System.Drawing.Size(345, 47);
-            this.cbCiudad.TabIndex = 10018;
-            this.cbCiudad.TabStop = false;
-            this.cbCiudad.Text = "Ciudad";
+            this.cbCiudad.TabIndex = 8;
             this.cbCiudad.Watermark = "Ciudad";
             // 
             // lblMansaje
@@ -160,14 +159,13 @@
             this.cbProvincia.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
             this.cbProvincia.BorderStyle = Wisej.Web.BorderStyle.None;
             this.cbProvincia.CssStyle = "border-radius: 10px;";
+            this.cbProvincia.DropDownStyle = Wisej.Web.ComboBoxStyle.DropDownList;
             this.cbProvincia.ForeColor = System.Drawing.Color.White;
             this.cbProvincia.Location = new System.Drawing.Point(436, 310);
             this.cbProvincia.Name = "cbProvincia";
             this.cbProvincia.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("cbProvincia.ResponsiveProfiles"))));
             this.cbProvincia.Size = new System.Drawing.Size(345, 47);
-            this.cbProvincia.TabIndex = 10017;
-            this.cbProvincia.TabStop = false;
-            this.cbProvincia.Text = "Provincia";
+            this.cbProvincia.TabIndex = 7;
             this.cbProvincia.Watermark = "Provincia";
             this.cbProvincia.SelectedIndexChanged += new System.EventHandler(this.cbProvincia_SelectedIndexChanged);
             // 
@@ -186,8 +184,7 @@
             this.cbSexo.Name = "cbSexo";
             this.cbSexo.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("cbSexo.ResponsiveProfiles"))));
             this.cbSexo.Size = new System.Drawing.Size(345, 47);
-            this.cbSexo.TabIndex = 10016;
-            this.cbSexo.TabStop = false;
+            this.cbSexo.TabIndex = 4;
             this.cbSexo.Text = "Sexo";
             this.cbSexo.Watermark = "Sexo";
             // 
@@ -203,7 +200,7 @@
             this.txtApellido.Name = "txtApellido";
             this.txtApellido.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtApellido.ResponsiveProfiles"))));
             this.txtApellido.Size = new System.Drawing.Size(345, 47);
-            this.txtApellido.TabIndex = 3010;
+            this.txtApellido.TabIndex = 2;
             this.txtApellido.Watermark = "Apellido";
             this.txtApellido.WordWrap = false;
             // 
@@ -219,7 +216,7 @@
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtNombre.ResponsiveProfiles"))));
             this.txtNombre.Size = new System.Drawing.Size(345, 47);
-            this.txtNombre.TabIndex = 3009;
+            this.txtNombre.TabIndex = 1;
             this.txtNombre.Watermark = "Nombre";
             // 
             // line1
@@ -242,6 +239,7 @@
             this.upload1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("upload1.ResponsiveProfiles"))));
             this.upload1.Size = new System.Drawing.Size(152, 22);
             this.upload1.TabIndex = 3005;
+            this.upload1.TabStop = false;
             this.upload1.Text = "Seleccionar imagen";
             this.upload1.Uploaded += new Wisej.Web.UploadedEventHandler(this.upload1_Uploaded);
             // 
@@ -265,6 +263,7 @@
             this.Cancelar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("Cancelar.ResponsiveProfiles"))));
             this.Cancelar.Size = new System.Drawing.Size(32, 27);
             this.Cancelar.TabIndex = 3002;
+            this.Cancelar.TabStop = false;
             this.Cancelar.Text = "X";
             this.Cancelar.Click += new System.EventHandler(this.Cancelar_Click);
             // 
@@ -295,7 +294,7 @@
             this.txtEmail.Padding = new Wisej.Web.Padding(10, 5, 10, 5);
             this.txtEmail.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtEmail.ResponsiveProfiles"))));
             this.txtEmail.Size = new System.Drawing.Size(345, 47);
-            this.txtEmail.TabIndex = 1;
+            this.txtEmail.TabIndex = 6;
             this.txtEmail.Watermark = "Email";
             this.txtEmail.WordWrap = false;
             // 

@@ -18,6 +18,7 @@ namespace RaiderPlan.Sitio.Inicio
         private readonly Usuario _Usuario;
         private Image _ImagenPerfil = null;
 
+     
         //Cosntructor
         public winPerfil(Usuario usuario, Persona persona)
         {
@@ -57,7 +58,7 @@ namespace RaiderPlan.Sitio.Inicio
         private void CargaComboLocalidad()
         {
 
-            if (cbProvincia.DataSource != null && (int)cbProvincia.SelectedValue > 0)
+            if (cbProvincia.DataSource != null && cbProvincia.SelectedValue !=null && (int)cbProvincia.SelectedValue > 0)
             {
                 //Cargo el combo de localidad
                 LocalidadCollection localidades = new LocalidadCollection();
@@ -66,7 +67,7 @@ namespace RaiderPlan.Sitio.Inicio
                 //creo localidad vacia 
                 Localidad _LocalidadVacia = new Localidad();
                 _LocalidadVacia.LocalidadNombre = "";
-
+              
                 //Agego a la lista
                 List<Localidad> oListaLocalidade = new List<Localidad>
             {
@@ -136,7 +137,7 @@ namespace RaiderPlan.Sitio.Inicio
                 if (!_Persona.PersonaRow.IsPLocalidadIDNull())
                 {
                     //selecciono la localidad
-                    cbCiudad.SelectedIndex = _Persona.PLocalidadID;
+                    cbCiudad.SelectedValue = _Persona.PLocalidadID;
                 }
 
 
@@ -205,11 +206,11 @@ namespace RaiderPlan.Sitio.Inicio
             _Persona.PersonaSexo = sexo;
             if (cbCiudad.SelectedIndex != -1)
             {
-                _Persona.PLocalidadID = cbCiudad.SelectedIndex;
+                _Persona.PLocalidadID = (int)cbCiudad.SelectedValue;
             }
             if (cbProvincia.SelectedIndex != -1)
             {
-                _Persona.PProvinciaID = cbProvincia.SelectedIndex;
+                _Persona.PProvinciaID = (int)cbProvincia.SelectedValue;
             }
             if (_ImagenPerfil != null)
             {
