@@ -26,13 +26,13 @@ namespace RaiderPlan
             this.pnlMain.Controls.Remove(_control);
             
             //cargo el user control de espacio personal
-            EspacioPersonal _EspPer=new EspacioPersonal();
-            _EspPer.EvSalir += elijeSalirEspecioPersonal;
+            HomePage _EspPer=new HomePage();
+            _EspPer.EvSalir += ElijeSalirEspecioPersonal;
             _EspPer.Dock = DockStyle.Fill;
             this.pnlMain.Controls.Add(_EspPer); 
         }
 
-        private void elijeSalirEspecioPersonal()
+        private void ElijeSalirEspecioPersonal()
         {
             pnlMain.Controls.Clear();
             Inicio _inicio = new Inicio();

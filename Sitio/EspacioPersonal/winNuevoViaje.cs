@@ -20,6 +20,23 @@ namespace RaiderPlan.Sitio.Inicio
         public winNuevoViaje()
         {
             InitializeComponent();
+            dtpFechaSalida.TodayDate = DateTime.Now;
+            dtpFechaSalida.MinDate = DateTime.Now;
+            dtpFechaSalida.MaxDate = DateTime.Now.AddYears(50);
+            dtpFechaLlegada.TodayDate = DateTime.Now.AddDays(1);
+            dtpFechaLlegada.MinDate = dtpFechaSalida.MinDate;
+        }
+        public winNuevoViaje(long id)
+        {
+            InitializeComponent();
+            dtpFechaSalida.TodayDate = DateTime.Now;
+            dtpFechaSalida.MinDate = DateTime.Now;
+            dtpFechaSalida.MaxDate = DateTime.Now.AddYears(50);
+            dtpFechaLlegada.TodayDate = DateTime.Now.AddDays(1);
+            dtpFechaLlegada.MinDate = dtpFechaSalida.MinDate;
+            Viaje viaje = new Viaje();
+            viaje.Fill(id);
+            label2.Text = "Modificar Viaje";
         }
 
         private void Cancelar_Click(object sender, EventArgs e)
@@ -27,7 +44,6 @@ namespace RaiderPlan.Sitio.Inicio
             this.Close();
             evCancelar?.Invoke();
         }
-
         private void btnRegistro_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(txtNombre.Text) || string.IsNullOrWhiteSpace(txtNombre.Text))
@@ -71,6 +87,7 @@ namespace RaiderPlan.Sitio.Inicio
                 GuardarImagen(_Image);
             }
             NuevoViaje.ViajeEstado = "A";
+            NuevoViaje.ViajeFechaCreacion = DateTime.Now;
             try
             {
 
@@ -84,7 +101,6 @@ namespace RaiderPlan.Sitio.Inicio
             }
 
         }
-
         private void upload1_Uploaded(object sender, UploadedEventArgs e)
         {
             CargaArchivo(e.Files);

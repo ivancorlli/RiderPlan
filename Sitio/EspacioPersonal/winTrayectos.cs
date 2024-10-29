@@ -40,64 +40,90 @@ namespace RaiderPlan.Sitio.Inicio
             }
 
             listView1.Items.Clear();
-
-            foreach (TrayectoViaje item in _trayectos.OrderBy(x => x.Orden))
+            var tra = _trayectos.GroupBy(x => x.EsOrigen);
+            foreach (var x in tra)
             {
-                ListViewItem lvItem = new ListViewItem(item.TrayectoOrigen != null && item.TrayectoOrigen != string.Empty ? item.TrayectoOrigen : $"Punto {item.Orden}");
-                lvItem.Tag = item.TrayectoViajeID;
-                if (!item.TrayectoViajeRow.IsTrayectokmNull())
+                string isOriginRoute = x.Key;
+                var _tra = x.OrderBy(t => t.Orden).ToList();
+                foreach (TrayectoViaje item in _tra)
                 {
-                    lvItem.SubItems.Add($"{item.Trayectokm.ToString("F2")}");
-                }
-                else
-                {
-                    lvItem.SubItems.Add("-");
-                }
-
-                if (!item.TrayectoViajeRow.IsTiempoEstimadoNull())
-                {
-                    lvItem.SubItems.Add($"{item.TiempoEstimado.ToString("F2")} min");
-                }
-                else
-                {
-                    lvItem.SubItems.Add("-");
-                }
-
-                if (!item.TrayectoViajeRow.IsCombustibleConsumidoNull())
-                {
-                    lvItem.SubItems.Add($"{item.CombustibleConsumido.ToString("F2")} L");
-                }
-                else
-                {
-                    lvItem.SubItems.Add("-");
-                }
-
-                if (!item.TrayectoViajeRow.IsEstadoCarreteraNull())
-                {
-                    lvItem.SubItems.Add(item.EstadoCarretera);
-                }
-                else
-                {
-                    lvItem.SubItems.Add("-");
-                }
-
-                TrayectoComentarioCollection comentario = new TrayectoComentarioCollection();
-                comentario.Fill(item.ViajeID, item.TrayectoViajeID);
-
-                if (comentario.Count > 0)
-                {
-                    if (!comentario[0].ComentarioViajeRow.IsComentarioTextoNull())
+                    var nombre = string.Empty;
+                    if (!item.TrayectoViajeRow.IsEsOrigenNull() && !string.IsNullOrEmpty(item.TrayectoOrigen))
                     {
-                        lvItem.SubItems.Add(comentario[0].ComentarioTexto);
+                        if (isOriginRoute=="S")
+                        {
+                            nombre = item.TrayectoOrigen;
+                        }
+                        else
+                        {
+                            nombre = $"(alt) {item.TrayectoOrigen}";
+                        }
+                    }
+                    else
+                    {
+                        if (isOriginRoute == "S")
+                        {
+                            nombre = $"Punto {item.Orden}";
+                        }
+                        else
+                        {
+                            nombre = $"(alt) Punto {item.Orden}";
+                        }
+                    }
+                    ListViewItem lvItem = new ListViewItem(nombre);
+                    lvItem.Tag = item.TrayectoViajeID;
+                    if (!item.TrayectoViajeRow.IsTrayectokmNull())
+                    {
+                        lvItem.SubItems.Add($"{item.Trayectokm.ToString("F2")}");
                     }
                     else
                     {
                         lvItem.SubItems.Add("-");
                     }
-                }
 
+                    if (!item.TrayectoViajeRow.IsTiempoEstimadoNull())
+                    {
+                        lvItem.SubItems.Add($"{item.TiempoEstimado.ToString("F2")} min");
+                    }
+                    else
+                    {
+                        lvItem.SubItems.Add("-");
+                    }
+
+                    if (!item.TrayectoViajeRow.IsCombustibleConsumidoNull())
+                    {
+                        lvItem.SubItems.Add($"{item.CombustibleConsumido.ToString("F2")} L");
+                    }
+                    else
+                    {
+                        lvItem.SubItems.Add("-");
+                    }
+
+                    if (!item.TrayectoViajeRow.IsEstadoCarreteraNull())
+                    {
+                        lvItem.SubItems.Add(item.EstadoCarretera);
+                    }
+                    else
+                    {
+                        lvItem.SubItems.Add("-");
+                    }
+
+                    TrayectoComentarioCollection comentario = new TrayectoComentarioCollection();
+                    comentario.Fill(item.ViajeID, item.TrayectoViajeID);
+
+                    if (comentario.Count > 0)
+                    {
+                        if (!comentario[0].ComentarioViajeRow.IsComentarioTextoNull())
+                        {
+                            lvItem.SubItems.Add(comentario[0].ComentarioTexto);
+                        }
+                        else
+                        {
+                            lvItem.SubItems.Add("-");
+                        }
+                    }
                 listView1.Items.Add(lvItem);
-
+                }
             }
         }
 

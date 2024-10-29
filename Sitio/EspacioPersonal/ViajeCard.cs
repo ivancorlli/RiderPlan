@@ -38,10 +38,24 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 {
                     fechaViaje.Text = _viaje.FechaSalidaProgramada.ToShortDateString();
                 }
+                if (!_viaje.ViajeRow.IsLugarPartidaNull())
+                {
+                    label1.Text = _viaje.LugarPartida;
+                }
                 else
                 {
-                    fechaViaje.Visible = false;
+                    label1.Text = " No definido";
                 }
+                if (!_viaje.ViajeRow.IsLugarllegadaNull())
+                {
+                    label2.Text = _viaje.Lugarllegada;
+                }
+                else
+                {
+                    label2.Text = " No definido";
+                }
+                label3.Text = "0";
+                label4.Text = "0";
             }
             else
             {
@@ -49,13 +63,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             }
         }
 
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-            this.EvModificar?.Invoke(_viaje.ViajeID);
-        }
-
-        private void btnEliminar_Click_1(object sender, EventArgs e)
+        private void Delete()
         {
             try
             {
@@ -71,7 +79,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             }
         }
 
-        private void btnIniciar_Click(object sender, EventArgs e)
+        private void Init()
         {
             ViajesEnProgresoCollection viaje = new ViajesEnProgresoCollection();
             viaje.Fill(Application.Session.UsuarioID);
@@ -88,9 +96,30 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             }
         }
 
-        private void btnVer_Click(object sender, EventArgs e)
+        private void Download()
         {
             UtilidadesViaje.GenerarGpx(_viaje.ViajeID);
+        }
+
+        private void ContextMenu1_MenuItemClicked(object sender, MenuItemEventArgs e)
+        {
+            switch (e.MenuItem.Name)
+            {
+                case "ver":
+                    break;
+                case "modificar":
+                    this.EvModificar(_viaje.ViajeID);
+                    break;
+                case "iniciar":
+                    Init();
+                    break;
+                case "descargar":
+                    Download();
+                    break;
+                case "eliminar":
+                    Delete();
+                    break;
+            }
         }
     }
 }

@@ -36,16 +36,16 @@
             this.pnlMain.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1443, 655);
+            this.pnlMain.Size = new System.Drawing.Size(1470, 806);
             this.pnlMain.TabIndex = 0;
             // 
             // Page1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
             this.Controls.Add(this.pnlMain);
             this.Name = "Page1";
-            this.Size = new System.Drawing.Size(1443, 655);
+            this.Size = new System.Drawing.Size(1470, 806);
             this.ResumeLayout(false);
 
         }

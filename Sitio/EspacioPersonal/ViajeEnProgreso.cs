@@ -22,15 +22,13 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         private List<LatLng> listaWaitPoints;
         private List<LatLng> listaWaitPointsSecundarios;
         private List<Comentario> listaComentarios;
-        private SituacionViaje _SituacionViaje;
         private bool _Recorridos = true;
         MyLeafletMap myMap = new MyLeafletMap();
 
-        public ViajeEnProgreso(SituacionViaje pSitacionViaje)
+        public ViajeEnProgreso()
         {
             InitializeComponent();
             //cargo la varible del tipoVijea
-            _SituacionViaje = pSitacionViaje;
 
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
