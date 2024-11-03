@@ -9,10 +9,12 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 {
     public partial class ViajeCard : Wisej.Web.UserControl
     {
-        public delegate void Modificar(long id);
-        public event Modificar EvModificar;
+        public delegate void VerMapa(long id);
+        public event VerMapa EvVerMapa;
         public delegate void Eliminar();
         public event Eliminar EvEliminar;
+        public delegate void Actualizar();
+        public event Actualizar EvActualizar;
         public delegate void Iniciar(long id);
         public event Iniciar EvIniciar;
         private ViajesEnPlanificacion _viaje = null;
@@ -32,7 +34,8 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 if (!_viaje.ViajeRow.IsViajeImagenNull())
                 {
                     pbImagenViaje.ImageSource = Path.Combine("Resource", "lib", "Viajes", _viaje.ViajeImagen);
-                    pbImagenViaje.SizeMode = PictureBoxSizeMode.Cover;
+                    pbImagenViaje.SizeMode = PictureBoxSizeMode.Zoom;
+                    pbImagenViaje.Padding = new Padding(0);
                 }
                 if (!_viaje.ViajeRow.IsFechaSalidaProgramadaNull())
                 {
@@ -54,8 +57,51 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 {
                     label2.Text = " No definido";
                 }
+                if (!_viaje.ViajeRow.IsViajeMeGustasNull())
+                {
+                    label3.Text = _viaje.ViajeMeGustas.ToString();
+                }
+                else
+                {
                 label3.Text = "0";
-                label4.Text = "0";
+
+                }
+                if (!_viaje.ViajeRow.IsViajeDescargasNull())
+                {
+                    label3.Text = _viaje.ViajeDescargas.ToString();
+                }
+                else
+                {
+                    label4.Text = "0";
+                }
+                MenuItem publicar = new MenuItem
+                {
+                    Name = "publicar",
+                    Text = "Publicar"
+                };
+
+                MenuItem privar = new MenuItem
+                {
+                    Name = "privar",
+                    Text = "Restringir"
+                };
+
+                if (!_viaje.ViajeRow.IsViajePrivadoNull())
+                {
+                    if(_viaje.ViajePrivado == "S")
+                    {
+                        pictureBox7.Visible = true;
+                        contextMenu1.MenuItems.Add(publicar);
+                    }
+                    else
+                    {
+                        contextMenu1.MenuItems.Add(privar);
+                    }
+                }
+                else
+                {
+                    contextMenu1.MenuItems.Add(privar);
+                }
             }
             else
             {
@@ -89,10 +135,22 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             }
             else
             {
+                TrayectoViajeCollection trayectos = new TrayectoViajeCollection();
+                trayectos.FillByViajeID(Application.Session.UsuarioId);
+                if(trayectos.Count > 0)
+                {
 
-                winIniciaViaje form = new winIniciaViaje(_viaje.ViajeID);
-                form.EvIniciar += (id) => this.EvIniciar?.Invoke(id);
-                form.ShowDialog();
+                Viaje iniciar = new Viaje();
+                iniciar.Fill(_viaje.ViajeID);
+                iniciar.FechaSalidaEfectiva = DateTime.Now;
+                _viaje.ViajeEstado = "P";
+                iniciar.Update();
+                this.EvIniciar.Invoke(_viaje.ViajeID);
+                }
+                else
+                {
+                    MessageBox.Show("No puedes iniciar un viaje sin trayectos.", "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                }
             }
         }
 
@@ -101,14 +159,24 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             UtilidadesViaje.GenerarGpx(_viaje.ViajeID);
         }
 
+        private void See()
+        {
+            winNuevoViaje form = new winNuevoViaje(_viaje.ViajeID);
+            form.EvAceptar += (id) =>
+            {
+                this.EvActualizar.Invoke();
+            };
+            form.ShowDialog();
+        }
         private void ContextMenu1_MenuItemClicked(object sender, MenuItemEventArgs e)
         {
             switch (e.MenuItem.Name)
             {
-                case "ver":
-                    break;
                 case "modificar":
-                    this.EvModificar(_viaje.ViajeID);
+                    See();
+                    break;
+                case "mapa":
+                    this.EvVerMapa(_viaje.ViajeID);
                     break;
                 case "iniciar":
                     Init();
@@ -119,7 +187,29 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 case "eliminar":
                     Delete();
                     break;
+                case "publicar":
+                    Viaje v = new Viaje();
+                    v.Fill(_viaje.ViajeID);
+                    v.ViajePrivado = "N";
+                    v.Update();
+                    this.EvActualizar.Invoke();
+                    break;
+                case "privar":
+                    Viaje vi = new Viaje();
+                    vi.Fill(_viaje.ViajeID);
+                    vi.ViajePrivado = "S";
+                    vi.Update();
+                    this.EvActualizar.Invoke();
+                    break;
             }
+        }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            var mousePosition = pictureBox6.PointToClient(MousePosition);
+
+            // Show the context menu at the mouse position
+            contextMenu1.Show(pictureBox6, mousePosition);
         }
     }
 }

@@ -6,8 +6,8 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 {
     public partial class EspacioPersonalPaneles : Wisej.Web.UserControl
     {
-        public delegate void Modificar(long id);
-        public event Modificar EvModificarViaje;
+        public delegate void Mapa(long id);
+        public event Mapa EvVerMapa;
         public delegate void Iniciar(long id);
         public event Iniciar EvIniciarViaje;
         public EspacioPersonalPaneles()
@@ -27,8 +27,12 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             panel2.Visible = false;
             panel4.Visible = false;
             MisViajes misViajes = new MisViajes();
-            misViajes.EvModificarViaje += (id)=>this.EvModificarViaje(id);
+            misViajes.EvVerMapa += (id)=>this.EvVerMapa(id);
             misViajes.EvIniciarViaje += (id) => this.EvIniciarViaje(id);
+            misViajes.EvActualizar += () =>
+            {
+                CargarPanelEliminados();
+            };
             misViajes.Dock = DockStyle.Fill;
             pnlContent.Controls.Clear();
             pnlContent.Controls.Add(misViajes);
@@ -75,6 +79,22 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             panel3.Visible = false;
             panel2.Visible = false;
             Eliminados misViajes = new Eliminados();
+            misViajes.EvActualizar += () =>
+            {
+                ViajesEliminadosCollection eliminadosCollection = new ViajesEliminadosCollection();
+                eliminadosCollection.Fill(Application.Session.UsuarioID);
+                if (eliminadosCollection.Count > 0)
+                {
+                    lblEliminados.Visible = true;
+                    panel4.Visible = true;
+                }
+                else
+                {
+                    lblEliminados.Visible = false;
+                    panel4.Visible = false;
+                    LblMisViajes_Click(sender, e);
+                }
+            };
             misViajes.Dock = DockStyle.Fill;
             pnlContent.Controls.Clear();
             pnlContent.Controls.Add(misViajes);

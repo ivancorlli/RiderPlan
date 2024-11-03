@@ -1,7 +1,9 @@
 ﻿using RaiderPlan.Sitio.Inicio;
 using Raiderplan1;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using Wisej.Web;
 
 namespace RaiderPlan.Sitio.EspacioPersonal
@@ -22,7 +24,14 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             MuestraDatos();
             ViajesEnProgresoCollection actual = new ViajesEnProgresoCollection();
             actual.Fill(Application.Session.UsuarioID);
-            CargarEspacioPersonal();
+            if(actual.Count > 0)
+            {
+                CargarViajeEnProgreso(actual[0].ViajeID);
+            }
+            else
+            {
+                CargarEspacioPersonal();
+            }
         }
         private void MuestraDatos()
         {
@@ -82,20 +91,37 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         }
         private void CargarEspacioPersonal()
         {
+            btnCrearViaje.Visible = true;
             EspacioPersonalPaneles paneles = new EspacioPersonalPaneles();
             paneles.Dock = DockStyle.Fill;
-            paneles.EvModificarViaje += (id) =>
+            paneles.EvVerMapa += (id) =>
             {
                 TrayectoViajeCollection trayectos = new TrayectoViajeCollection();
                 trayectos.FillByViajeID(id);
                 if(trayectos.Count > 0)
                 {
-                    CargarViajeEnProgreso(id);
+                    List<TrayectoViaje> list = new List<TrayectoViaje>();
+                    foreach (TrayectoViaje tra in trayectos)
+                    {
+                        list.Add(tra);
+                    }
+                    if(list.Where(x=>x.EsOrigen =="N").ToList().Count > 0)
+                    {
+                        CargarViajeEnProgreso(id);
+                    }
+                    else
+                    {
+                        CargarNuevoViaje(id);
+                    }
                 }
                 else
                 {
                     CargarNuevoViaje(id);
                 }
+            };
+            paneles.EvIniciarViaje += (id) =>
+            {
+              CargarViajeEnProgreso(id); 
             };
             pnlContent.Controls.Clear();
             pnlContent.Controls.Add(paneles);

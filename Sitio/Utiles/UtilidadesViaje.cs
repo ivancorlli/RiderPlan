@@ -7,7 +7,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System.Data;
-using System.Xml.Linq;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Net;
+using RestSharp;
 
 namespace RaiderPlan.Sitio.Utiles
 {
@@ -17,7 +20,7 @@ namespace RaiderPlan.Sitio.Utiles
         /// este metodo se encarga de guardar todos los trayecto para cada viaje
         /// </summary>
         /// <param name="parametro"></param>
-        public static void GuardaViaje(Ruta parametro)
+        public static async Task GuardaViaje(Ruta parametro)
         {
             //controlo que el parametro no llegue nulo o con un solo punto
             if (parametro.InputWaypoints.Count > 1)
@@ -83,11 +86,56 @@ namespace RaiderPlan.Sitio.Utiles
                     }
                     catch (Exception)
                     {
-                        MessageBox.Show($"No se pudo guardar el {oOrden.ToString()}° trayecto");
+                        MessageBox.Show($"No se pudo guardar el {oOrden}° trayecto");
                         return; // se corta el proceso de guardado de los proyectos
                     }
+
                 }
 
+                try
+                {
+                    Viaje viaje = new Viaje();
+                    viaje.Fill(parametro.ViajeID);
+                    viaje.LatitudPartida = (decimal)parametro.Waypoints[0].LatLng.Lat;
+                    viaje.LongitudPartida = (decimal)parametro.Waypoints[0].LatLng.Lng;
+                    viaje.LatitudLlegada = (decimal)parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lat;
+                    viaje.LongitudLegada = (decimal)parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lng;
+                    GeoResponse partida = await ReverseGeocode(parametro.Waypoints[0].LatLng.Lng, parametro.Waypoints[0].LatLng.Lat);
+                    if(partida != null)
+                    {
+                        if (partida.Features[0].Properties.Address != null)
+                        {
+                            if(partida.Features[0].Properties.Address.Town != null)
+                            {
+                                viaje.LugarPartida = partida.Features[0].Properties.Address.Town;
+                            }
+                            if (partida.Features[0].Properties.Address.State != null)
+                            {
+                                viaje.LugarPartida = partida.Features[0].Properties.Address.State;
+                            }
+                        }
+                    }
+                    GeoResponse llegada = await ReverseGeocode(parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lng, parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lat);
+                    if (llegada != null)
+                    {
+                        if (llegada.Features[0].Properties.Address != null && llegada.Features[0].Properties.Address.State != null)
+                        {
+                            if (llegada.Features[0].Properties.Address.Town != null)
+                            {
+                                viaje.Lugarllegada = llegada.Features[0].Properties.Address.Town;
+                            }
+                            if (llegada.Features[0].Properties.Address.State != null) { 
+
+                                viaje.Lugarllegada = llegada.Features[0].Properties.Address.State;
+                            }
+                        }
+                    }
+                    viaje.Update();
+                }
+                catch (Exception)
+                {
+
+                }
             }
             else
             {
@@ -258,27 +306,31 @@ namespace RaiderPlan.Sitio.Utiles
             folderContent.AppendLine("</Folder>");
             return folderContent.ToString();
         }
+
+        public static async Task<GeoResponse> ReverseGeocode(double Lng, double Lat)
+        {
+            try
+            {
+
+                string url = $"https://nominatim.openstreetmap.org/reverse?lon={Lng.ToString().Replace(",",".")}&lat={Lat.ToString().Replace(",", ".")}&format=geojson";
+
+                var client = new RestClient("https://nominatim.openstreetmap.org/");
+                var request = new RestRequest("reverse", Method.GET);
+                request.AddParameter("lon", Lng.ToString().Replace(",", "."));
+                request.AddParameter("lat", Lat.ToString().Replace(",", "."));
+                request.AddParameter("format", "geojson");
+
+                var response = await client.ExecuteTaskAsync(request);
+                if (response.IsSuccessful)
+                {
+                    return JsonConvert.DeserializeObject<GeoResponse>(response.Content);
+                }
+                return null;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
     }
 }
-
-
-
-
-
-
-public class Point
-{
-    public double Latitude { get; set; }
-    public double Longitude { get; set; }
-    public string Name { get; set; }
-    public string Description { get; set; }
-}
-
-public
-class Track
-{
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public List<Point> Segments { get; set; } = new List<Point>();
-}
-

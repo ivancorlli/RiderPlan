@@ -1,4 +1,5 @@
-﻿using Raiderplan1;
+﻿using RaiderPlan.Properties;
+using Raiderplan1;
 using System;
 using System.Drawing;
 using System.Drawing.Imaging;
@@ -10,11 +11,10 @@ namespace RaiderPlan.Sitio.Inicio
 {
     public partial class winNuevoViaje : Wisej.Web.Form
     {
-        public delegate void EvCancelar();
-        public event EvCancelar evCancelar;
         public delegate void Aceptar(long viajeId);
         public event Aceptar EvAceptar;
         private Image _Image = null;
+        private Viaje _viaje = null;
 
         //Cosntructor
         public winNuevoViaje()
@@ -30,19 +30,68 @@ namespace RaiderPlan.Sitio.Inicio
         {
             InitializeComponent();
             dtpFechaSalida.TodayDate = DateTime.Now;
-            dtpFechaSalida.MinDate = DateTime.Now;
-            dtpFechaSalida.MaxDate = DateTime.Now.AddYears(50);
-            dtpFechaLlegada.TodayDate = DateTime.Now.AddDays(1);
-            dtpFechaLlegada.MinDate = dtpFechaSalida.MinDate;
-            Viaje viaje = new Viaje();
-            viaje.Fill(id);
-            label2.Text = "Modificar Viaje";
+            _viaje = new Viaje();
+            _viaje.Fill(id);
+            this.Load += WinNuevoViaje_Load;
         }
 
+        private void WinNuevoViaje_Load(object sender, EventArgs e)
+        {
+            if(_viaje != null)
+            {
+                label2.Text = "Modificar Viaje";
+                //recupero imagen de perfil
+                if (_viaje.ViajeRow.IsViajeImagenNull() || _viaje.ViajeImagen.Trim() == "")
+                {
+                    pbImagenPerfil.ImageSource = Path.Combine("Resource", "lib", "Imagenes", "mapa.png");
+                }
+                else
+                {
+                    pbImagenPerfil.ImageSource = Path.Combine("Resource", "lib", "Viajes", _viaje.ViajeImagen);
+                }
+                txtNombre.Text = _viaje.ViajeNombre;
+                if (!_viaje.ViajeRow.IsFechaSalidaProgramadaNull())
+                {
+                    dtpFechaSalida.MinDate = _viaje.FechaSalidaProgramada.Date;
+                    dtpFechaSalida.Value = _viaje.FechaSalidaProgramada.Date;
+                }
+                else
+                {
+                    dtpFechaSalida.MinDate = DateTime.Now;
+                }
+                dtpFechaLlegada.MinDate = dtpFechaSalida.MinDate;
+                if (!_viaje.ViajeRow.IsFechaLlegadaProgramadaNull())
+                {
+                    if(_viaje.FechaLlegadaProgramada.Date < dtpFechaSalida.MinDate)
+                    {
+                        dtpFechaLlegada.Value = dtpFechaSalida.MinDate;
+                    }
+                    else
+                    {
+                        dtpFechaLlegada.Value = _viaje.FechaLlegadaProgramada.Date;
+                    }
+                }
+                else
+                {
+                    dtpFechaLlegada.TodayDate = DateTime.Now.AddDays(1);
+                }
+                if (!_viaje.ViajeRow.IsMotocilcetaMarcaNull())
+                {
+                    txtMarca.Text = _viaje.MotocilcetaMarca;
+                }
+                if (!_viaje.ViajeRow.IsMotociletaModeloNull())
+                {
+                    txtMotocicleta.Text = _viaje.MotociletaModelo;
+                }
+            }
+            else
+            {
+                label2.Text = "Nuevo Viaje";
+            }
+        }
         private void Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            evCancelar?.Invoke();
         }
         private void btnRegistro_Click(object sender, EventArgs e)
         {
@@ -52,11 +101,17 @@ namespace RaiderPlan.Sitio.Inicio
                 lblMansaje.Visible = true;
                 return;
             }
-            Viaje NuevoViaje = new Viaje()
+            Viaje NuevoViaje;
+            if(_viaje != null)
             {
-                UsuarioID = (int)Application.Session.UsuarioID,
-                ViajeNombre = txtNombre.Text
-            };
+                NuevoViaje = _viaje;
+            }
+            else
+            {
+                NuevoViaje = new Viaje();
+            }
+            NuevoViaje.UsuarioID = (int)Application.Session.UsuarioID;
+            NuevoViaje.ViajeNombre = txtNombre.Text;
             if (dtpFechaSalida.Value != new DateTime(0001, 1, 1))
             {
                 NuevoViaje.FechaSalidaProgramada = dtpFechaSalida.Value;
@@ -72,6 +127,12 @@ namespace RaiderPlan.Sitio.Inicio
             else
             {
                 NuevoViaje.ViajeRow.SetFechaLlegadaProgramadaNull();
+            }
+            if (NuevoViaje.FechaLlegadaProgramada < NuevoViaje.FechaSalidaProgramada)
+            {
+                lblMansaje.Text = "La fecha de llegada no puede ser anterior a la de salida";
+                lblMansaje.Visible = true;
+                return;
             }
             if (!string.IsNullOrEmpty(txtMotocicleta.Text))
             {

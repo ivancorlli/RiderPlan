@@ -6,6 +6,7 @@ using Raiderplan1;
 using RaiderPlan.Sitio.Utiles;
 using System.IO;
 using RaiderPlan.Sitio.Inicio;
+using System.Threading.Tasks;
 
 namespace RaiderPlan
 {
@@ -24,14 +25,14 @@ namespace RaiderPlan
         }
 
         [WebMethod]
-        public static void GeneraViaje(string jsonParametro)
+        public static async Task GeneraViaje(string jsonParametro)
         {
             Ruta parametro = Newtonsoft.Json.JsonConvert.DeserializeObject<Ruta>(jsonParametro);
 
             bool oEliminaTrayectos = UtilidadesViaje.EliminaTrayectos(parametro.ViajeID, parametro.EsOrigen);
             if (oEliminaTrayectos && parametro.Coordenadas!=null)
             {
-                UtilidadesViaje.GuardaViaje(parametro);
+                await UtilidadesViaje.GuardaViaje(parametro);
             };
         }
         [WebMethod]

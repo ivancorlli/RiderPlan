@@ -70,6 +70,7 @@
   <ItemGroup>
     <PackageReference Include="leaflet" Version="0.7.3" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="RestSharp" Version="106.6.10" />
     <PackageReference Include="SharpKml.Core" Version="6.1.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.4" />
     <PackageReference Include="Wisej-3" Version="3.2.2" />
@@ -92,10 +93,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="Sitio\EspacioPersonal\ViajeCardRealizado.cs">
+    <Compile Update="Sitio\EspacioPersonal\ViajeCardEliminado.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="Sitio\EspacioPersonal\ViajeCardEliminado.cs">
+    <Compile Update="Sitio\EspacioPersonal\ViajeCardRealizado.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="Sitio\EspacioPersonal\ViajeFinalizado.cs">
@@ -108,9 +109,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Sitio\EspacioPersonal\winTrayectos.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Sitio\EspacioPersonal\winIniciaViaje.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="Sitio\EspacioPersonal\winNuevoViaje.cs">

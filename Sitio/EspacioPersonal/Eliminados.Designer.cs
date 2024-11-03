@@ -45,6 +45,7 @@
             this.pnlViajes.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlViajes.Location = new System.Drawing.Point(0, 24);
             this.pnlViajes.Name = "pnlViajes";
+            this.pnlViajes.Padding = new Wisej.Web.Padding(10);
             this.pnlViajes.Size = new System.Drawing.Size(501, 477);
             this.pnlViajes.TabIndex = 1;
             // 

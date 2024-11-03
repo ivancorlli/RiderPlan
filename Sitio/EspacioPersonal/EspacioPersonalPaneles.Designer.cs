@@ -67,11 +67,11 @@
             this.lblEliminados.AutoSize = true;
             this.lblEliminados.Cursor = Wisej.Web.Cursors.Hand;
             this.lblEliminados.Font = new System.Drawing.Font("default, Arial", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.lblEliminados.Location = new System.Drawing.Point(304, 17);
+            this.lblEliminados.Location = new System.Drawing.Point(310, 17);
             this.lblEliminados.Name = "lblEliminados";
-            this.lblEliminados.Size = new System.Drawing.Size(76, 16);
+            this.lblEliminados.Size = new System.Drawing.Size(63, 16);
             this.lblEliminados.TabIndex = 3;
-            this.lblEliminados.Text = "Eliminados";
+            this.lblEliminados.Text = "Papelera";
             this.lblEliminados.Visible = false;
             this.lblEliminados.Click += new System.EventHandler(this.LblEliminados_Click);
             // 
@@ -203,7 +203,7 @@
             this.lblContinuarViaje.ForeColor = System.Drawing.Color.FromName("@toolbarText");
             this.lblContinuarViaje.Location = new System.Drawing.Point(63, 17);
             this.lblContinuarViaje.Name = "lblContinuarViaje";
-            this.lblContinuarViaje.Size = new System.Drawing.Size(123, 18);
+            this.lblContinuarViaje.Size = new System.Drawing.Size(124, 15);
             this.lblContinuarViaje.TabIndex = 8;
             this.lblContinuarViaje.Text = "Continuar Viajando";
             // 
