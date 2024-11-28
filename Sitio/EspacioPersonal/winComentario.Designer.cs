@@ -59,7 +59,7 @@
             this.pnlContent.Location = new System.Drawing.Point(0, 47);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlContent.ResponsiveProfiles"))));
-            this.pnlContent.Size = new System.Drawing.Size(400, 296);
+            this.pnlContent.Size = new System.Drawing.Size(391, 296);
             this.pnlContent.TabIndex = 1;
             // 
             // textBox3
@@ -121,7 +121,8 @@
             this.panel1.Dock = Wisej.Web.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 343);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(400, 45);
+            this.panel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel1.ResponsiveProfiles"))));
+            this.panel1.Size = new System.Drawing.Size(391, 45);
             this.panel1.TabIndex = 0;
             // 
             // btnCancelar
@@ -155,7 +156,7 @@
             this.panel2.Dock = Wisej.Web.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(400, 47);
+            this.panel2.Size = new System.Drawing.Size(391, 47);
             this.panel2.TabIndex = 2;
             // 
             // txtTitulo
@@ -170,16 +171,18 @@
             // 
             // winComentario
             // 
-            this.ClientSize = new System.Drawing.Size(400, 388);
+            this.AutoScroll = true;
+            this.ClientSize = new System.Drawing.Size(391, 388);
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.Fixed;
             this.HeaderBackColor = System.Drawing.Color.FromName("@control");
-            this.Location = new System.Drawing.Point(25, -359);
+            this.Movable = false;
             this.Name = "winComentario";
             this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles"))));
+            this.ScrollBars = Wisej.Web.ScrollBars.Vertical;
             this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();

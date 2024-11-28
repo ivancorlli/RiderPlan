@@ -1,4 +1,6 @@
-﻿using System;
+﻿extern alias swf;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using RaiderPlan.Sitio.Inicio;
@@ -47,8 +49,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                     this.EvActualizar.Invoke();
                 };
                 card.EvActualizar += () => CargarViajes();
-                card.Margin = new Padding(8,0,8,0);
-                card.BringToFront();
+                card.Margin = new Padding(8);
                 pnlViajes.Controls.Add(card);
             }
             ViajesRealizadosCollection rea = new ViajesRealizadosCollection();
@@ -59,8 +60,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 ViajeCardRealizado card = new ViajeCardRealizado(v);
                 card.EvVerMapa += (id) => this.EvVerMapa(id);
                 card.EvActualizar += () => CargarViajes();
-                card.BringToFront();
-                card.Margin = new Padding(8, 0, 8, 0);
+                card.Margin = new Padding(8);
                 pnlViajes.Controls.Add(card);
             }
             if(count > 0)

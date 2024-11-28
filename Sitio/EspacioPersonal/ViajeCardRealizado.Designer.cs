@@ -44,12 +44,12 @@
             this.fechaViaje = new Wisej.Web.Label();
             this.viajeNombre = new Wisej.Web.Label();
             this.panel3 = new Wisej.Web.Panel();
-            this.pictureBox7 = new Wisej.Web.PictureBox();
+            this.label5 = new Wisej.Web.Label();
             this.pictureBox6 = new Wisej.Web.PictureBox();
             this.contextMenu1 = new Wisej.Web.ContextMenu(this.components);
             this.mapa = new Wisej.Web.MenuItem();
             this.descargar = new Wisej.Web.MenuItem();
-            this.label5 = new Wisej.Web.Label();
+            this.pictureBox7 = new Wisej.Web.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenViaje)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -59,8 +59,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // pbImagenViaje
@@ -117,7 +117,7 @@
             this.label4.ForeColor = System.Drawing.Color.FromName("@controlText");
             this.label4.Location = new System.Drawing.Point(177, 59);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 15);
+            this.label4.Size = new System.Drawing.Size(26, 18);
             this.label4.TabIndex = 15;
             this.label4.Text = "126";
             // 
@@ -128,7 +128,7 @@
             this.label3.ForeColor = System.Drawing.Color.FromName("@controlText");
             this.label3.Location = new System.Drawing.Point(177, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 15);
+            this.label3.Size = new System.Drawing.Size(26, 18);
             this.label3.TabIndex = 14;
             this.label3.Text = "500";
             // 
@@ -166,7 +166,7 @@
             this.label2.ForeColor = System.Drawing.Color.FromName("@controlText");
             this.label2.Location = new System.Drawing.Point(32, 83);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(49, 15);
+            this.label2.Size = new System.Drawing.Size(48, 18);
             this.label2.TabIndex = 7;
             this.label2.Text = "Destino";
             // 
@@ -186,7 +186,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromName("@controlText");
             this.label1.Location = new System.Drawing.Point(32, 59);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 15);
+            this.label1.Size = new System.Drawing.Size(39, 18);
             this.label1.TabIndex = 4;
             this.label1.Text = "Salida";
             // 
@@ -206,7 +206,7 @@
             this.fechaViaje.ForeColor = System.Drawing.Color.FromName("@controlText");
             this.fechaViaje.Location = new System.Drawing.Point(32, 35);
             this.fechaViaje.Name = "fechaViaje";
-            this.fechaViaje.Size = new System.Drawing.Size(78, 15);
+            this.fechaViaje.Size = new System.Drawing.Size(74, 18);
             this.fechaViaje.TabIndex = 1;
             this.fechaViaje.Text = "Fecha salida";
             // 
@@ -219,7 +219,7 @@
             this.viajeNombre.ForeColor = System.Drawing.Color.FromName("@toolbarText");
             this.viajeNombre.Location = new System.Drawing.Point(8, 8);
             this.viajeNombre.Name = "viajeNombre";
-            this.viajeNombre.Size = new System.Drawing.Size(105, 15);
+            this.viajeNombre.Size = new System.Drawing.Size(106, 18);
             this.viajeNombre.TabIndex = 0;
             this.viajeNombre.Text = "Nombre de viaje";
             // 
@@ -234,17 +234,17 @@
             this.panel3.Size = new System.Drawing.Size(208, 22);
             this.panel3.TabIndex = 4;
             // 
-            // pictureBox7
+            // label5
             // 
-            this.pictureBox7.Dock = Wisej.Web.DockStyle.Left;
-            this.pictureBox7.ImageSource = "Resource\\lib\\iconos\\lock_3917642.png";
-            this.pictureBox7.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Padding = new Wisej.Web.Padding(2);
-            this.pictureBox7.Size = new System.Drawing.Size(19, 22);
-            this.pictureBox7.SizeMode = Wisej.Web.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.ToolTipText = "Fecha de Salida";
-            this.pictureBox7.Visible = false;
+            this.label5.Dock = Wisej.Web.DockStyle.Left;
+            this.label5.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.label5.ForeColor = System.Drawing.Color.Green;
+            this.label5.Location = new System.Drawing.Point(19, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(105, 22);
+            this.label5.TabIndex = 24;
+            this.label5.Text = "Realizado";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pictureBox6
             // 
@@ -256,6 +256,7 @@
             this.pictureBox6.Size = new System.Drawing.Size(34, 22);
             this.pictureBox6.SizeMode = Wisej.Web.PictureBoxSizeMode.Zoom;
             this.pictureBox6.ToolTipText = "Menu";
+            this.pictureBox6.Click += new System.EventHandler(this.pictureBox6_Click);
             // 
             // contextMenu1
             // 
@@ -278,17 +279,17 @@
             this.descargar.Name = "descargar";
             this.descargar.Text = "Descargar";
             // 
-            // label5
+            // pictureBox7
             // 
-            this.label5.Dock = Wisej.Web.DockStyle.Left;
-            this.label5.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.label5.ForeColor = System.Drawing.Color.Green;
-            this.label5.Location = new System.Drawing.Point(19, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(105, 22);
-            this.label5.TabIndex = 24;
-            this.label5.Text = "Realizado";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pictureBox7.Dock = Wisej.Web.DockStyle.Left;
+            this.pictureBox7.ImageSource = "Resource\\lib\\iconos\\lock_3917642.png";
+            this.pictureBox7.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Padding = new Wisej.Web.Padding(2);
+            this.pictureBox7.Size = new System.Drawing.Size(19, 22);
+            this.pictureBox7.SizeMode = Wisej.Web.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.ToolTipText = "Fecha de Salida";
+            this.pictureBox7.Visible = false;
             // 
             // ViajeCardRealizado
             // 
@@ -298,6 +299,7 @@
             this.BorderStyle = Wisej.Web.BorderStyle.Solid;
             this.Controls.Add(this.panel1);
             this.CssStyle = "border-radius: 8px";
+            this.Margin = new Wisej.Web.Padding(3, 5, 3, 5);
             this.Name = "ViajeCardRealizado";
             this.Size = new System.Drawing.Size(226, 253);
             ((System.ComponentModel.ISupportInitialize)(this.pbImagenViaje)).EndInit();
@@ -310,8 +312,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
 
         }

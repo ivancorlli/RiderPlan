@@ -41,8 +41,8 @@
             // 
             // pnlContent
             // 
-            this.pnlContent.Controls.Add(this.htmlPanel1);
             this.pnlContent.Controls.Add(this.pnlCoordenadas);
+            this.pnlContent.Controls.Add(this.htmlPanel1);
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
@@ -56,14 +56,16 @@
             this.htmlPanel1.HtmlSource = "Resource\\mapas\\paginamapa.html";
             this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
             this.htmlPanel1.Name = "htmlPanel1";
-            this.htmlPanel1.Size = new System.Drawing.Size(891, 516);
+            this.htmlPanel1.ScrollBars = Wisej.Web.ScrollBars.None;
+            this.htmlPanel1.Size = new System.Drawing.Size(891, 559);
             this.htmlPanel1.TabIndex = 0;
             this.htmlPanel1.TabStop = false;
             this.htmlPanel1.Appear += new System.EventHandler(this.htmlPanel1_Appear);
             // 
             // pnlCoordenadas
             // 
-            this.pnlCoordenadas.BackColor = System.Drawing.Color.FromArgb(17, 255, 255, 255);
+            this.pnlCoordenadas.AutoSize = true;
+            this.pnlCoordenadas.BackColor = System.Drawing.Color.Transparent;
             this.pnlCoordenadas.Controls.Add(this.bntCancelar);
             this.pnlCoordenadas.Controls.Add(this.btnAgregar);
             this.pnlCoordenadas.Dock = Wisej.Web.DockStyle.Bottom;
@@ -75,6 +77,7 @@
             // bntCancelar
             // 
             this.bntCancelar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
+            this.bntCancelar.BorderStyle = Wisej.Web.BorderStyle.Double;
             this.bntCancelar.Location = new System.Drawing.Point(157, 10);
             this.bntCancelar.Name = "bntCancelar";
             this.bntCancelar.Size = new System.Drawing.Size(100, 27);
@@ -85,6 +88,7 @@
             // btnAgregar
             // 
             this.btnAgregar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
+            this.btnAgregar.BorderStyle = Wisej.Web.BorderStyle.Double;
             this.btnAgregar.Location = new System.Drawing.Point(16, 10);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(135, 27);
@@ -94,10 +98,12 @@
             // 
             // Viajes
             // 
+            this.AutoSize = true;
             this.Controls.Add(this.pnlContent);
             this.Name = "Viajes";
             this.Size = new System.Drawing.Size(891, 559);
             this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.pnlCoordenadas.ResumeLayout(false);
             this.ResumeLayout(false);
 

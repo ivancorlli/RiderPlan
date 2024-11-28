@@ -101,7 +101,7 @@
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(397, 574);
+            this.pnlContent.Size = new System.Drawing.Size(398, 574);
             this.pnlContent.TabIndex = 1;
             // 
             // label1
@@ -123,7 +123,7 @@
             this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnAceptar.Location = new System.Drawing.Point(80, 462);
+            this.btnAceptar.Location = new System.Drawing.Point(81, 462);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(228, 44);
             this.btnAceptar.TabIndex = 3003;
@@ -254,12 +254,13 @@
             // 
             // winRegistro
             // 
-            this.ClientSize = new System.Drawing.Size(397, 574);
+            this.ClientSize = new System.Drawing.Size(398, 574);
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);
             this.CssStyle = "border-radius:20px;";
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
             this.Name = "winRegistro";
+            this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "Registro";
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();

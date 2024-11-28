@@ -38,8 +38,8 @@ namespace RaiderPlan.Sitio.Utiles
             try
             {
                 // Configurar los detalles del remitente
-                string remitente = "appuntes2@gmail.com";
-                string password = "ubarxpqictktkosy";
+                string remitente = "riderplan.official@gmail.com";
+                string password = "whfxfssfjdsdnzpl";
                 string destinatario = to;
 
                 // Configurar el cliente SMTP

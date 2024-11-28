@@ -12,7 +12,7 @@
 
             
             #map {
-                height: 100vh; /* Altura del mapa ajustada para dejar espacio para el botón de abrir */
+                height: 71vh; /* Altura del mapa ajustada para dejar espacio para el botón de abrir */
                 width: 100%;
             }
 
@@ -134,17 +134,6 @@
     </style>-->
     </head>
     <body>
-        <!-- menu la teral ara buscar los puntos -->
-        <div id="sidebar">
-            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <p>Ingresar nuevo punto de enlace</p>
-            <input type="text" id="searchQuery" placeholder="Calle, Localidad, Provincia, País" />
-            <button onclick="searchLocation()">Buscar</button>
-            <ul id="results"></ul>
-        </div>
-
-        <div id="openSidebarBtn" onclick="openNav()">&#9776;</div>
-       
         <!--muestra el mapa-->
         <div id="map"></div>
         

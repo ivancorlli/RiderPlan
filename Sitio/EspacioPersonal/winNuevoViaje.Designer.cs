@@ -81,7 +81,8 @@
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pnlContent.ResponsiveProfiles"))));
-            this.pnlContent.Size = new System.Drawing.Size(389, 609);
+            this.pnlContent.ScrollBars = Wisej.Web.ScrollBars.Vertical;
+            this.pnlContent.Size = new System.Drawing.Size(389, 568);
             this.pnlContent.TabIndex = 1;
             // 
             // txtMarca
@@ -123,7 +124,7 @@
             this.btnRegistro.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnRegistro.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnRegistro.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnRegistro.Location = new System.Drawing.Point(22, 541);
+            this.btnRegistro.Location = new System.Drawing.Point(22, 522);
             this.btnRegistro.Name = "btnRegistro";
             this.btnRegistro.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRegistro.ResponsiveProfiles"))));
             this.btnRegistro.Size = new System.Drawing.Size(345, 35);
@@ -135,7 +136,7 @@
             // 
             this.lblMansaje.BackColor = System.Drawing.Color.Transparent;
             this.lblMansaje.ForeColor = System.Drawing.Color.FromArgb(255, 0, 0);
-            this.lblMansaje.Location = new System.Drawing.Point(22, 508);
+            this.lblMansaje.Location = new System.Drawing.Point(22, 489);
             this.lblMansaje.Name = "lblMansaje";
             this.lblMansaje.Padding = new Wisej.Web.Padding(5, 0, 0, 0);
             this.lblMansaje.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("lblMansaje.ResponsiveProfiles"))));
@@ -228,14 +229,18 @@
             // winNuevoViaje
             // 
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(389, 609);
+            this.CausesValidation = false;
+            this.ClientSize = new System.Drawing.Size(389, 568);
+            this.CloseBox = false;
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);
             this.CssStyle = "border-radius:20px;";
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(25, -359);
+            this.MinimizeBox = false;
+            this.Movable = false;
             this.Name = "winNuevoViaje";
             this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles"))));
+            this.ScrollBars = Wisej.Web.ScrollBars.Vertical;
             this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "Registro";
             this.pnlContent.ResumeLayout(false);

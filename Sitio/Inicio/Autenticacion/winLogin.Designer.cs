@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(winLogin));
             this.errorProvider1 = new Wisej.Web.ErrorProvider(this.components);
             this.txtEmailUsuario = new Wisej.Web.TextBox();
             this.txtPassword = new Wisej.Web.TextBox();
@@ -116,7 +117,7 @@
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(400, 457);
+            this.pnlContent.Size = new System.Drawing.Size(397, 457);
             this.pnlContent.TabIndex = 0;
             // 
             // label1
@@ -127,6 +128,7 @@
             this.label1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
             this.label1.Location = new System.Drawing.Point(143, 395);
             this.label1.Name = "label1";
+            this.label1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label1.ResponsiveProfiles"))));
             this.label1.Size = new System.Drawing.Size(114, 24);
             this.label1.TabIndex = 5;
             this.label1.Text = "Crear Cuenta";
@@ -144,8 +146,9 @@
             this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnAceptar.Location = new System.Drawing.Point(57, 299);
+            this.btnAceptar.Location = new System.Drawing.Point(60, 299);
             this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnAceptar.ResponsiveProfiles"))));
             this.btnAceptar.Size = new System.Drawing.Size(277, 49);
             this.btnAceptar.TabIndex = 4;
             this.btnAceptar.Text = "Iniciar Sesion";
@@ -181,7 +184,7 @@
             this.Cancelar.BackColor = System.Drawing.Color.FromName("@toolbarText");
             this.Cancelar.Font = new System.Drawing.Font("default, Arial", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Cancelar.ForeColor = System.Drawing.Color.White;
-            this.Cancelar.Location = new System.Drawing.Point(352, 13);
+            this.Cancelar.Location = new System.Drawing.Point(343, 15);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(32, 27);
             this.Cancelar.TabIndex = 5;
@@ -190,14 +193,19 @@
             // 
             // winLogin
             // 
-            this.ClientSize = new System.Drawing.Size(400, 457);
+            this.ClientSize = new System.Drawing.Size(397, 457);
             this.CloseBox = false;
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);
             this.CssStyle = "border-radius:20px;";
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
             this.Margin = new Wisej.Web.Padding(0);
+            this.MaximizeBox = false;
+            this.Movable = false;
             this.Name = "winLogin";
+            this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles"))));
+            this.ScrollBars = Wisej.Web.ScrollBars.None;
+            this.StartPosition = Wisej.Web.FormStartPosition.CenterParent;
             this.Text = "winLogin";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.pnlContent.ResumeLayout(false);

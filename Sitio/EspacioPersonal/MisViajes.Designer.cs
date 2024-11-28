@@ -31,10 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MisViajes));
             this.panel1 = new Wisej.Web.Panel();
             this.pnlViajes = new Wisej.Web.FlowLayoutPanel();
-            this.pnlViajeActual = new Wisej.Web.Panel();
             this.pnlSinViajes = new Wisej.Web.Panel();
-            this.htmlPanel1 = new Wisej.Web.HtmlPanel();
             this.btnCrearViaje = new Wisej.Web.Button();
+            this.htmlPanel1 = new Wisej.Web.HtmlPanel();
+            this.pnlViajeActual = new Wisej.Web.Panel();
             this.panel1.SuspendLayout();
             this.pnlSinViajes.SuspendLayout();
             this.SuspendLayout();
@@ -53,20 +53,15 @@
             // pnlViajes
             // 
             this.pnlViajes.AutoScroll = true;
+            this.pnlViajes.AutoSize = true;
             this.pnlViajes.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlViajes.Location = new System.Drawing.Point(0, 317);
+            this.pnlViajes.Margin = new Wisej.Web.Padding(10);
             this.pnlViajes.Name = "pnlViajes";
             this.pnlViajes.Padding = new Wisej.Web.Padding(10);
+            this.pnlViajes.ScrollBars = Wisej.Web.ScrollBars.Vertical;
             this.pnlViajes.Size = new System.Drawing.Size(504, 183);
             this.pnlViajes.TabIndex = 0;
-            // 
-            // pnlViajeActual
-            // 
-            this.pnlViajeActual.Dock = Wisej.Web.DockStyle.Top;
-            this.pnlViajeActual.Location = new System.Drawing.Point(0, 0);
-            this.pnlViajeActual.Name = "pnlViajeActual";
-            this.pnlViajeActual.Size = new System.Drawing.Size(504, 31);
-            this.pnlViajeActual.TabIndex = 1;
             // 
             // pnlSinViajes
             // 
@@ -77,19 +72,6 @@
             this.pnlSinViajes.Name = "pnlSinViajes";
             this.pnlSinViajes.Size = new System.Drawing.Size(504, 286);
             this.pnlSinViajes.TabIndex = 2;
-            // 
-            // htmlPanel1
-            // 
-            this.htmlPanel1.Dock = Wisej.Web.DockStyle.Top;
-            this.htmlPanel1.Focusable = false;
-            this.htmlPanel1.Html = resources.GetString("htmlPanel1.Html");
-            this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
-            this.htmlPanel1.Name = "htmlPanel1";
-            this.htmlPanel1.ScrollBars = Wisej.Web.ScrollBars.None;
-            this.htmlPanel1.Size = new System.Drawing.Size(504, 228);
-            this.htmlPanel1.TabIndex = 1;
-            this.htmlPanel1.TabStop = false;
-            this.htmlPanel1.ElementClick += new Wisej.Web.HtmlPanelElementClickHandler(this.htmlPanel1_ElementClick);
             // 
             // btnCrearViaje
             // 
@@ -104,12 +86,34 @@
             this.btnCrearViaje.Text = "Crear un nuevo viaje";
             this.btnCrearViaje.Click += new System.EventHandler(this.btnCrearViaje_Click);
             // 
+            // htmlPanel1
+            // 
+            this.htmlPanel1.Dock = Wisej.Web.DockStyle.Top;
+            this.htmlPanel1.Focusable = false;
+            this.htmlPanel1.Html = resources.GetString("htmlPanel1.Html");
+            this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
+            this.htmlPanel1.Name = "htmlPanel1";
+            this.htmlPanel1.ScrollBars = Wisej.Web.ScrollBars.None;
+            this.htmlPanel1.Size = new System.Drawing.Size(504, 228);
+            this.htmlPanel1.TabIndex = 1;
+            this.htmlPanel1.TabStop = false;
+            this.htmlPanel1.ElementClick += new Wisej.Web.HtmlPanelElementClickHandler(this.htmlPanel1_ElementClick);
+            // 
+            // pnlViajeActual
+            // 
+            this.pnlViajeActual.Dock = Wisej.Web.DockStyle.Top;
+            this.pnlViajeActual.Location = new System.Drawing.Point(0, 0);
+            this.pnlViajeActual.Name = "pnlViajeActual";
+            this.pnlViajeActual.Size = new System.Drawing.Size(504, 31);
+            this.pnlViajeActual.TabIndex = 1;
+            // 
             // MisViajes
             // 
             this.Controls.Add(this.panel1);
             this.Name = "MisViajes";
             this.Size = new System.Drawing.Size(504, 500);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.pnlSinViajes.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -101,35 +101,47 @@ namespace RaiderPlan.Sitio.Utiles
                     viaje.LatitudLlegada = (decimal)parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lat;
                     viaje.LongitudLegada = (decimal)parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lng;
                     GeoResponse partida = await ReverseGeocode(parametro.Waypoints[0].LatLng.Lng, parametro.Waypoints[0].LatLng.Lat);
+                    string partidaNombre = "";
                     if(partida != null)
                     {
                         if (partida.Features[0].Properties.Address != null)
                         {
                             if(partida.Features[0].Properties.Address.Town != null)
                             {
-                                viaje.LugarPartida = partida.Features[0].Properties.Address.Town;
+                                partidaNombre = partida.Features[0].Properties.Address.Town;
                             }
                             if (partida.Features[0].Properties.Address.State != null)
                             {
-                                viaje.LugarPartida = partida.Features[0].Properties.Address.State;
+                                partidaNombre += partida.Features[0].Properties.Address.Town != null? $", {partida.Features[0].Properties.Address.State}":partida.Features[0].Properties.Address.State;
+                            }
+                            if (partida.Features[0].Properties.Address.CountryCode != null)
+                            {
+                                partidaNombre += $" - {partida.Features[0].Properties.Address.Country}";
                             }
                         }
                     }
                     GeoResponse llegada = await ReverseGeocode(parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lng, parametro.Waypoints[parametro.Waypoints.Count - 1].LatLng.Lat);
+                    string llegadaNombre = "";
                     if (llegada != null)
                     {
                         if (llegada.Features[0].Properties.Address != null && llegada.Features[0].Properties.Address.State != null)
                         {
                             if (llegada.Features[0].Properties.Address.Town != null)
                             {
-                                viaje.Lugarllegada = llegada.Features[0].Properties.Address.Town;
+                                llegadaNombre = llegada.Features[0].Properties.Address.Town;
                             }
                             if (llegada.Features[0].Properties.Address.State != null) { 
 
-                                viaje.Lugarllegada = llegada.Features[0].Properties.Address.State;
+                                llegadaNombre += llegada.Features[0].Properties.Address.Town != null? $", {llegada.Features[0].Properties.Address.State}": llegada.Features[0].Properties.Address.State;
+                            }
+                            if (llegada.Features[0].Properties.Address.CountryCode != null)
+                            {
+                                llegadaNombre += $" - {llegada.Features[0].Properties.Address.Country}";
                             }
                         }
                     }
+                    viaje.LugarPartida = partidaNombre;
+                    viaje.Lugarllegada = llegadaNombre;
                     viaje.Update();
                 }
                 catch (Exception)

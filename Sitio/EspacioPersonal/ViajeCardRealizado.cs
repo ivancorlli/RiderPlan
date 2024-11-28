@@ -131,5 +131,13 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                     break;
             }
         }
+
+        private void pictureBox6_Click(object sender, EventArgs e)
+        {
+            var mousePosition = pictureBox6.PointToClient(MousePosition);
+
+            // Show the context menu at the mouse position
+            contextMenu1.Show(pictureBox6, mousePosition);
+        }
     }
 }

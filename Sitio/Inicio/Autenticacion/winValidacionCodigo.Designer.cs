@@ -49,7 +49,7 @@
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(401, 261);
+            this.pnlContent.Size = new System.Drawing.Size(397, 261);
             this.pnlContent.TabIndex = 2;
             // 
             // lblError
@@ -70,7 +70,7 @@
             this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnAceptar.Location = new System.Drawing.Point(77, 192);
+            this.btnAceptar.Location = new System.Drawing.Point(73, 192);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(228, 44);
             this.btnAceptar.TabIndex = 3004;
@@ -111,7 +111,7 @@
             this.txtCodigoValidacion.Font = new System.Drawing.Font("default, Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.txtCodigoValidacion.ForeColor = System.Drawing.Color.White;
             this.txtCodigoValidacion.InputType.Type = Wisej.Web.TextBoxType.Password;
-            this.txtCodigoValidacion.Location = new System.Drawing.Point(25, 125);
+            this.txtCodigoValidacion.Location = new System.Drawing.Point(23, 125);
             this.txtCodigoValidacion.MaxLength = 4;
             this.txtCodigoValidacion.Name = "txtCodigoValidacion";
             this.txtCodigoValidacion.Padding = new Wisej.Web.Padding(10, 5, 10, 5);
@@ -124,10 +124,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 19F);
             this.AutoScaleMode = Wisej.Web.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(401, 261);
+            this.ClientSize = new System.Drawing.Size(397, 261);
             this.Controls.Add(this.pnlContent);
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
             this.Name = "winValidacionCodigo";
+            this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "Window";
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();

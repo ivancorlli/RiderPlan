@@ -56,7 +56,7 @@
             this.Cancelar.BackColor = System.Drawing.Color.FromName("@toolbarText");
             this.Cancelar.Font = new System.Drawing.Font("default, Arial", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.Cancelar.ForeColor = System.Drawing.Color.White;
-            this.Cancelar.Location = new System.Drawing.Point(357, 13);
+            this.Cancelar.Location = new System.Drawing.Point(345, 15);
             this.Cancelar.Name = "Cancelar";
             this.Cancelar.Size = new System.Drawing.Size(32, 27);
             this.Cancelar.TabIndex = 14;
@@ -109,7 +109,7 @@
             this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnAceptar.Location = new System.Drawing.Point(82, 286);
+            this.btnAceptar.Location = new System.Drawing.Point(94, 286);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(212, 39);
             this.btnAceptar.TabIndex = 19;
@@ -182,12 +182,12 @@
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(409, 340);
+            this.pnlContent.Size = new System.Drawing.Size(395, 340);
             this.pnlContent.TabIndex = 2;
             // 
             // winCodigoRecuperacion
             // 
-            this.ClientSize = new System.Drawing.Size(409, 340);
+            this.ClientSize = new System.Drawing.Size(395, 340);
             this.CloseBox = false;
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);
@@ -195,6 +195,7 @@
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
             this.Margin = new Wisej.Web.Padding(0);
             this.Name = "winCodigoRecuperacion";
+            this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "winCodigoRecuperacion";
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.pnlContent.ResumeLayout(false);

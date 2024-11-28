@@ -14,6 +14,7 @@ namespace RaiderPlan.Sitio.Inicio
     {
 
         private long _viajeId;
+        private bool _disableClick = false;
 
         //Cosntructor
         public winTrayectos(long viajeId)
@@ -27,6 +28,19 @@ namespace RaiderPlan.Sitio.Inicio
                 label2.Text = viaje.ViajeNombre;
                 CargarListView();
             };
+        }
+        public winTrayectos(long viajeId, bool disableClick)
+        {
+            InitializeComponent();
+            this.Load += (e, x) =>
+            {
+                _viajeId = viajeId;
+                Viaje viaje = new Viaje();
+                viaje.Fill(_viajeId);
+                label2.Text = viaje.ViajeNombre;
+                CargarListView();
+            };
+            _disableClick = disableClick;
         }
 
         private void CargarListView()
@@ -134,7 +148,7 @@ namespace RaiderPlan.Sitio.Inicio
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems.Count > 0)
+            if (listView1.SelectedItems.Count > 0 && !_disableClick)
             {
 
                 ListViewItem lvitem = listView1.SelectedItems[0];

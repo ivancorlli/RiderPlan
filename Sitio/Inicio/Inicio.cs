@@ -1,4 +1,9 @@
-﻿using System;
+﻿using RaiderPlan.Sitio.EspacioPersonal;
+using Raiderplan1;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using Wisej.Web;
 
 namespace RaiderPlan.Sitio.Inicio
@@ -9,6 +14,65 @@ namespace RaiderPlan.Sitio.Inicio
         public Inicio()
         {
             InitializeComponent();
+            this.Load += Inicio_Load;
+        }
+
+        private void Inicio_Load(object sender, EventArgs e)
+        {
+            flowLayoutPanel1.Controls.Clear();
+            ViajesPublicosCollection _viajes = new ViajesPublicosCollection();
+            _viajes.Fill();
+            List<ViajesPublicos> viajes = new List<ViajesPublicos>();
+            foreach(ViajesPublicos v in _viajes)
+            {
+                    viajes.Add(v);
+            }
+
+            foreach(ViajesPublicos v in viajes.Take(5).ToList())
+            {
+                string nombre= v.ViajeNombre;
+                string imagen = string.Empty;
+                int meGustas = 0;
+                int descargas = 0;
+                if (!v.ViajeRow.IsViajeImagenNull())
+                {
+                    imagen = Path.Combine("Resource", "lib", "Viajes", v.ViajeImagen);
+                }
+                string origen;
+                if (!v.ViajeRow.IsLugarPartidaNull())
+                {
+                    origen = v.LugarPartida;
+                }
+                else
+                {
+                    origen = " No definido";
+                }
+                string destino;
+                if (!v.ViajeRow.IsLugarllegadaNull())
+                {
+                    destino = v.Lugarllegada;
+                }
+                else
+                {
+                    destino = " No definido";
+                }
+                if (!v.ViajeRow.IsViajeMeGustasNull())
+                {
+                    meGustas = v.ViajeMeGustas;
+                }
+                if (!v.ViajeRow.IsViajeDescargasNull())
+                {
+                    descargas = v.ViajeDescargas;
+                }
+                ViajeCardPublico card = new ViajeCardPublico(nombre,imagen,origen,destino,meGustas,descargas,v.UsuarioID,v.ViajeID);
+                card.Margin = new Padding(8,10,8,10);
+                card.EvVerMapa += (id) =>
+                {
+                    Application.Session.ViajeExplorar = id;
+                    label1_Click(this, EventArgs.Empty);
+                };
+                flowLayoutPanel1.Controls.Add(card);
+            }
         }
 
         private void ElijeAceptar()
@@ -92,11 +156,9 @@ namespace RaiderPlan.Sitio.Inicio
             btnRegistro_Click(this, EventArgs.Empty);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click_1(object sender, EventArgs e)
         {
             label1_Click(sender, e);
         }
-
-      
     }
 }

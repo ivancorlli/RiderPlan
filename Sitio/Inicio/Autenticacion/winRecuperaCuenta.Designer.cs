@@ -54,7 +54,7 @@
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(400, 316);
+            this.pnlContent.Size = new System.Drawing.Size(397, 316);
             this.pnlContent.TabIndex = 2;
             // 
             // label1
@@ -76,7 +76,7 @@
             this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
             this.btnAceptar.Font = new System.Drawing.Font("defaultBold", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAceptar.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.btnAceptar.Location = new System.Drawing.Point(88, 218);
+            this.btnAceptar.Location = new System.Drawing.Point(85, 218);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(212, 39);
             this.btnAceptar.TabIndex = 19;
@@ -147,7 +147,7 @@
             // 
             // winRecuperaCuenta
             // 
-            this.ClientSize = new System.Drawing.Size(400, 316);
+            this.ClientSize = new System.Drawing.Size(397, 316);
             this.CloseBox = false;
             this.ControlBox = false;
             this.Controls.Add(this.pnlContent);
@@ -155,6 +155,7 @@
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
             this.Margin = new Wisej.Web.Padding(0);
             this.Name = "winRecuperaCuenta";
+            this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;
             this.Text = "winRecuperaCuenta";
             this.pnlContent.ResumeLayout(false);
             this.pnlContent.PerformLayout();

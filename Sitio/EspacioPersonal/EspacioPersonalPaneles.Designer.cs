@@ -170,6 +170,7 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(242, 68);
             this.panel5.TabIndex = 0;
+            this.panel5.PanelCollapsed += new System.EventHandler(this.panel5_PanelCollapsed);
             // 
             // lblViajeNombre
             // 
@@ -183,6 +184,7 @@
             this.lblViajeNombre.Size = new System.Drawing.Size(74, 14);
             this.lblViajeNombre.TabIndex = 10;
             this.lblViajeNombre.Text = "ViajeNombre";
+            this.lblViajeNombre.Click += new System.EventHandler(this.lblViajeNombre_Click);
             // 
             // pictureBox1
             // 
@@ -193,6 +195,7 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(36, 36);
             this.pictureBox1.SizeMode = Wisej.Web.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // lblContinuarViaje
             // 
@@ -203,9 +206,10 @@
             this.lblContinuarViaje.ForeColor = System.Drawing.Color.FromName("@toolbarText");
             this.lblContinuarViaje.Location = new System.Drawing.Point(63, 17);
             this.lblContinuarViaje.Name = "lblContinuarViaje";
-            this.lblContinuarViaje.Size = new System.Drawing.Size(124, 15);
+            this.lblContinuarViaje.Size = new System.Drawing.Size(123, 18);
             this.lblContinuarViaje.TabIndex = 8;
             this.lblContinuarViaje.Text = "Continuar Viajando";
+            this.lblContinuarViaje.Click += new System.EventHandler(this.lblContinuarViaje_Click);
             // 
             // EspacioPersonalPaneles
             // 

@@ -223,12 +223,12 @@
             // 
             this.line1.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Left) 
             | Wisej.Web.AnchorStyles.Right)));
-            this.line1.Location = new System.Drawing.Point(392, 209);
+            this.line1.Location = new System.Drawing.Point(373, 192);
             this.line1.Name = "line1";
             this.line1.Orientation = Wisej.Web.Orientation.Vertical;
             this.line1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("line1.ResponsiveProfiles"))));
             this.line1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("line1.ResponsiveProfiles1"))));
-            this.line1.Size = new System.Drawing.Size(18, 192);
+            this.line1.Size = new System.Drawing.Size(57, 222);
             // 
             // upload1
             // 
@@ -276,7 +276,7 @@
             this.label2.Location = new System.Drawing.Point(22, 12);
             this.label2.Name = "label2";
             this.label2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label2.ResponsiveProfiles"))));
-            this.label2.Size = new System.Drawing.Size(133, 26);
+            this.label2.Size = new System.Drawing.Size(130, 30);
             this.label2.TabIndex = 3001;
             this.label2.Text = "Registrarme";
             // 
@@ -310,7 +310,7 @@
             this.Controls.Add(this.pnlContent);
             this.CssStyle = "border-radius:20px;";
             this.FormBorderStyle = Wisej.Web.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(25, -359);
+            this.Movable = false;
             this.Name = "winPerfil";
             this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles"))));
             this.StartPosition = Wisej.Web.FormStartPosition.CenterScreen;

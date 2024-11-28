@@ -10,6 +10,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         public event Mapa EvVerMapa;
         public delegate void Iniciar(long id);
         public event Iniciar EvIniciarViaje;
+        private ViajesEnProgreso _viajeActual;
         public EspacioPersonalPaneles()
         {
             InitializeComponent();
@@ -55,6 +56,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             {
                 pnlViajeActual.Visible = true;
                 lblViajeNombre.Text = actual[0].ViajeNombre;
+                _viajeActual = actual[0];
             }
             else
             {
@@ -100,5 +102,24 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             pnlContent.Controls.Add(misViajes);
         }
 
+        private void panel5_PanelCollapsed(object sender, EventArgs e)
+        {
+            this.EvVerMapa.Invoke(this._viajeActual.ViajeID);
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.EvVerMapa.Invoke(this._viajeActual.ViajeID);
+        }
+
+        private void lblContinuarViaje_Click(object sender, EventArgs e)
+        {
+            this.EvVerMapa.Invoke(this._viajeActual.ViajeID);
+        }
+
+        private void lblViajeNombre_Click(object sender, EventArgs e)
+        {
+            this.EvVerMapa.Invoke(this._viajeActual.ViajeID);
+        }
     }
 }

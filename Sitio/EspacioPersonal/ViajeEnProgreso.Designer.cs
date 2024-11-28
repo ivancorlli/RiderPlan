@@ -31,8 +31,6 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViajeEnProgreso));
             this.pnlContent = new Wisej.Web.Panel();
-            this.htmlPanel1 = new Wisej.Web.HtmlPanel();
-            this.javaScript1 = new Wisej.Web.JavaScript(this.components);
             this.panel1 = new Wisej.Web.Panel();
             this.btnTrayectos = new Wisej.Web.Button();
             this.btnDescargar = new Wisej.Web.Button();
@@ -41,6 +39,8 @@
             this.btnRecorridos = new Wisej.Web.Button();
             this.btnCancelar = new Wisej.Web.Button();
             this.btnAgregar = new Wisej.Web.Button();
+            this.htmlPanel1 = new Wisej.Web.HtmlPanel();
+            this.javaScript1 = new Wisej.Web.JavaScript(this.components);
             this.pnlContent.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -52,24 +52,12 @@
             this.pnlContent.Dock = Wisej.Web.DockStyle.Fill;
             this.pnlContent.Location = new System.Drawing.Point(0, 0);
             this.pnlContent.Name = "pnlContent";
-            this.pnlContent.Size = new System.Drawing.Size(598, 559);
+            this.pnlContent.Size = new System.Drawing.Size(501, 559);
             this.pnlContent.TabIndex = 0;
-            // 
-            // htmlPanel1
-            // 
-            this.htmlPanel1.Anchor = ((Wisej.Web.AnchorStyles)(((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Bottom) 
-            | Wisej.Web.AnchorStyles.Left)));
-            this.htmlPanel1.Focusable = false;
-            this.htmlPanel1.HtmlSource = "Resource\\mapas\\paginamapa.html";
-            this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
-            this.htmlPanel1.Name = "htmlPanel1";
-            this.htmlPanel1.Size = new System.Drawing.Size(595, 519);
-            this.htmlPanel1.TabIndex = 0;
-            this.htmlPanel1.TabStop = false;
-            this.htmlPanel1.Appear += new System.EventHandler(this.htmlPanel1_Appear);
             // 
             // panel1
             // 
+            this.panel1.AutoSize = true;
             this.panel1.BackColor = System.Drawing.Color.Transparent;
             this.panel1.Controls.Add(this.btnTrayectos);
             this.panel1.Controls.Add(this.btnDescargar);
@@ -79,9 +67,11 @@
             this.panel1.Controls.Add(this.btnCancelar);
             this.panel1.Controls.Add(this.btnAgregar);
             this.panel1.Dock = Wisej.Web.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 522);
+            this.panel1.Location = new System.Drawing.Point(0, 482);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(598, 37);
+            this.panel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel1.ResponsiveProfiles"))));
+            this.panel1.ScrollBars = Wisej.Web.ScrollBars.None;
+            this.panel1.Size = new System.Drawing.Size(501, 77);
             this.panel1.TabIndex = 2;
             // 
             // btnTrayectos
@@ -89,8 +79,9 @@
             this.btnTrayectos.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
             this.btnTrayectos.BackColor = System.Drawing.Color.Plum;
             this.btnTrayectos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.btnTrayectos.Location = new System.Drawing.Point(356, 3);
+            this.btnTrayectos.Location = new System.Drawing.Point(356, 13);
             this.btnTrayectos.Name = "btnTrayectos";
+            this.btnTrayectos.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnTrayectos.ResponsiveProfiles"))));
             this.btnTrayectos.Size = new System.Drawing.Size(67, 25);
             this.btnTrayectos.TabIndex = 14;
             this.btnTrayectos.Text = "Trayectos";
@@ -101,8 +92,9 @@
             this.btnDescargar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
             this.btnDescargar.BackColor = System.Drawing.Color.SandyBrown;
             this.btnDescargar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.btnDescargar.Location = new System.Drawing.Point(137, 3);
+            this.btnDescargar.Location = new System.Drawing.Point(137, 13);
             this.btnDescargar.Name = "btnDescargar";
+            this.btnDescargar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnDescargar.ResponsiveProfiles"))));
             this.btnDescargar.Size = new System.Drawing.Size(67, 25);
             this.btnDescargar.TabIndex = 13;
             this.btnDescargar.Text = "Descargar";
@@ -113,8 +105,9 @@
             this.btnFinalizar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
             this.btnFinalizar.BackColor = System.Drawing.Color.LemonChiffon;
             this.btnFinalizar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.btnFinalizar.Location = new System.Drawing.Point(429, 3);
+            this.btnFinalizar.Location = new System.Drawing.Point(429, 13);
             this.btnFinalizar.Name = "btnFinalizar";
+            this.btnFinalizar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnFinalizar.ResponsiveProfiles"))));
             this.btnFinalizar.Size = new System.Drawing.Size(67, 25);
             this.btnFinalizar.TabIndex = 12;
             this.btnFinalizar.Text = "Finalizar";
@@ -126,8 +119,9 @@
             this.btnRecuerdos.BackColor = System.Drawing.Color.FromName("@buttonHighlight");
             this.btnRecuerdos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnRecuerdos.ForeColor = System.Drawing.Color.FromName("@controlDark");
-            this.btnRecuerdos.Location = new System.Drawing.Point(283, 3);
+            this.btnRecuerdos.Location = new System.Drawing.Point(283, 13);
             this.btnRecuerdos.Name = "btnRecuerdos";
+            this.btnRecuerdos.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRecuerdos.ResponsiveProfiles"))));
             this.btnRecuerdos.Size = new System.Drawing.Size(67, 25);
             this.btnRecuerdos.TabIndex = 11;
             this.btnRecuerdos.Text = "Recuerdos";
@@ -139,8 +133,9 @@
             this.btnRecorridos.BackColor = System.Drawing.Color.FromName("@activeCaption");
             this.btnRecorridos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnRecorridos.ForeColor = System.Drawing.Color.FromName("@activeCaptionText");
-            this.btnRecorridos.Location = new System.Drawing.Point(210, 3);
+            this.btnRecorridos.Location = new System.Drawing.Point(210, 13);
             this.btnRecorridos.Name = "btnRecorridos";
+            this.btnRecorridos.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnRecorridos.ResponsiveProfiles"))));
             this.btnRecorridos.Size = new System.Drawing.Size(67, 25);
             this.btnRecorridos.TabIndex = 10;
             this.btnRecorridos.Text = "Recorridos";
@@ -151,8 +146,9 @@
             this.btnCancelar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
             this.btnCancelar.BackColor = System.Drawing.Color.LightCoral;
             this.btnCancelar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.btnCancelar.Location = new System.Drawing.Point(79, 3);
+            this.btnCancelar.Location = new System.Drawing.Point(79, 13);
             this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnCancelar.ResponsiveProfiles"))));
             this.btnCancelar.Size = new System.Drawing.Size(52, 25);
             this.btnCancelar.TabIndex = 9;
             this.btnCancelar.Text = "Salir";
@@ -164,12 +160,26 @@
             this.btnAgregar.BackColor = System.Drawing.Color.LightGreen;
             this.btnAgregar.BackgroundImage = global::RaiderPlan.Properties.Resources.iconoOK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.btnAgregar.Location = new System.Drawing.Point(6, 3);
+            this.btnAgregar.Location = new System.Drawing.Point(6, 13);
             this.btnAgregar.Name = "btnAgregar";
+            this.btnAgregar.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("btnAgregar.ResponsiveProfiles"))));
             this.btnAgregar.Size = new System.Drawing.Size(67, 25);
             this.btnAgregar.TabIndex = 8;
             this.btnAgregar.Text = "Guardar";
             this.btnAgregar.Click += new System.EventHandler(this.btnAgregar_Click_1);
+            // 
+            // htmlPanel1
+            // 
+            this.htmlPanel1.Dock = Wisej.Web.DockStyle.Fill;
+            this.htmlPanel1.Focusable = false;
+            this.htmlPanel1.HtmlSource = "Resource\\mapas\\paginamapa.html";
+            this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
+            this.htmlPanel1.Name = "htmlPanel1";
+            this.htmlPanel1.ScrollBars = Wisej.Web.ScrollBars.None;
+            this.htmlPanel1.Size = new System.Drawing.Size(501, 559);
+            this.htmlPanel1.TabIndex = 0;
+            this.htmlPanel1.TabStop = false;
+            this.htmlPanel1.Appear += new System.EventHandler(this.htmlPanel1_Appear);
             // 
             // ViajeEnProgreso
             // 
@@ -177,8 +187,9 @@
             this.Name = "ViajeEnProgreso";
             this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles"))));
             this.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("$this.ResponsiveProfiles1"))));
-            this.Size = new System.Drawing.Size(598, 559);
+            this.Size = new System.Drawing.Size(501, 559);
             this.pnlContent.ResumeLayout(false);
+            this.pnlContent.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -13,6 +13,8 @@ namespace RaiderPlan.Sitio.Inicio
     {
         public delegate void Aceptar(long viajeId);
         public event Aceptar EvAceptar;
+        public delegate void Salir();
+        public event Salir EvSalir;
         private Image _Image = null;
         private Viaje _viaje = null;
 
@@ -92,6 +94,7 @@ namespace RaiderPlan.Sitio.Inicio
         private void Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
+            this.EvSalir.Invoke();
         }
         private void btnRegistro_Click(object sender, EventArgs e)
         {

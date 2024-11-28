@@ -1,7 +1,6 @@
 ﻿using RaiderPlan.Sitio.Inicio;
 using Raiderplan1;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Wisej.Web;
@@ -22,15 +21,23 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         private void EspacioPersonal_Load(object sender, EventArgs e)
         {
             MuestraDatos();
-            ViajesEnProgresoCollection actual = new ViajesEnProgresoCollection();
-            actual.Fill(Application.Session.UsuarioID);
-            if(actual.Count > 0)
+            long viajeId = Application.Session.ViajeExplorar ?? 0;
+            if(viajeId > 0)
             {
-                CargarViajeEnProgreso(actual[0].ViajeID);
+                CargarViajePublico(viajeId);
             }
             else
             {
-                CargarEspacioPersonal();
+                ViajesEnProgresoCollection actual = new ViajesEnProgresoCollection();
+                actual.Fill(Application.Session.UsuarioID);
+                if(actual.Count > 0)
+                {
+                    CargarViajeEnProgreso(actual[0].ViajeID);
+                }
+                else
+                {
+                    CargarEspacioPersonal();
+                }
             }
         }
         private void MuestraDatos()
@@ -56,7 +63,8 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         }
         private void BtnRegistro_Click(object sender, EventArgs e)
         {
-            EvSalir?.Invoke();
+            Application.Session.ViajeExplorar = 0;
+           EvSalir?.Invoke();
         }
         private void Perfil_EvACtualizar()
         {
@@ -96,27 +104,20 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             paneles.Dock = DockStyle.Fill;
             paneles.EvVerMapa += (id) =>
             {
-                TrayectoViajeCollection trayectos = new TrayectoViajeCollection();
-                trayectos.FillByViajeID(id);
-                if(trayectos.Count > 0)
-                {
-                    List<TrayectoViaje> list = new List<TrayectoViaje>();
-                    foreach (TrayectoViaje tra in trayectos)
-                    {
-                        list.Add(tra);
-                    }
-                    if(list.Where(x=>x.EsOrigen =="N").ToList().Count > 0)
-                    {
-                        CargarViajeEnProgreso(id);
-                    }
-                    else
-                    {
-                        CargarNuevoViaje(id);
-                    }
-                }
-                else
+
+                Viaje viaje = new Viaje();
+                viaje.Fill(id);
+
+                if(viaje.ViajeEstado == "A")
                 {
                     CargarNuevoViaje(id);
+                }
+                else if(viaje.ViajeEstado == "R")
+                {
+                    CargarViajeRealizado(id);
+                }else if(viaje.ViajeEstado == "P")
+                {
+                    CargarViajeEnProgreso(id);
                 }
             };
             paneles.EvIniciarViaje += (id) =>
@@ -153,6 +154,54 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             pnl.EvSalir += () =>
             {
                 CargarEspacioPersonal();
+            };
+            pnl.EvFinalizar += () =>
+            {
+                CargarEspacioPersonal();
+            };
+            pnl.Dock = DockStyle.Fill;
+            pnlContent.Controls.Clear();
+            pnlContent.Controls.Add(pnl);
+        }
+        private void CargarViajeRealizado(long id)
+        {
+            // Cargo variable de sesion para manejar en el mapa
+            Application.Session.ViajeID = id;
+            // Configuro Cabecera
+            btnCrearViaje.Visible = false;
+            //btnInicio.Visible = true;
+            ViajeFinalizado pnl = new ViajeFinalizado();
+            pnl.EvSalir += () =>
+            {
+                CargarEspacioPersonal();
+            };
+            pnl.Dock = DockStyle.Fill;
+            pnlContent.Controls.Clear();
+            pnlContent.Controls.Add(pnl);
+        }
+
+        private void CargarViajePublico(long id)
+        {
+            // Cargo variable de sesion para manejar en el mapa
+            Application.Session.ViajeID = id;
+            // Configuro Cabecera
+            btnCrearViaje.Visible = false;
+            //btnInicio.Visible = true;
+            ViajePublico pnl = new ViajePublico();
+            pnl.EvSalir += () =>
+            {
+                CargarEspacioPersonal();
+            };
+            pnl.EvClonar += (long viaje) =>
+            {
+                if(viaje > 0)
+                {
+                    CargarNuevoViaje(viaje);
+                }
+                else
+                {
+                    CargarEspacioPersonal();
+                }
             };
             pnl.Dock = DockStyle.Fill;
             pnlContent.Controls.Clear();

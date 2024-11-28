@@ -136,14 +136,14 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             else
             {
                 TrayectoViajeCollection trayectos = new TrayectoViajeCollection();
-                trayectos.FillByViajeID(Application.Session.UsuarioId);
+                trayectos.FillByViajeID(_viaje.ViajeID);
                 if(trayectos.Count > 0)
                 {
 
                 Viaje iniciar = new Viaje();
                 iniciar.Fill(_viaje.ViajeID);
                 iniciar.FechaSalidaEfectiva = DateTime.Now;
-                _viaje.ViajeEstado = "P";
+                iniciar.ViajeEstado = "P";
                 iniciar.Update();
                 this.EvIniciar.Invoke(_viaje.ViajeID);
                 }
