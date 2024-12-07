@@ -31,11 +31,11 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ViajeFinalizado));
             this.pnlContent = new Wisej.Web.Panel();
-            this.htmlPanel1 = new Wisej.Web.HtmlPanel();
             this.pnlCoordenadas = new Wisej.Web.Panel();
             this.bntCancelar = new Wisej.Web.Button();
             this.btnTrayectos = new Wisej.Web.Button();
             this.btnDescargar = new Wisej.Web.Button();
+            this.htmlPanel1 = new Wisej.Web.HtmlPanel();
             this.javaScript1 = new Wisej.Web.JavaScript(this.components);
             this.pnlContent.SuspendLayout();
             this.pnlCoordenadas.SuspendLayout();
@@ -50,18 +50,6 @@
             this.pnlContent.Name = "pnlContent";
             this.pnlContent.Size = new System.Drawing.Size(399, 559);
             this.pnlContent.TabIndex = 0;
-            // 
-            // htmlPanel1
-            // 
-            this.htmlPanel1.Dock = Wisej.Web.DockStyle.Fill;
-            this.htmlPanel1.Focusable = false;
-            this.htmlPanel1.HtmlSource = "Resource\\mapas\\paginamapa2.html";
-            this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
-            this.htmlPanel1.Name = "htmlPanel1";
-            this.htmlPanel1.Size = new System.Drawing.Size(399, 559);
-            this.htmlPanel1.TabIndex = 0;
-            this.htmlPanel1.TabStop = false;
-            this.htmlPanel1.Appear += new System.EventHandler(this.htmlPanel1_Appear);
             // 
             // pnlCoordenadas
             // 
@@ -110,6 +98,18 @@
             this.btnDescargar.TabIndex = 5;
             this.btnDescargar.Text = "Descargar";
             this.btnDescargar.Click += new System.EventHandler(this.btnDescargar_Click);
+            // 
+            // htmlPanel1
+            // 
+            this.htmlPanel1.Dock = Wisej.Web.DockStyle.Fill;
+            this.htmlPanel1.Focusable = false;
+            this.htmlPanel1.HtmlSource = "Resource\\mapas\\mapaFinalizado.html";
+            this.htmlPanel1.Location = new System.Drawing.Point(0, 0);
+            this.htmlPanel1.Name = "htmlPanel1";
+            this.htmlPanel1.Size = new System.Drawing.Size(399, 559);
+            this.htmlPanel1.TabIndex = 0;
+            this.htmlPanel1.TabStop = false;
+            this.htmlPanel1.Appear += new System.EventHandler(this.htmlPanel1_Appear);
             // 
             // ViajeFinalizado
             // 

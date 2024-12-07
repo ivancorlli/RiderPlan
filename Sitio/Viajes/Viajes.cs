@@ -21,7 +21,11 @@ namespace RaiderPlan.Sitio.Viajes
         public Viajes()
         {
             InitializeComponent();
+            this.Load += Viajes_Load;
+        }
 
+        private void Viajes_Load(object sender, EventArgs e)
+        {
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
             htmlPanel1.Dock = DockStyle.Fill;
@@ -41,7 +45,7 @@ namespace RaiderPlan.Sitio.Viajes
 
                     bool primerTrayecto = true;
                     //hay trayectos significa que estamos editando debo recuperar los waitPoints
-                    foreach (TrayectoViaje _Item in _AuxiliarTrayecto.Cast<TrayectoViaje>().Where((x) => x.EsOrigen[0]=='S').ToList<TrayectoViaje>())
+                    foreach (TrayectoViaje _Item in _AuxiliarTrayecto.Cast<TrayectoViaje>().Where((x) => x.EsOrigen[0] == 'S').ToList<TrayectoViaje>())
                     {
                         LatLng WaitPoint = new LatLng();
                         if (primerTrayecto)
@@ -70,15 +74,14 @@ namespace RaiderPlan.Sitio.Viajes
 
                 }
             }
-
         }
-
 
         private void htmlPanel1_Appear(object sender, EventArgs e)
         {
 
             //carga el mapa dentro del html panel
-            htmlPanel1.Eval(@" map = L.map('map').setView([-34.6037, -58.3816], 4);
+            htmlPanel1.Eval(@" 
+                          map = L.map('map').setView([-34.6037, -58.3816], 4);
                           L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'
                           , { attribution: '© OpenStreetMap contributors'}).addTo(map);"
                         );
@@ -181,7 +184,14 @@ namespace RaiderPlan.Sitio.Viajes
                               /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     //funcion para manejar el evento click  en el mapa y poder añadir marcadores (puntos de enlace)
 
-                                     ManejaClickMapa= function(e) { if(control) { map.removeControl(control) }
+                                     ManejaClickMapa= function(e) {
+                                                            if (control && control != undefined) {
+                                                                try {
+                                                                    map.removeControl(control)
+                                                                } catch (err) {
+                                                                    console.error('Error removing control:', err);
+                                                                }
+                                                            }
                                                              let lat = e.latlng.lat;
                                                              let lng = e.latlng.lng;
                                                              let nuevoPunto= L.latLng(lat, lng);
@@ -233,7 +243,7 @@ namespace RaiderPlan.Sitio.Viajes
 
                                                                                           }).addTo(map);
 
-
+                                                              if (control && control != undefined) {
                                                               control.on('waypointschanged', function(e) { if (marcadores.length>1){
                                                                                                                                       marcadores = e.waypoints.map(function(waypoint) {
                                                                                                                                                                                         return waypoint.latLng; 
@@ -243,10 +253,11 @@ namespace RaiderPlan.Sitio.Viajes
                                                                                                                                      }
                                                                                                           }
                                                                          ); 
+                                                                }
                                                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                             //Recupero las rutas y los diferente objetos de la la ruta para luego poder pasarlas al servidor
 
-
+                                                            if (control && control != undefined) {
                                                             control.on('routesfound', function(e) {
                                                                         var routes = e.routes;
                                                                         console.log('ROUTES 1'+ routes.length)
@@ -294,14 +305,9 @@ namespace RaiderPlan.Sitio.Viajes
                                                                             console.log('datos completos de la ruta')
                                                                             console.log(datosRuta); 
                                                                         })
+                                                                        }
                                                             
-                                                            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                                                              //Actualizo los marcadores en el servidor
-                                                             // var json = JSON.stringify(datosRuta);
-                                                              //App.MiMetodoWeb2(json);
-
-                                                             }
+                                                            }
                                    /////////////////////////////////////////////////////////////////////////////////////////////////                         
                                      
                                      //evento click en el mapa

@@ -63,39 +63,9 @@ namespace RaiderPlan.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Edit {
-            get {
-                object obj = ResourceManager.GetObject("Edit", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap iconoOK {
-            get {
-                object obj = ResourceManager.GetObject("iconoOK", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap iconousuario {
             get {
                 object obj = ResourceManager.GetObject("iconousuario", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap imagenTitulo {
-            get {
-                object obj = ResourceManager.GetObject("imagenTitulo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -123,39 +93,9 @@ namespace RaiderPlan.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap saludo_motero_vss {
+        internal static System.Drawing.Bitmap racing_helmet {
             get {
-                object obj = ResourceManager.GetObject("saludo_motero_vss", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap saludo_motero1 {
-            get {
-                object obj = ResourceManager.GetObject("saludo_motero1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap saludo_motero11 {
-            get {
-                object obj = ResourceManager.GetObject("saludo_motero11", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap usuario1 {
-            get {
-                object obj = ResourceManager.GetObject("usuario1", resourceCulture);
+                object obj = ResourceManager.GetObject("racing-helmet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

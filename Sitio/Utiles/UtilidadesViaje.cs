@@ -192,9 +192,7 @@ namespace RaiderPlan.Sitio.Utiles
 
         public static void GenerarGpx(long ViajeId)
         {
-            try
-            {
-
+    
                 Viaje viaje = new Viaje();
                 viaje.Fill(ViajeId);
                 TrayectoViajeCollection trayectos = new TrayectoViajeCollection();
@@ -243,7 +241,7 @@ namespace RaiderPlan.Sitio.Utiles
                     tracks.Add(track);
                 }
 
-                string kmlContent = File.ReadAllText(Path.Combine("Resource","lib","kml","viaje_template.xml"));
+                string kmlContent = File.ReadAllText(Path.Combine(Application.StartupPath,"Resource","lib","kml","viaje_template.xml"));
 
                 // Reemplazar @VIAJENOMBRE
                 kmlContent = kmlContent.Replace("@VIAJENOMBRE", viaje.ViajeNombre);
@@ -255,7 +253,12 @@ namespace RaiderPlan.Sitio.Utiles
                 // Reemplazar @FOLDER
                 kmlContent = kmlContent.Replace("@FOLDER", folderContent);
                 string name = $"{viaje.ViajeNombre}.kml";
-                string tempFile = Path.Combine("Resource", "temp", name);
+                string tempFile = Path.Combine(Application.StartupPath,"Resource", "temp", name);
+                string folderPath = Path.GetDirectoryName(tempFile); // Get the directory from the full path
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath); // Create the directory if it doesn't exist
+                }
                 File.WriteAllText(tempFile, kmlContent);
                 // Trigger the download
                 Application.Download(tempFile, name);
@@ -270,11 +273,7 @@ namespace RaiderPlan.Sitio.Utiles
                     }
                     catch { /* Ignore cleanup errors */ }
                 });
-            }
-            catch (Exception)
-            {
-                MessageBox.Show("Se produjo un error al generar archivo gpx");
-            }
+            
         }
         private static string GenerateFolderContent(Track track)
         {

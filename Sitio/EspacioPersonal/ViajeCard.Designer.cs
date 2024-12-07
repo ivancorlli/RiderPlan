@@ -120,9 +120,9 @@
             this.label4.ForeColor = System.Drawing.Color.FromName("@controlText");
             this.label4.Location = new System.Drawing.Point(183, 59);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(26, 18);
+            this.label4.Size = new System.Drawing.Size(12, 18);
             this.label4.TabIndex = 15;
-            this.label4.Text = "126";
+            this.label4.Text = "0";
             // 
             // label3
             // 
@@ -131,9 +131,9 @@
             this.label3.ForeColor = System.Drawing.Color.FromName("@controlText");
             this.label3.Location = new System.Drawing.Point(183, 35);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(26, 18);
+            this.label3.Size = new System.Drawing.Size(12, 18);
             this.label3.TabIndex = 14;
-            this.label3.Text = "500";
+            this.label3.Text = "0";
             // 
             // pictureBox5
             // 

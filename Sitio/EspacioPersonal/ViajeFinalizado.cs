@@ -55,9 +55,12 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
                 if (collection.Count > 0)
                 {
-                        listaComentarios = new List<Comentario>();
+                     listaComentarios = new List<Comentario>();
                     foreach (ComentarioViaje viaje in collection)
                     {
+                        if (viaje.ComentarioViajeRow.IsCVTrayectoIDNull())
+                        {
+
                         Comentario comentario = new Comentario()
                         {
                             ID = viaje.ComentarioViajeID,
@@ -76,6 +79,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                             comentario.Imagen = "";
                         }
                         listaComentarios.Add(comentario);
+                        }
                     }
                 }
             }

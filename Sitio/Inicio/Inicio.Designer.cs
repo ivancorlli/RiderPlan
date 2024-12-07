@@ -31,16 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Inicio));
             this.pnlContent = new Wisej.Web.Panel();
             this.panel2 = new Wisej.Web.Panel();
+            this.flowLayoutPanel1 = new Wisej.Web.FlowLayoutPanel();
             this.panel1 = new Wisej.Web.Panel();
             this.panel3 = new Wisej.Web.Panel();
             this.label3 = new Wisej.Web.Label();
-            this.label2 = new Wisej.Web.Label();
             this.button1 = new Wisej.Web.Button();
+            this.label2 = new Wisej.Web.Label();
             this.pnlHeather = new Wisej.Web.Panel();
             this.pictureBox1 = new Wisej.Web.PictureBox();
             this.label1 = new Wisej.Web.Label();
             this.btnRegistro = new Wisej.Web.Button();
-            this.flowLayoutPanel1 = new Wisej.Web.FlowLayoutPanel();
             this.pnlContent.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -78,13 +78,31 @@
             this.panel2.Controls.Add(this.flowLayoutPanel1);
             this.panel2.CssStyle = resources.GetString("panel2.CssStyle");
             this.panel2.Dock = Wisej.Web.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 323);
+            this.panel2.Location = new System.Drawing.Point(0, 295);
             this.panel2.Name = "panel2";
             this.panel2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel2.ResponsiveProfiles"))));
             this.panel2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel2.ResponsiveProfiles1"))));
             this.panel2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel2.ResponsiveProfiles2"))));
-            this.panel2.Size = new System.Drawing.Size(706, 496);
+            this.panel2.Size = new System.Drawing.Size(706, 524);
             this.panel2.TabIndex = 2;
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.AutoScroll = true;
+            this.flowLayoutPanel1.AutoSize = true;
+            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(177, 1, 1, 1);
+            this.flowLayoutPanel1.CssStyle = resources.GetString("flowLayoutPanel1.CssStyle");
+            this.flowLayoutPanel1.Dock = Wisej.Web.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Margin = new Wisej.Web.Padding(15);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Padding = new Wisej.Web.Padding(50, 40, 50, 40);
+            this.flowLayoutPanel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("flowLayoutPanel1.ResponsiveProfiles"))));
+            this.flowLayoutPanel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("flowLayoutPanel1.ResponsiveProfiles1"))));
+            this.flowLayoutPanel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("flowLayoutPanel1.ResponsiveProfiles2"))));
+            this.flowLayoutPanel1.ScrollBars = Wisej.Web.ScrollBars.Vertical;
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(706, 524);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // panel1
             // 
@@ -100,22 +118,22 @@
             this.panel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel1.ResponsiveProfiles"))));
             this.panel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel1.ResponsiveProfiles1"))));
             this.panel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel1.ResponsiveProfiles2"))));
-            this.panel1.Size = new System.Drawing.Size(706, 323);
+            this.panel1.Size = new System.Drawing.Size(706, 295);
             this.panel1.TabIndex = 1;
             // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(177, 1, 1, 1);
             this.panel3.Controls.Add(this.label3);
-            this.panel3.Controls.Add(this.label2);
             this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.label2);
             this.panel3.Dock = Wisej.Web.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 55);
             this.panel3.Name = "panel3";
             this.panel3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel3.ResponsiveProfiles"))));
             this.panel3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel3.ResponsiveProfiles1"))));
             this.panel3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("panel3.ResponsiveProfiles2"))));
-            this.panel3.Size = new System.Drawing.Size(706, 268);
+            this.panel3.Size = new System.Drawing.Size(706, 240);
             this.panel3.TabIndex = 2;
             // 
             // label3
@@ -125,17 +143,34 @@
             this.label3.Cursor = Wisej.Web.Cursors.Hand;
             this.label3.Font = new System.Drawing.Font("defaultBold", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.label3.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.label3.Location = new System.Drawing.Point(156, 84);
+            this.label3.Location = new System.Drawing.Point(162, 88);
             this.label3.Margin = new Wisej.Web.Padding(15, 3, 15, 3);
             this.label3.Name = "label3";
             this.label3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label3.ResponsiveProfiles"))));
             this.label3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label3.ResponsiveProfiles1"))));
             this.label3.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label3.ResponsiveProfiles2"))));
-            this.label3.Size = new System.Drawing.Size(395, 65);
+            this.label3.Size = new System.Drawing.Size(395, 53);
             this.label3.TabIndex = 6;
             this.label3.Text = "RiderPlan es la comunidad de viajeros mas grande de Argentina. Comenza hoy a plan" +
     "ificar tu viaje.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Bottom)));
+            this.button1.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
+            this.button1.CssStyle = "\r\n  border-radius:10px";
+            this.button1.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
+            this.button1.Location = new System.Drawing.Point(253, 176);
+            this.button1.Name = "button1";
+            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles"))));
+            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles1"))));
+            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles2"))));
+            this.button1.Size = new System.Drawing.Size(200, 31);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Explorar";
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // label2
             // 
@@ -152,27 +187,10 @@
             this.label2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label2.ResponsiveProfiles"))));
             this.label2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label2.ResponsiveProfiles1"))));
             this.label2.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("label2.ResponsiveProfiles2"))));
-            this.label2.Size = new System.Drawing.Size(691, 56);
+            this.label2.Size = new System.Drawing.Size(691, 51);
             this.label2.TabIndex = 5;
             this.label2.Text = "Preparate para tu proximo destino.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // button1
-            // 
-            this.button1.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Top | Wisej.Web.AnchorStyles.Bottom)));
-            this.button1.BackColor = System.Drawing.Color.FromArgb(243, 221, 0, 0);
-            this.button1.CssStyle = "\r\n  border-radius:10px";
-            this.button1.Font = new System.Drawing.Font("@defaultBold", 13F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.button1.ForeColor = System.Drawing.Color.FromArgb(255, 255, 255);
-            this.button1.Location = new System.Drawing.Point(253, 182);
-            this.button1.Name = "button1";
-            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles"))));
-            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles1"))));
-            this.button1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("button1.ResponsiveProfiles2"))));
-            this.button1.Size = new System.Drawing.Size(200, 36);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Explorar";
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // pnlHeather
             // 
@@ -193,12 +211,12 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.BackgroundImageLayout = Wisej.Web.ImageLayout.Zoom;
-            this.pictureBox1.BackgroundImageSource = "Resource/lib/iconos/destination.png";
+            this.pictureBox1.ImageSource = "Resource\\lib\\iconos\\racing-helmet.png";
             this.pictureBox1.Location = new System.Drawing.Point(51, 11);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("pictureBox1.ResponsiveProfiles"))));
             this.pictureBox1.Size = new System.Drawing.Size(42, 33);
+            this.pictureBox1.SizeMode = Wisej.Web.PictureBoxSizeMode.Zoom;
             // 
             // label1
             // 
@@ -231,24 +249,6 @@
             this.btnRegistro.TabIndex = 2;
             this.btnRegistro.Text = "Registrarse";
             this.btnRegistro.Click += new System.EventHandler(this.btnRegistro_Click);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.AutoSize = true;
-            this.flowLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(177, 1, 1, 1);
-            this.flowLayoutPanel1.CssStyle = resources.GetString("flowLayoutPanel1.CssStyle");
-            this.flowLayoutPanel1.Dock = Wisej.Web.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Margin = new Wisej.Web.Padding(10);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Padding = new Wisej.Web.Padding(60);
-            this.flowLayoutPanel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("flowLayoutPanel1.ResponsiveProfiles"))));
-            this.flowLayoutPanel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("flowLayoutPanel1.ResponsiveProfiles1"))));
-            this.flowLayoutPanel1.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("flowLayoutPanel1.ResponsiveProfiles2"))));
-            this.flowLayoutPanel1.ScrollBars = Wisej.Web.ScrollBars.Vertical;
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(706, 496);
-            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // Inicio
             // 

@@ -94,7 +94,7 @@ namespace RaiderPlan.Sitio.Inicio
         private void Cancelar_Click(object sender, EventArgs e)
         {
             this.Close();
-            this.EvSalir.Invoke();
+            this.EvSalir?.Invoke();
         }
         private void btnRegistro_Click(object sender, EventArgs e)
         {
@@ -201,8 +201,12 @@ namespace RaiderPlan.Sitio.Inicio
         }
         private void GuardarImagen(Image pImagen)
         {
-            string rutaGuardar = @"Resource\lib\Viajes\" + pImagen.Tag.ToString(); //donde se va a guardar la imagen 
-
+            string rutaGuardar = Path.Combine(Application.StartupPath,"Resource", "lib", "Viajes", pImagen.Tag.ToString()); //donde se va a guardar la imagen 
+            string folderPath = Path.GetDirectoryName(rutaGuardar); // Get the directory from the full path
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath); // Create the directory if it doesn't exist
+            }
             // Convierte el objeto Image en un arreglo de bytes
             byte[] arregloBytes;
             using (MemoryStream ms = new MemoryStream())

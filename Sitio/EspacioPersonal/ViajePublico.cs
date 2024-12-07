@@ -29,19 +29,19 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         public ViajePublico()
         {
             InitializeComponent();
+            this.Load += ViajePublico_Load;
+        }
 
-            //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
-            this.Controls.Add(myMap);
-            htmlPanel1.Dock = DockStyle.Fill;
-
-
+        private void ViajePublico_Load(object sender, EventArgs e)
+        {
             CargaDatos();
-            
-
         }
 
         private void CargaDatos()
         {
+            //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
+            this.Controls.Add(myMap);
+            htmlPanel1.Dock = DockStyle.Fill;
             if (Application.Session.ViajeID > 0)
             {
                 TrayectoViajeCollection _AuxiliarTrayecto = new TrayectoViajeCollection(); // Para recuperar lso trayectos de un viaje
@@ -68,6 +68,9 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                     listaComentarios = new List<Comentario>();
                     foreach (ComentarioViaje v in collection)
                     {
+                        if (v.ComentarioViajeRow.IsCVTrayectoIDNull())
+                        {
+
                         Comentario comentario = new Comentario()
                         {
                             ID = v.ComentarioViajeID,
@@ -86,6 +89,8 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                             comentario.Imagen = "";
                         }
                         listaComentarios.Add(comentario);
+                        }
+
                     }
                 }
 
@@ -114,8 +119,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 }
 
                 DateTime date = viaje.ViajeRow.IsViajeFechaCreacionNull() ? DateTime.Now : viaje.ViajeFechaCreacion;
-                label1.Text = origen;
-                label2.Text = destino;
+                label2.Text = $"{origen} - {destino}";
 
                 Usuario user = new Usuario();
                 user.Fill(viaje.UsuarioID);
@@ -331,7 +335,8 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                               /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     //funcion para manejar el evento click  en el mapa y poder añadir marcadores (puntos de enlace)
     
-                                     ManejaClickMapa= function(e) {if(control) { map.removeControl(control) }
+                                     ManejaClickMapa= function(e) {
+                                                             if(control) { map.removeControl(control) }
                                                              let lat = e.latlng.lat;
                                                              let lng = e.latlng.lng;
                                                              let nuevoPunto= L.latLng(lat, lng);
@@ -860,13 +865,14 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 _viaje.ViajeMeGustas += 1;
             }
 
-            Viaje copia = new Viaje();
-            copia.UsuarioID = Application.Session.UsuarioID;
-            copia.ViajeNombre = $"{_viaje.ViajeNombre} - Copia";
-            copia.ViajeEstado = "A";
-            copia.ViajeFechaCreacion = DateTime.Now;
-            copia.LugarPartida = _viaje.LugarPartida;
-            copia.Lugarllegada = _viaje.Lugarllegada;
+                Viaje copia = new Viaje();
+                copia.UsuarioID = Application.Session.UsuarioID;
+                copia.ViajeNombre = $"{_viaje.ViajeNombre} - Copia";
+                copia.ViajeEstado = "A";
+                copia.ViajeFechaCreacion = DateTime.Now;
+                copia.LugarPartida = _viaje.LugarPartida;
+                copia.Lugarllegada = _viaje.Lugarllegada;
+                copia.ViajeParentID = _viaje.ViajeID;
 
             try
             {
@@ -918,6 +924,11 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             {
                 MessageBox.Show("No puedes clonar un viaje creado por ti mismo.", "", MessageBoxButtons.OK, MessageBoxIcon.Stop);
             }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            bntCancelar_Click(sender, e);
         }
     }
 }

@@ -170,7 +170,7 @@
             this.txtNombre.CssStyle = "border-radius: 10px;";
             this.txtNombre.ForeColor = System.Drawing.Color.White;
             this.txtNombre.Location = new System.Drawing.Point(22, 192);
-            this.txtNombre.MaxLength = 60;
+            this.txtNombre.MaxLength = 125;
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.ResponsiveProfiles.Add(((Wisej.Base.ResponsiveProfile)(resources.GetObject("txtNombre.ResponsiveProfiles"))));
             this.txtNombre.Size = new System.Drawing.Size(345, 47);

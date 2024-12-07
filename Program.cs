@@ -66,7 +66,12 @@ namespace RaiderPlan
             {
                 string newId = Guid.NewGuid().ToString();
                 byte[] imageBytes = Convert.FromBase64String(image);
-                string imagePath = Path.Combine("Resource","lib","Viajes", newId + ".jpg");
+                string imagePath = Path.Combine(Application.StartupPath,"Resource","lib","Viajes", newId + ".jpg");
+                string folderPath = Path.GetDirectoryName(imagePath); // Get the directory from the full path
+                if (!Directory.Exists(folderPath))
+                {
+                    Directory.CreateDirectory(folderPath); // Create the directory if it doesn't exist
+                }
                 File.WriteAllBytes(imagePath, imageBytes);
                 parametro.Imagen = newId + ".jpg";
             }
@@ -93,10 +98,10 @@ namespace RaiderPlan
             {
                 if (!comentario.ComentarioViajeRow.IsComentarioImagenNull())
                 {
-                    if (File.Exists(Path.Combine("Resource", "lib", "Viajes", comentario.ComentarioImagen)))
+                    if (File.Exists(Path.Combine(Application.StartupPath,"Resource", "lib", "Viajes", comentario.ComentarioImagen)))
                     {
                         // Delete the file
-                        File.Delete(Path.Combine("Resource", "lib", "Viajes", comentario.ComentarioImagen));
+                        File.Delete(Path.Combine(Application.StartupPath,"Resource", "lib", "Viajes", comentario.ComentarioImagen));
                     };
                 }
                 comentario.Delete();

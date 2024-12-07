@@ -28,8 +28,11 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         public ViajeEnProgreso()
         {
             InitializeComponent();
-            //cargo la varible del tipoVijea
+            this.Load += ViajeEnProgreso_Load;
+        }
 
+        private void ViajeEnProgreso_Load(object sender, EventArgs e)
+        {
             //Agrego la calse MyLeafletMap que hereda de witget en la cual levanta los paquetes para mostrar los mapas
             this.Controls.Add(myMap);
             htmlPanel1.Dock = DockStyle.Fill;
@@ -59,9 +62,12 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
                 if (collection.Count > 0)
                 {
-                        listaComentarios = new List<Comentario>();
+                    listaComentarios = new List<Comentario>();
                     foreach (ComentarioViaje viaje in collection)
                     {
+                        if (viaje.ComentarioViajeRow.IsCVTrayectoIDNull())
+                        {
+
                         Comentario comentario = new Comentario()
                         {
                             ID = viaje.ComentarioViajeID,
@@ -72,7 +78,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                         };
                         if (!viaje.ComentarioViajeRow.IsComentarioImagenNull() && viaje.ComentarioImagen != "")
                         {
-                            comentario.Imagen = Path.Combine("Resource", "lib", "Viajes", viaje.ComentarioImagen).ToString().Replace("\\","//");
+                            comentario.Imagen = Path.Combine("Resource", "lib", "Viajes", viaje.ComentarioImagen).ToString().Replace("\\", "//");
 
                         }
                         else
@@ -80,11 +86,12 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                             comentario.Imagen = "";
                         }
                         listaComentarios.Add(comentario);
+                        }
                     }
                 }
             }
-
         }
+
         private List<LatLng> RecuperaLista(TrayectoViajeCollection pTrayectoViaje, char pEsoreigen)
         {
             List<LatLng> ListaRespuesta = new List<LatLng>();
@@ -281,14 +288,25 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                 if(manejaRecorridos == false){
                                    ManejaRecuerdos(e);
                                  }else{
-                                  ManejaClickMapa(e);
-                                 }
+                                    try{
+                                        ManejaClickMapa(e);
+                                    }catch(err){
+                                        console.log('ERR',err)
+                                    }
+                                    }
                                 }
                                         
                               /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                     //funcion para manejar el evento click  en el mapa y poder añadir marcadores (puntos de enlace)
     
-                                     ManejaClickMapa= function(e) {if(control) { map.removeControl(control) }
+                                     ManejaClickMapa= function(e) {
+                                                             if (control && control != undefined) {
+                                                                try {
+                                                                    map.removeControl(control)
+                                                                } catch (err) {
+                                                                    console.error('Error removing control:', err);
+                                                                }
+                                                            }
                                                              let lat = e.latlng.lat;
                                                              let lng = e.latlng.lng;
                                                              let nuevoPunto= L.latLng(lat, lng);
@@ -346,7 +364,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
 
                                                                                           }).addTo(map);
 
-
+                                                            if (control && control != undefined) {
                                                               control.on('waypointschanged', function(e) { if (marcadores.length>1){
                                                                                                                                       marcadores = e.waypoints.map(function(waypoint) {
                                                                                                                                                                                         return waypoint.latLng; 
@@ -356,11 +374,12 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                                                                                                                      }
                                                                                                                                                                                                                                                                                                                                             
                                                                                                           }
-                                                                         ); 
+                                                                         );
+                                                            }
                                                             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                                                             //Recupero las rutas y los diferente objetos de la la ruta para luego poder pasarlas al servidor
 
-
+                                                            if (control && control != undefined) {
                                                             control.on('routesfound', function(e) {
                                                                         var routes = e.routes;
                                                                         console.log('ROUTES 1'+ routes.length)
@@ -408,7 +427,9 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                                                             console.log('datos completos de la ruta')
                                                                             console.log(datosRuta); 
                                                                         })
+                                                            }
                                                             ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                                            if (control && control != undefined) {
                                                             control.on('routeselected', function() {
                                                                                                     let container = document.querySelector('.routing-container-1');
                                                                                                                                                                                                            
@@ -422,14 +443,8 @@ namespace RaiderPlan.Sitio.EspacioPersonal
  
                                                                         })
 
-
-                                                            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-                                                              //Actualizo los marcadores en el servidor
-                                                             // var json = JSON.stringify(datosRuta);
-                                                              //App.MiMetodoWeb2(json);
-
                                                              }
+                                                            }
                                    /////////////////////////////////////////////////////////////////////////////////////////////////                         
                                      
                                      //evento click en el mapa
@@ -528,7 +543,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                     {
                                        let coordenadas = { latlng: L.latLng(listaWaitPointsSecundarios[i].lat, listaWaitPointsSecundarios[i].lng) };
                                        ManejaClickMapa(coordenadas);
-                                       
                                     }
 
 
@@ -605,7 +619,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                  
 
                                //funcion para cargar el viaje en progreso
-                             RutaProgramada= function(e) { if(control1) { map.removeControl(control1) }
+                             RutaProgramada= function(e) { if(control1 && control1 != undefined) { map.removeControl(control1) }
                                                                        
                                                              let lat = e.latlng.lat;
                                                              let lng = e.latlng.lng;
@@ -648,7 +662,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                                                                                                    formatter: new L.Routing.Formatter(DetalleEspañol) 
 
                                                                                           }).addTo(map);
-
 
                                                          }
 
@@ -835,7 +848,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                                 border-radius: 5px;
                                 cursor: pointer;
                             "">Eliminar</button>
-
                         </form>
                     </div>`;
                     marker.bindPopup(popupContent).openPopup();

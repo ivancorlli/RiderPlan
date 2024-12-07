@@ -1,4 +1,5 @@
 ﻿using RaiderPlan.Sitio.EspacioPersonal;
+using RaiderPlan.Sitio.Viajes;
 using Raiderplan1;
 using System;
 using System.Collections.Generic;
@@ -11,14 +12,17 @@ namespace RaiderPlan.Sitio.Inicio
     public partial class Inicio : Wisej.Web.UserControl
     {
         public event EventHandler EvAutenticado;
+        MyLeafletMap myMap = new MyLeafletMap();
         public Inicio()
         {
             InitializeComponent();
             this.Load += Inicio_Load;
+            Application.Session.ViajeExplorar = null;
         }
 
         private void Inicio_Load(object sender, EventArgs e)
         {
+            this.Controls.Add(myMap);
             flowLayoutPanel1.Controls.Clear();
             ViajesPublicosCollection _viajes = new ViajesPublicosCollection();
             _viajes.Fill();

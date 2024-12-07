@@ -20,10 +20,25 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         private void CargarPaneles(object sender, EventArgs e)
         {
             CargarPanelEliminados();
-            CargarPanelViajeActual();
+            if (Application.Session.ViajeExplorar == null || Application.Session.ViajeExplorar <= 0)
+            {
+                CargarPanelViajeActual();
+            }
+            if (Application.Session.ViajeExplorar != null && Application.Session.ViajeExplorar > 0)
+            {
+                ManejaAbrirViajePublico(Application.Session.ViajeExplorar);
+            }
+            else
+            {
+                LblExplorar_Click(sender, e);
+            }
         }
         private void LblMisViajes_Click(object sender, EventArgs e)
         {
+            if (pnlViajeActual.Visible == false)
+            {
+                CargarPanelViajeActual();
+            }
             panel3.Visible = true;
             panel2.Visible = false;
             panel4.Visible = false;
@@ -40,11 +55,16 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         }
         private void LblExplorar_Click(object sender, EventArgs e)
         {
+            if (pnlViajeActual.Visible == false)
+            {
+                CargarPanelViajeActual();
+            }
             panel2.Visible = true;
             panel3.Visible = false;
             panel4.Visible = false;
             Explorar explorar = new Explorar();
             explorar.Dock = DockStyle.Fill;
+            explorar.EvAbrirMapa += (id) => ManejaAbrirViajePublico(id);
             pnlContent.Controls.Clear();
             pnlContent.Controls.Add(explorar);
         }
@@ -77,6 +97,10 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         }
         private void LblEliminados_Click(object sender, EventArgs e)
         {
+            if(pnlViajeActual.Visible == false)
+            {
+                CargarPanelViajeActual();
+            }
             panel4.Visible = true;
             panel3.Visible = false;
             panel2.Visible = false;
@@ -101,7 +125,29 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             pnlContent.Controls.Clear();
             pnlContent.Controls.Add(misViajes);
         }
+        private void ManejaAbrirViajePublico(long id)
+        {
+            pnlViajeActual.Visible = false;
+            Application.Session.ViajeID = id;
+            ViajePublico viaje = new ViajePublico();
+            viaje.EvSalir += () =>
+            {
+                Application.Session.ViajeExplorar = null;
+                pnlContent.Controls.Clear();
+                LblExplorar_Click(new { }, EventArgs.Empty);
+            };
+            viaje.EvClonar += (x) =>
+            {
+                Application.Session.ViajeExplorar = null;
+                pnlContent.Controls.Clear();
+                LblMisViajes_Click(new { }, EventArgs.Empty);
+            };
+            viaje.Dock = DockStyle.Fill;
+            pnlContent.Controls.Clear();
+            pnlContent.Controls.Add(viaje);
+        }
 
+        
         private void panel5_PanelCollapsed(object sender, EventArgs e)
         {
             this.EvVerMapa.Invoke(this._viajeActual.ViajeID);

@@ -20,7 +20,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         private long _UserId = 0;
         private long _ViajeId = 0;
 
-        public ViajeCardPublico(string nombre="",string imagen=null,string destino ="",string origen="",int meGustas=0,int descargas=0,long userId=0,long viajeId =0 )
+        public ViajeCardPublico(string nombre="",string imagen=null, string origen = "", string destino ="",int meGustas=0,int descargas=0,long userId=0,long viajeId =0 )
         {
             InitializeComponent();
             _ImagenPath = imagen;

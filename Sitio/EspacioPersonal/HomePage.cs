@@ -21,24 +21,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         private void EspacioPersonal_Load(object sender, EventArgs e)
         {
             MuestraDatos();
-            long viajeId = Application.Session.ViajeExplorar ?? 0;
-            if(viajeId > 0)
-            {
-                CargarViajePublico(viajeId);
-            }
-            else
-            {
-                ViajesEnProgresoCollection actual = new ViajesEnProgresoCollection();
-                actual.Fill(Application.Session.UsuarioID);
-                if(actual.Count > 0)
-                {
-                    CargarViajeEnProgreso(actual[0].ViajeID);
-                }
-                else
-                {
-                    CargarEspacioPersonal();
-                }
-            }
+            CargarEspacioPersonal();
         }
         private void MuestraDatos()
         {
@@ -63,7 +46,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
         }
         private void BtnRegistro_Click(object sender, EventArgs e)
         {
-            Application.Session.ViajeExplorar = 0;
+           Application.Session.ViajeExplorar = null;
            EvSalir?.Invoke();
         }
         private void Perfil_EvACtualizar()
@@ -174,34 +157,6 @@ namespace RaiderPlan.Sitio.EspacioPersonal
             pnl.EvSalir += () =>
             {
                 CargarEspacioPersonal();
-            };
-            pnl.Dock = DockStyle.Fill;
-            pnlContent.Controls.Clear();
-            pnlContent.Controls.Add(pnl);
-        }
-
-        private void CargarViajePublico(long id)
-        {
-            // Cargo variable de sesion para manejar en el mapa
-            Application.Session.ViajeID = id;
-            // Configuro Cabecera
-            btnCrearViaje.Visible = false;
-            //btnInicio.Visible = true;
-            ViajePublico pnl = new ViajePublico();
-            pnl.EvSalir += () =>
-            {
-                CargarEspacioPersonal();
-            };
-            pnl.EvClonar += (long viaje) =>
-            {
-                if(viaje > 0)
-                {
-                    CargarNuevoViaje(viaje);
-                }
-                else
-                {
-                    CargarEspacioPersonal();
-                }
             };
             pnl.Dock = DockStyle.Fill;
             pnlContent.Controls.Clear();

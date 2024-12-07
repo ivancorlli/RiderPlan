@@ -64,7 +64,7 @@ namespace RaiderPlan.Sitio.EspacioPersonal
                 }
                 if (!_viaje.ViajeRow.IsViajeDescargasNull())
                 {
-                    label3.Text = _viaje.ViajeDescargas.ToString();
+                    label4.Text = _viaje.ViajeDescargas.ToString();
                 }
                 else
                 {

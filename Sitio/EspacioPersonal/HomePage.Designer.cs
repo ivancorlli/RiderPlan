@@ -135,11 +135,10 @@
             this.pbUsuario.BackColor = System.Drawing.Color.FromName("@window");
             this.pbUsuario.CssStyle = "\r\n  border-radius: 25%";
             this.pbUsuario.Cursor = Wisej.Web.Cursors.Hand;
-            this.pbUsuario.ImageSource = "Resource\\lib\\Imagenes\\iconousuario.png";
             this.pbUsuario.Location = new System.Drawing.Point(16, 9);
             this.pbUsuario.Name = "pbUsuario";
             this.pbUsuario.Size = new System.Drawing.Size(36, 36);
-            this.pbUsuario.SizeMode = Wisej.Web.PictureBoxSizeMode.StretchImage;
+            this.pbUsuario.SizeMode = Wisej.Web.PictureBoxSizeMode.Zoom;
             this.pbUsuario.Click += new System.EventHandler(this.PbUsuario_Click_1);
             // 
             // HomePage

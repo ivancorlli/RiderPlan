@@ -65,7 +65,7 @@
             // textBox3
             // 
             this.textBox3.Location = new System.Drawing.Point(25, 210);
-            this.textBox3.MaxLength = 250;
+            this.textBox3.MaxLength = 500;
             this.textBox3.Multiline = true;
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(343, 67);
@@ -141,7 +141,6 @@
             // 
             this.btnAgregar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
             this.btnAgregar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnAgregar.BackgroundImage = global::RaiderPlan.Properties.Resources.iconoOK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAgregar.Location = new System.Drawing.Point(25, 10);
             this.btnAgregar.Name = "btnAgregar";

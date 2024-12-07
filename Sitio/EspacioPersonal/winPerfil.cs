@@ -62,7 +62,8 @@ namespace RaiderPlan.Sitio.Inicio
             {
                 //Cargo el combo de localidad
                 LocalidadCollection localidades = new LocalidadCollection();
-                localidades.FillByProvinciaID((int)cbProvincia.SelectedValue);
+                int proId = int.Parse(cbProvincia.SelectedValue.ToString());
+                localidades.FillByProvinciaID(proId);
 
                 //creo localidad vacia 
                 Localidad _LocalidadVacia = new Localidad();
@@ -216,7 +217,7 @@ namespace RaiderPlan.Sitio.Inicio
             {
                 if (!_Persona.PersonaRow.IsImagenPerfilNull())
                 {
-                    string filePathToDelete = Path.Combine("Resource", "lib", "ImagenesUsuario", _Persona.ImagenPerfil);
+                    string filePathToDelete = Path.Combine(Application.StartupPath,"Resource", "lib", "ImagenesUsuario", _Persona.ImagenPerfil);
                     BorrarImagen(filePathToDelete);
                 }
                 _Persona.ImagenPerfil = _ImagenPerfil.Tag.ToString();
@@ -273,9 +274,13 @@ namespace RaiderPlan.Sitio.Inicio
         }
         private void GuardarImagen(Image pImagen)
         {
-            //@"Resource\lib\ImagenesUsuario"
-            string rutaGuardar = @"Resource\lib\ImagenesUsuario\" + pImagen.Tag.ToString(); //donde se va a guardar la imagen 
-
+            string rutaGuardar = Path.Combine(Application.StartupPath,"Resource", "lib", "ImagenesUsuario", pImagen.Tag.ToString());
+            // Ensure the folder exists
+            string folderPath = Path.GetDirectoryName(rutaGuardar); // Get the directory from the full path
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath); // Create the directory if it doesn't exist
+            }
             // Convierte el objeto Image en un arreglo de bytes
             byte[] arregloBytes;
             using (MemoryStream ms = new MemoryStream())

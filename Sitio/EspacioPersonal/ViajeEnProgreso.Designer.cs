@@ -158,7 +158,6 @@
             // 
             this.btnAgregar.Anchor = ((Wisej.Web.AnchorStyles)((Wisej.Web.AnchorStyles.Bottom | Wisej.Web.AnchorStyles.Left)));
             this.btnAgregar.BackColor = System.Drawing.Color.LightGreen;
-            this.btnAgregar.BackgroundImage = global::RaiderPlan.Properties.Resources.iconoOK;
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.btnAgregar.Location = new System.Drawing.Point(6, 13);
             this.btnAgregar.Name = "btnAgregar";
